@@ -20,12 +20,56 @@
     <section class="content-section">
         <div class="container">
             <h2>Noticias de Última Hora en Uruguay</h2>
-            <div id="noticias-ultima-hora"></div>
+            <div id="noticias-ultima-hora">
+                <!-- Aquí se insertarán las noticias de Última Hora dinámicamente -->
+            </div>
         </div>
     </section>
     <footer>
         <p>&copy; 2023 TecnoNewsUY. Todos los derechos reservados.</p>
     </footer>
+
+    <script src="script.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            // Obtener el contenedor de noticias de Última Hora
+            const noticiasUltimaHoraContainer = document.getElementById('noticias-ultima-hora');
+
+            // Array de noticias de ejemplo
+            const noticias = [
+                {
+                    titulo: 'Noticia 1',
+                    contenido: 'Contenido de la Noticia 1'
+                },
+                {
+                    titulo: 'Noticia 2',
+                    contenido: 'Contenido de la Noticia 2'
+                },
+                {
+                    titulo: 'Noticia 3',
+                    contenido: 'Contenido de la Noticia 3'
+                }
+            ];
+
+            // Función para mostrar las noticias de Última Hora
+            const mostrarNoticiasUltimaHora = () => {
+                // Vaciar el contenedor de noticias de Última Hora
+                noticiasUltimaHoraContainer.innerHTML = '';
+
+                // Crear y agregar elementos de noticias al contenedor
+                noticias.forEach(noticia => {
+                    const noticiaElement = document.createElement('div');
+                    noticiaElement.innerHTML = `
+                        <h3>${noticia.titulo}</h3>
+                        <p>${noticia.contenido}</p>
+                    `;
+                    noticiasUltimaHoraContainer.appendChild(noticiaElement);
+                });
+            };
+
+            // Cargar las noticias de Última Hora al cargar la página
+            mostrarNoticiasUltimaHora();
+        });
+    </script>
 </body>
 </html>
-
