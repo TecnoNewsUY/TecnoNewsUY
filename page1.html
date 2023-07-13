@@ -1,38 +1,74 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>TecnoNewsUY</title>
-  <style>
-    /* Estilos CSS */
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      text-align: center;
-      margin-top: 150px;
-    }
-    
-    h1 {
-      color: #333;
-      font-size: 48px;
-      margin-bottom: 20px;
-    }
-  </style>
+  <title>TecnoNewsUY - Noticias</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-  <a href="#" onclick="mostrarPagina()">TecnoNewsUY</a>
+  <header>
+    <h1>TecnoNewsUY - Noticias</h1>
+  </header>
+  <nav>
+    <ul>
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="page1.html">Noticias</a></li>
+      <li><a href="page2.html">Última Hora</a></li>
+      <li><a href="page3.html">Ofertas</a></li>
+    </ul>
+  </nav>
+  <section class="content-section">
+    <div class="container">
+      <h2>Noticias en Uruguay</h2>
+      <div id="noticias-noticias">
+        <!-- Aquí se insertarán las noticias de Noticias dinámicamente -->
+      </div>
+    </div>
+  </section>
+  <footer>
+    <p>&copy; 2023 TecnoNewsUY. Todos los derechos reservados.</p>
+  </footer>
 
-  <div id="contenido" style="display: none;">
-    <h1 id="pageTitle">Hola Prueba</h1>
-  </div>
-
+  <script src="script.js"></script>
   <script>
-    function mostrarPagina() {
-      const enlace = document.querySelector('a');
-      enlace.style.display = 'none';
+    window.addEventListener('DOMContentLoaded', () => {
+      // Obtener el contenedor de noticias de Noticias
+      const noticiasNoticiasContainer = document.getElementById('noticias-noticias');
 
-      const contenido = document.getElementById('contenido');
-      contenido.style.display = 'block';
-    }
+      // Array de noticias de ejemplo
+      const noticias = [
+        {
+          titulo: 'Noticia 1',
+          contenido: 'Contenido de la Noticia 1'
+        },
+        {
+          titulo: 'Noticia 2',
+          contenido: 'Contenido de la Noticia 2'
+        },
+        {
+          titulo: 'Noticia 3',
+          contenido: 'Contenido de la Noticia 3'
+        }
+      ];
+
+      // Función para mostrar las noticias de Noticias
+      const mostrarNoticiasNoticias = () => {
+        // Vaciar el contenedor de noticias de Noticias
+        noticiasNoticiasContainer.innerHTML = '';
+
+        // Crear y agregar elementos de noticias al contenedor
+        noticias.forEach(noticia => {
+          const noticiaElement = document.createElement('div');
+          noticiaElement.innerHTML = `
+            <h3>${noticia.titulo}</h3>
+            <p>${noticia.contenido}</p>
+          `;
+          noticiasNoticiasContainer.appendChild(noticiaElement);
+        });
+      };
+
+      // Cargar las noticias de Noticias al cargar la página
+      mostrarNoticiasNoticias();
+    });
   </script>
 </body>
 </html>
