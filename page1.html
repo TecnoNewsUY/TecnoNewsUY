@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TecnoNewsUY</title>
+  <style>
+    /* Estilos CSS */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      text-align: center;
+      margin-top: 150px;
+    }
+    
+    h1 {
+      color: #333;
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <a href="#" onclick="mostrarPagina()">TecnoNewsUY</a>
+
+  <div id="contenido" style="display: none;">
+    <h1 id="pageTitle">Hola Prueba</h1>
+  </div>
+
+  <script>
+    function mostrarPagina() {
+      const enlace = document.querySelector('a');
+      enlace.style.display = 'none';
+
+      const contenido = document.getElementById('contenido');
+      contenido.style.display = 'block';
+    }
+  </script>
+</body>
+</html>
