@@ -17,16 +17,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
                 // Verificar si hay noticias en la categoría seleccionada
                 if (noticiasFiltradas.length > 0) {
-                    // Recorrer las noticias filtradas y agregar opciones al selector
-                    noticiasFiltradas.forEach((noticia, index) => {
-                        const option = document.createElement('option');
-                        option.value = index;
-                        option.textContent = noticia.titulo;
-                        noticiasSelector.appendChild(option);
-                    });
-
-                    // Mostrar la primera noticia por defecto
-                    mostrarNoticia(noticiasFiltradas[0]);
+                    // Mostrar las últimas 5 noticias en la sección
+                    const ultimasNoticias = noticiasFiltradas.slice(-5).reverse();
+                    mostrarNoticias(ultimasNoticias);
                 } else {
                     mostrarError("No se encontraron noticias en la categoría seleccionada.");
                 }
@@ -66,10 +59,13 @@ window.addEventListener('DOMContentLoaded', () => {
             });
     });
 
-    // Función para mostrar el contenido de la noticia
-    function mostrarNoticia(noticia) {
-        noticiaContenido.innerHTML = `
-            <div class="noticia-item">
+    // Función para mostrar las últimas noticias
+    function mostrarNoticias(noticias) {
+        noticiaContenido.innerHTML = '';
+        noticias.forEach(noticia => {
+            const noticiaItem = document.createElement('div');
+            noticiaItem.classList.add('noticia');
+            noticiaItem.innerHTML = `
                 <a href="${generarEnlaceNoticia(noticia)}">
                     <div class="noticia-imagen">
                         <img src="${generarEnlaceImagen(noticia)}" alt="${noticia.titulo}">
@@ -79,8 +75,9 @@ window.addEventListener('DOMContentLoaded', () => {
                         <p>${limitarTexto(noticia.contenido, 3)}</p>
                     </div>
                 </a>
-            </div>
-        `;
+            `;
+            noticiaContenido.appendChild(noticiaItem);
+        });
     }
 
     // Función para mostrar un mensaje de error
@@ -116,3 +113,4 @@ window.addEventListener('DOMContentLoaded', () => {
         return lineasLimitadas;
     }
 });
+
