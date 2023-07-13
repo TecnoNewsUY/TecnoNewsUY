@@ -1,46 +1,37 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TecnoNewsUY - Inicio</title>
     <link rel="stylesheet" href="styles.css">
-    <title>TecnoNewsUY</title>
 </head>
-
 <body>
     <header>
-        <div class="container">
-            <h1 class="logo">TecnoNewsUY</h1>
-            <nav class="nav-menu">
-                <ul class="nav-list">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="page1.html?categoria=1">Noticias</a></li>
-                    <li class="nav-item"><a class="nav-link" href="page2.html?categoria=2">Ultima Hora</a></li>
-                    <li class="nav-item"><a class="nav-link" href="page3.html?categoria=3">Ofertas</a></li>
-                </ul>
-            </nav>
-        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="page1.html?categoria=1">Noticias en Uruguay</a></li>
+                <li><a href="page2.html?categoria=2">Última Hora</a></li>
+                <li><a href="page3.html?categoria=3">Ofertas en Uruguay</a></li>
+            </ul>
+        </nav>
     </header>
-    <main>
-        <section class="hero">
-            <div class="container">
-                <h2 class="hero-title">Bienvenido a TecnoNewsUY</h2>
-                <p class="hero-description">Selecciona una categoría para ver las noticias:</p>
-                <select id="noticias-selector"></select>
-                <div id="noticia-contenido"></div>
-            </div>
-        </section>
-    </main>
-    <footer>
+    
+    <section id="index-banner">
         <div class="container">
-            <p class="footer-text">&copy; 2023 TecnoNewsUY. Todos los derechos reservados.</p>
+            <h1>TecnoNewsUY</h1>
         </div>
-    </footer>
+    </section>
+
+    <section id="index-content" class="container">
+        <h2>Últimas Noticias</h2>
+        <div id="latest-news" class="news-container"></div>
+    </section>
+
     <script src="script.js"></script>
 </body>
-
 </html>
