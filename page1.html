@@ -1,74 +1,64 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>TecnoNewsUY - Noticias</title>
-  <link rel="stylesheet" type="text/css" href="styles.css">
+    <meta charset="UTF-8">
+    <title>TecnoNewsUY - Noticias</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-  <header>
-    <h1>TecnoNewsUY - Noticias</h1>
-  </header>
-  <nav>
-    <ul>
-      <li><a href="index.html">Inicio</a></li>
-      <li><a href="page1.html">Noticias</a></li>
-      <li><a href="page2.html">Última Hora</a></li>
-      <li><a href="page3.html">Ofertas</a></li>
-    </ul>
-  </nav>
-  <section class="content-section">
-    <div class="container">
-      <h2>Noticias en Uruguay</h2>
-      <div id="noticias-noticias">
-        <!-- Aquí se insertarán las noticias de Noticias dinámicamente -->
-      </div>
-    </div>
-  </section>
-  <footer>
-    <p>&copy; 2023 TecnoNewsUY. Todos los derechos reservados.</p>
-  </footer>
+    <header>
+        <h1>TecnoNewsUY - Noticias</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="page1.html">Noticias</a></li>
+            <li><a href="page2.html">Última Hora</a></li>
+            <li><a href="page3.html">Ofertas</a></li>
+        </ul>
+    </nav>
+    <section class="content-section">
+        <div class="container">
+            <h2>Noticias en Uruguay</h2>
+            <div id="noticias-noticias">
+                <!-- Aquí se insertarán las noticias de Noticias -->
+            </div>
+        </div>
+    </section>
+    <footer>
+        <p>&copy; 2023 TecnoNewsUY. Todos los derechos reservados.</p>
+    </footer>
 
-  <script src="script.js"></script>
-  <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      // Obtener el contenedor de noticias de Noticias
-      const noticiasNoticiasContainer = document.getElementById('noticias-noticias');
+    <script src="script.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            // Obtener el contenedor de noticias de Noticias
+            const noticiasNoticiasContainer = document.getElementById('noticias-noticias');
 
-      // Array de noticias de ejemplo
-      const noticias = [
-        {
-          titulo: 'Noticia 1',
-          contenido: 'Contenido de la Noticia 1'
-        },
-        {
-          titulo: 'Noticia 2',
-          contenido: 'Contenido de la Noticia 2'
-        },
-        {
-          titulo: 'Noticia 3',
-          contenido: 'Contenido de la Noticia 3'
-        }
-      ];
+            // Array de noticias
+            const noticias = [
+                // Aquí se agregarán dinámicamente las noticias
+            ];
 
-      // Función para mostrar las noticias de Noticias
-      const mostrarNoticiasNoticias = () => {
-        // Vaciar el contenedor de noticias de Noticias
-        noticiasNoticiasContainer.innerHTML = '';
+            // Función para mostrar las noticias de Noticias
+            const mostrarNoticiasNoticias = () => {
+                // Vaciar el contenedor de noticias de Noticias
+                noticiasNoticiasContainer.innerHTML = '';
 
-        // Crear y agregar elementos de noticias al contenedor
-        noticias.forEach(noticia => {
-          const noticiaElement = document.createElement('div');
-          noticiaElement.innerHTML = `
-            <h3>${noticia.titulo}</h3>
-            <p>${noticia.contenido}</p>
-          `;
-          noticiasNoticiasContainer.appendChild(noticiaElement);
+                // Crear y agregar elementos de noticias al contenedor
+                noticias.forEach(noticia => {
+                    const noticiaElement = document.createElement('div');
+                    noticiaElement.innerHTML = `
+                        <h3>${noticia.titulo}</h3>
+                        <p>${noticia.contenido}</p>
+                    `;
+                    noticiasNoticiasContainer.appendChild(noticiaElement);
+                });
+            };
+
+            // Cargar las noticias de Noticias al cargar la página
+            mostrarNoticiasNoticias();
         });
-      };
-
-      // Cargar las noticias de Noticias al cargar la página
-      mostrarNoticiasNoticias();
-    });
-  </script>
+    </script>
 </body>
 </html>
