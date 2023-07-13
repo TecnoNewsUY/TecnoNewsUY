@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>TecnoNewsUY - Noticias</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="script.js"></script>
 </head>
 <body>
     <header>
@@ -13,16 +14,14 @@
         <ul>
             <li><a href="index.html">Inicio</a></li>
             <li><a href="page1.html">Noticias</a></li>
-            <li><a href="page2.html">Última Hora</a></li>
+            <li><a href="page2.html">Ultima Hora</a></li>
             <li><a href="page3.html">Ofertas</a></li>
         </ul>
     </nav>
     <section class="content-section">
         <div class="container">
             <h2>Noticias en Uruguay</h2>
-            <div id="noticias-noticias">
-                <!-- Aquí se insertarán las noticias de Noticias -->
-            </div>
+            <div id="noticias-container"></div>
         </div>
     </section>
     <footer>
@@ -30,30 +29,5 @@
     </footer>
 
     <script src="script.js"></script>
-    <script>
-        window.addEventListener('DOMContentLoaded', () => {
-            // Obtener el contenedor de noticias de Noticias
-            const noticiasNoticiasContainer = document.getElementById('noticias-noticias');
-
-            // Cargar las noticias de Noticias
-            fetch('https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/todaslasnoticias.json')
-                .then(response => response.json())
-                .then(data => {
-                    // Mostrar las noticias en el contenedor
-                    data.forEach(noticia => {
-                        const noticiaElement = document.createElement('div');
-                        noticiaElement.innerHTML = `
-                            <h3>${noticia.titulo}</h3>
-                            <p>${noticia.contenido}</p>
-                        `;
-                        noticiasNoticiasContainer.appendChild(noticiaElement);
-                    });
-                })
-                .catch(error => {
-                    console.error('Error al cargar las noticias de Noticias:', error);
-                });
-        });
-    </script>
 </body>
 </html>
-
