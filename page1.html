@@ -2,32 +2,24 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>TecnoNewsUY - Noticias</title>
+    <title>Noticias en Uruguay</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
     <header>
-        <h1>TecnoNewsUY - Noticias</h1>
+        <h1>TecnoNewsUY</h1>
     </header>
-    <nav>
-        <ul>
-            <li><a href="index.html">Inicio</a></li>
-            <li><a href="page1.html?categoria=1">Noticias</a></li>
-            <li><a href="page2.html?categoria=2">Ultima Hora</a></li>
-            <li><a href="page3.html?categoria=3">Ofertas</a></li>
-        </ul>
-    </nav>
-    <section class="content-section">
-        <div class="container">
-            <h2>Noticias en Uruguay</h2>
+    <section class="noticias-section">
+        <h2>Noticias en Uruguay</h2>
+        <div id="noticias-selector-container">
+            <label for="noticias-selector">Seleccionar noticia:</label>
             <select id="noticias-selector"></select>
-            <div id="noticia-contenido"></div>
         </div>
+        <div id="noticia-contenido"></div>
     </section>
     <footer>
         <p>&copy; 2023 TecnoNewsUY. Todos los derechos reservados.</p>
     </footer>
-
     <script src="script.js"></script>
 </body>
 </html>
