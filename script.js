@@ -68,17 +68,19 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // Función para mostrar el contenido de la noticia
     function mostrarNoticia(noticia) {
-        const enlace = obtenerEnlaceNoticia(noticia.titulo);
-        const titulo = `<a href="${enlace}">${noticia.titulo}</a>`;
-        const imagen = noticia.imagen ? `<img src="${noticia.imagen}" alt="${noticia.titulo}">` : '';
-        const contenido = `<div class="noticia">
-                                <div class="imagen">${imagen}</div>
-                                <div class="texto">
-                                    <h3>${titulo}</h3>
-                                    <p>${noticia.contenido}</p>
-                                </div>
-                           </div>`;
-        noticiaContenido.innerHTML = contenido;
+        noticiaContenido.innerHTML = `
+            <div class="noticia-item">
+                <a href="${generarEnlaceNoticia(noticia)}">
+                    <div class="noticia-imagen">
+                        <img src="${generarEnlaceImagen(noticia)}" alt="${noticia.titulo}">
+                    </div>
+                    <div class="noticia-info">
+                        <h3>${noticia.titulo}</h3>
+                        <p>${limitarTexto(noticia.contenido, 3)}</p>
+                    </div>
+                </a>
+            </div>
+        `;
     }
 
     // Función para mostrar un mensaje de error
@@ -92,10 +94,25 @@ window.addEventListener('DOMContentLoaded', () => {
         return urlParams.get('categoria');
     }
 
-    // Función para obtener el enlace de la noticia
-    function obtenerEnlaceNoticia(titulo) {
-        const categoria = obtenerCategoriaSeleccionada();
-        const tituloFormateado = titulo.toLowerCase().replace(/\s+/g, '_').replace(/[^\w-]+/g, '');
-        return `page${categoria}.html?categoria=${categoria}/${tituloFormateado}`;
+    // Función para generar el enlace de la noticia
+    function generarEnlaceNoticia(noticia) {
+        const enlaceBase = `https://tecnonewsuy.github.io/TecnoNewsUY/page${noticia.categoria}.html`;
+        const enlaceFormateado = enlaceBase + "?categoria=" + encodeURIComponent(noticia.enlace);
+        return enlaceFormateado;
+    }
+
+    // Función para generar el enlace de la imagen de la noticia
+    function generarEnlaceImagen(noticia) {
+        // Aquí debes agregar la lógica para generar el enlace de la imagen
+        // Puedes usar el enlace de la noticia o cualquier otro método que desees
+        // Por ejemplo, puedes tener un directorio en el repositorio donde guardas las imágenes y generar el enlace en base a eso
+        // return "https://ejemplo.com/imagen.jpg";
+        return "";
+    }
+
+    // Función para limitar el texto a un número específico de líneas
+    function limitarTexto(texto, lineas) {
+        const lineasLimitadas = texto.split('\n').slice(0, lineas).join('\n');
+        return lineasLimitadas;
     }
 });
