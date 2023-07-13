@@ -54,7 +54,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
         const tituloElement = document.createElement('h3');
         const enlaceElement = document.createElement('a');
-        enlaceElement.href = `noticias/${noticia.enlace}`;
+        enlaceElement.href = noticia.enlace;
         enlaceElement.textContent = noticia.titulo;
         tituloElement.appendChild(enlaceElement);
         contenidoElement.appendChild(tituloElement);
