@@ -34,10 +34,10 @@ window.addEventListener('DOMContentLoaded', () => {
             const noticiaElement = document.createElement('div');
             noticiaElement.classList.add('noticia');
 
-            const noticiaLink = document.createElement('a');
-            noticiaLink.href = generarEnlaceNoticia(noticia);
-
             if (noticia.enlace) {
+                const noticiaLink = document.createElement('a');
+                noticiaLink.href = generarEnlaceNoticia(noticia);
+
                 const noticiaImagen = document.createElement('div');
                 noticiaImagen.classList.add('noticia-imagen');
 
@@ -47,6 +47,17 @@ window.addEventListener('DOMContentLoaded', () => {
 
                 noticiaImagen.appendChild(imagen);
                 noticiaLink.appendChild(noticiaImagen);
+                noticiaElement.appendChild(noticiaLink);
+            } else {
+                const noticiaImagen = document.createElement('div');
+                noticiaImagen.classList.add('noticia-imagen');
+
+                const imagen = document.createElement('img');
+                imagen.src = generarEnlaceImagen(noticia);
+                imagen.alt = noticia.titulo;
+
+                noticiaImagen.appendChild(imagen);
+                noticiaElement.appendChild(noticiaImagen);
             }
 
             const noticiaContenido = document.createElement('div');
@@ -60,8 +71,7 @@ window.addEventListener('DOMContentLoaded', () => {
             contenido.textContent = limitarTexto(noticia.contenido, 3);
             noticiaContenido.appendChild(contenido);
 
-            noticiaLink.appendChild(noticiaContenido);
-            noticiaElement.appendChild(noticiaLink);
+            noticiaElement.appendChild(noticiaContenido);
 
             noticiasContainer.appendChild(noticiaElement);
         });
@@ -100,5 +110,3 @@ window.addEventListener('DOMContentLoaded', () => {
         return lineasLimitadas;
     }
 });
-
-
