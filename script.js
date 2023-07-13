@@ -1,51 +1,51 @@
 window.addEventListener('DOMContentLoaded', () => {
-  // Obtener la sección de Última Hora
-  const ultimaHoraSection = document.getElementById('ultima-hora-section');
+    const categoria = obtenerCategoria();
+    const noticiasContainer = document.getElementById('noticias-container');
 
-  // Obtener el contenedor de las noticias de Última Hora
-  const noticiasUltimaHoraContainer = document.getElementById('noticias-ultima-hora');
-
-  // Obtener el enlace de Última Hora
-  const ultimaHoraLink = document.getElementById('ultima-hora');
-
-  // Array de noticias de ejemplo
-  const noticias = [
-    {
-      titulo: 'Noticia 1',
-      contenido: 'Contenido de la Noticia 1'
-    },
-    {
-      titulo: 'Noticia 2',
-      contenido: 'Contenido de la Noticia 2'
-    },
-    {
-      titulo: 'Noticia 3',
-      contenido: 'Contenido de la Noticia 3'
-    }
-  ];
-
-  // Función para mostrar las últimas noticias en la sección de Última Hora
-  const mostrarUltimasNoticias = () => {
-    // Vaciar el contenedor de noticias de Última Hora
-    noticiasUltimaHoraContainer.innerHTML = '';
-
-    // Crear y agregar elementos de noticias al contenedor
-    noticias.forEach(noticia => {
-      const noticiaElement = document.createElement('div');
-      noticiaElement.innerHTML = `
-        <h3>${noticia.titulo}</h3>
-        <p>${noticia.contenido}</p>
-      `;
-      noticiasUltimaHoraContainer.appendChild(noticiaElement);
-    });
-  };
-
-  // Cargar las últimas noticias al cargar la página
-  mostrarUltimasNoticias();
-
-  // Eliminar las noticias anteriores cuando se hace clic en Última Hora
-  ultimaHoraLink.addEventListener('click', () => {
-    // Vaciar el contenedor de noticias de Última Hora
-    noticiasUltimaHoraContainer.innerHTML = '';
-  });
+    // Obtener noticias de la categoría correspondiente
+    obtenerNoticias(categoria)
+        .then(noticias => {
+            // Mostrar las últimas 3 noticias
+            const ultimasNoticias = noticias.slice(-3);
+            ultimasNoticias.forEach(noticia => {
+                const noticiaHTML = generarHTMLNoticia(noticia.titulo, noticia.contenido);
+                noticiasContainer.appendChild(noticiaHTML);
+            });
+        })
+        .catch(error => {
+            console.error('Error al obtener las noticias:', error);
+        });
 });
+
+// Función para obtener la categoría de la página actual
+function obtenerCategoria() {
+    const url = window.location.href;
+    if (url.includes('page1.html')) {
+        return 'Noticias';
+    } else if (url.includes('page2.html')) {
+        return 'Ultima Hora';
+    } else if (url.includes('page3.html')) {
+        return 'Ofertas';
+    }
+}
+
+// Función para obtener las noticias de una categoría
+function obtenerNoticias(categoria) {
+    return fetch('https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/todaslasnoticias/todaslasnoticias.json')
+        .then(response => response.json())
+        .then(data => {
+            const noticias = data.filter(noticia => noticia.categoria.includes(categoria));
+            return noticias;
+        });
+}
+
+// Función para generar el HTML de una noticia
+function generarHTMLNoticia(titulo, contenido) {
+    const noticiaHTML = document.createElement('div');
+    noticiaHTML.classList.add('noticia');
+    noticiaHTML.innerHTML = `
+        <h3>${titulo}</h3>
+        <p>${contenido}</p>
+    `;
+    return noticiaHTML;
+}
