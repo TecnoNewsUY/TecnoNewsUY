@@ -6,7 +6,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const noticiaContenido = document.getElementById('noticia-contenido');
 
     // Cargar las noticias desde el archivo JSON
-    fetch('todaslasnoticias/todaslasnoticias.json')
+    fetch('https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/todaslasnoticias/todaslasnoticias.json')
         .then(response => response.json())
         .then(data => {
             // Verificar si el archivo JSON contiene datos
@@ -32,7 +32,7 @@ window.addEventListener('DOMContentLoaded', () => {
     // Cambiar el contenido de la noticia al seleccionar una opción del selector
     noticiasSelector.addEventListener('change', () => {
         const selectedIndex = noticiasSelector.value;
-        fetch('todaslasnoticias/todaslasnoticias.json')
+        fetch('https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/todaslasnoticias/todaslasnoticias.json')
             .then(response => response.json())
             .then(data => {
                 // Verificar si el archivo JSON contiene datos
@@ -58,4 +58,3 @@ window.addEventListener('DOMContentLoaded', () => {
         noticiaContenido.innerHTML = `<p class="error">${mensaje}</p>`;
     }
 });
-
