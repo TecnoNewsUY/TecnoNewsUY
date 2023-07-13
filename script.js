@@ -12,12 +12,13 @@ window.addEventListener('DOMContentLoaded', () => {
             // Verificar si el archivo JSON contiene datos
             if (data && data.length > 0) {
                 // Filtrar las noticias por categoría
-                const noticiasCategoria = data.filter(noticia => noticia.categoria === '3');
+                const categoriaSeleccionada = obtenerCategoriaSeleccionada();
+                const noticiasFiltradas = data.filter(noticia => noticia.categoria === categoriaSeleccionada);
 
                 // Verificar si hay noticias en la categoría seleccionada
-                if (noticiasCategoria.length > 0) {
-                    // Recorrer las noticias y agregar opciones al selector
-                    noticiasCategoria.forEach((noticia, index) => {
+                if (noticiasFiltradas.length > 0) {
+                    // Recorrer las noticias filtradas y agregar opciones al selector
+                    noticiasFiltradas.forEach((noticia, index) => {
                         const option = document.createElement('option');
                         option.value = index;
                         option.textContent = noticia.titulo;
@@ -25,7 +26,7 @@ window.addEventListener('DOMContentLoaded', () => {
                     });
 
                     // Mostrar la primera noticia por defecto
-                    mostrarNoticia(noticiasCategoria[0]);
+                    mostrarNoticia(noticiasFiltradas[0]);
                 } else {
                     mostrarError("No se encontraron noticias en la categoría seleccionada.");
                 }
@@ -46,11 +47,12 @@ window.addEventListener('DOMContentLoaded', () => {
                 // Verificar si el archivo JSON contiene datos
                 if (data && data.length > 0) {
                     // Filtrar las noticias por categoría
-                    const noticiasCategoria = data.filter(noticia => noticia.categoria === '3');
+                    const categoriaSeleccionada = obtenerCategoriaSeleccionada();
+                    const noticiasFiltradas = data.filter(noticia => noticia.categoria === categoriaSeleccionada);
 
                     // Verificar si hay noticias en la categoría seleccionada
-                    if (noticiasCategoria.length > 0) {
-                        const selectedNoticia = noticiasCategoria[selectedIndex];
+                    if (noticiasFiltradas.length > 0) {
+                        const selectedNoticia = noticiasFiltradas[selectedIndex];
                         mostrarNoticia(selectedNoticia);
                     } else {
                         mostrarError("No se encontraron noticias en la categoría seleccionada.");
@@ -72,5 +74,11 @@ window.addEventListener('DOMContentLoaded', () => {
     // Función para mostrar un mensaje de error
     function mostrarError(mensaje) {
         noticiaContenido.innerHTML = `<p class="error">${mensaje}</p>`;
+    }
+
+    // Función para obtener la categoría seleccionada
+    function obtenerCategoriaSeleccionada() {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get('categoria');
     }
 });
