@@ -9,19 +9,24 @@ window.addEventListener('DOMContentLoaded', () => {
     fetch('todaslasnoticias/todaslasnoticias.json')
         .then(response => response.json())
         .then(data => {
-            // Recorrer las noticias y agregar opciones al selector
-            data.forEach((noticia, index) => {
-                const option = document.createElement('option');
-                option.value = index;
-                option.textContent = noticia.titulo;
-                noticiasSelector.appendChild(option);
-            });
+            // Verificar si el archivo JSON contiene datos
+            if (data && data.length > 0) {
+                // Recorrer las noticias y agregar opciones al selector
+                data.forEach((noticia, index) => {
+                    const option = document.createElement('option');
+                    option.value = index;
+                    option.textContent = noticia.titulo;
+                    noticiasSelector.appendChild(option);
+                });
 
-            // Mostrar la primera noticia por defecto
-            mostrarNoticia(data[0]);
+                // Mostrar la primera noticia por defecto
+                mostrarNoticia(data[0]);
+            } else {
+                mostrarError("No se encontraron noticias.");
+            }
         })
         .catch(error => {
-            console.error('Error al cargar las noticias:', error);
+            mostrarError("Error al cargar las noticias: " + error);
         });
 
     // Cambiar el contenido de la noticia al seleccionar una opción del selector
@@ -30,11 +35,16 @@ window.addEventListener('DOMContentLoaded', () => {
         fetch('todaslasnoticias/todaslasnoticias.json')
             .then(response => response.json())
             .then(data => {
-                const selectedNoticia = data[selectedIndex];
-                mostrarNoticia(selectedNoticia);
+                // Verificar si el archivo JSON contiene datos
+                if (data && data.length > 0) {
+                    const selectedNoticia = data[selectedIndex];
+                    mostrarNoticia(selectedNoticia);
+                } else {
+                    mostrarError("No se encontraron noticias.");
+                }
             })
             .catch(error => {
-                console.error('Error al cargar las noticias:', error);
+                mostrarError("Error al cargar las noticias: " + error);
             });
     });
 
@@ -42,4 +52,10 @@ window.addEventListener('DOMContentLoaded', () => {
     function mostrarNoticia(noticia) {
         noticiaContenido.innerHTML = `<h3>${noticia.titulo}</h3><p>${noticia.contenido}</p>`;
     }
+
+    // Función para mostrar un mensaje de error
+    function mostrarError(mensaje) {
+        noticiaContenido.innerHTML = `<p class="error">${mensaje}</p>`;
+    }
 });
+
