@@ -2,27 +2,26 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>TecnoNewsUY - Última Hora</title>
+    <title>TecnoNewsUY - Ultima Hora</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="script.js"></script>
 </head>
 <body>
     <header>
-        <h1>TecnoNewsUY - Última Hora</h1>
+        <h1>TecnoNewsUY - Ultima Hora</h1>
     </header>
     <nav>
         <ul>
             <li><a href="index.html">Inicio</a></li>
             <li><a href="page1.html">Noticias</a></li>
-            <li><a href="page2.html">Última Hora</a></li>
+            <li><a href="page2.html">Ultima Hora</a></li>
             <li><a href="page3.html">Ofertas</a></li>
         </ul>
     </nav>
     <section class="content-section">
         <div class="container">
-            <h2>Últimas Noticias en Uruguay</h2>
-            <div id="noticias-ultima-hora">
-                <!-- Aquí se insertarán las noticias de Última Hora -->
-            </div>
+            <h2>Noticias de Última Hora en Uruguay</h2>
+            <div id="noticias-container"></div>
         </div>
     </section>
     <footer>
@@ -30,30 +29,5 @@
     </footer>
 
     <script src="script.js"></script>
-    <script>
-        window.addEventListener('DOMContentLoaded', () => {
-            // Obtener el contenedor de noticias de Última Hora
-            const noticiasUltimaHoraContainer = document.getElementById('noticias-ultima-hora');
-
-            // Cargar las noticias de Última Hora
-            fetch('https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/todaslasnoticias.json')
-                .then(response => response.json())
-                .then(data => {
-                    // Mostrar las noticias en el contenedor
-                    data.forEach(noticia => {
-                        const noticiaElement = document.createElement('div');
-                        noticiaElement.innerHTML = `
-                            <h3>${noticia.titulo}</h3>
-                            <p>${noticia.contenido}</p>
-                        `;
-                        noticiasUltimaHoraContainer.appendChild(noticiaElement);
-                    });
-                })
-                .catch(error => {
-                    console.error('Error al cargar las noticias de Última Hora:', error);
-                });
-        });
-    </script>
 </body>
 </html>
-
