@@ -20,12 +20,56 @@
     <section class="content-section">
         <div class="container">
             <h2>Ofertas en Uruguay</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et sagittis justo. Sed at sapien gravida, congue lorem at, fermentum nisl. Vestibulum dictum eros a tincidunt iaculis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla facilisi. Nulla placerat ultrices tristique. Nullam varius massa justo, ac consequat velit finibus at. Maecenas commodo elit a metus sagittis consectetur.</p>
-            <!-- Aquí puedes agregar más contenido según tus necesidades -->
+            <div id="noticias-ofertas">
+                <!-- Aquí se insertarán las noticias de Ofertas dinámicamente -->
+            </div>
         </div>
     </section>
     <footer>
         <p>&copy; 2023 TecnoNewsUY. Todos los derechos reservados.</p>
     </footer>
+
+    <script src="script.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            // Obtener el contenedor de noticias de Ofertas
+            const noticiasOfertasContainer = document.getElementById('noticias-ofertas');
+
+            // Array de noticias de ejemplo
+            const noticias = [
+                {
+                    titulo: 'Noticia 1',
+                    contenido: 'Contenido de la Noticia 1'
+                },
+                {
+                    titulo: 'Noticia 2',
+                    contenido: 'Contenido de la Noticia 2'
+                },
+                {
+                    titulo: 'Noticia 3',
+                    contenido: 'Contenido de la Noticia 3'
+                }
+            ];
+
+            // Función para mostrar las noticias de Ofertas
+            const mostrarNoticiasOfertas = () => {
+                // Vaciar el contenedor de noticias de Ofertas
+                noticiasOfertasContainer.innerHTML = '';
+
+                // Crear y agregar elementos de noticias al contenedor
+                noticias.forEach(noticia => {
+                    const noticiaElement = document.createElement('div');
+                    noticiaElement.innerHTML = `
+                        <h3>${noticia.titulo}</h3>
+                        <p>${noticia.contenido}</p>
+                    `;
+                    noticiasOfertasContainer.appendChild(noticiaElement);
+                });
+            };
+
+            // Cargar las noticias de Ofertas al cargar la página
+            mostrarNoticiasOfertas();
+        });
+    </script>
 </body>
 </html>
