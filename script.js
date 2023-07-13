@@ -1,28 +1,45 @@
 window.addEventListener('DOMContentLoaded', () => {
-    const categoria = '1'; // Categoría uno
+    // Obtener la sección del selector de noticias
+    const noticiasSelector = document.getElementById('noticias-selector');
 
-    const script = document.createElement('script');
-    script.src = `https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/todaslasnoticias/todaslasnoticias.json?callback=procesarNoticias`;
-    document.body.appendChild(script);
-});
+    // Obtener el contenedor del contenido de la noticia
+    const noticiaContenido = document.getElementById('noticia-contenido');
 
-function procesarNoticias(data) {
-    const noticiasCategoria = data.filter(noticia => noticia.categoria.includes(categoria));
-    const noticiasMostradas = noticiasCategoria.slice(-3); // Mostrar las últimas 3 noticias
+    // Cargar las noticias desde el archivo JSON
+    fetch('todaslasnoticias/todaslasnoticias.json')
+        .then(response => response.json())
+        .then(data => {
+            // Recorrer las noticias y agregar opciones al selector
+            data.forEach((noticia, index) => {
+                const option = document.createElement('option');
+                option.value = index;
+                option.textContent = noticia.titulo;
+                noticiasSelector.appendChild(option);
+            });
 
-    const noticiasContainer = document.getElementById('noticias-container');
-    noticiasContainer.innerHTML = ''; // Limpiar el contenedor de noticias
+            // Mostrar la primera noticia por defecto
+            mostrarNoticia(data[0]);
+        })
+        .catch(error => {
+            console.error('Error al cargar las noticias:', error);
+        });
 
-    noticiasMostradas.forEach(noticia => {
-        const noticiaHTML = createNoticiaHTML(noticia.titulo, noticia.contenido);
-        noticiasContainer.innerHTML += noticiaHTML;
+    // Cambiar el contenido de la noticia al seleccionar una opción del selector
+    noticiasSelector.addEventListener('change', () => {
+        const selectedIndex = noticiasSelector.value;
+        fetch('todaslasnoticias/todaslasnoticias.json')
+            .then(response => response.json())
+            .then(data => {
+                const selectedNoticia = data[selectedIndex];
+                mostrarNoticia(selectedNoticia);
+            })
+            .catch(error => {
+                console.error('Error al cargar las noticias:', error);
+            });
     });
-}
 
-function createNoticiaHTML(titulo, contenido) {
-    const noticiaHTML = `
-        <h3>${titulo}</h3>
-        <p>${contenido}</p>
-    `;
-    return noticiaHTML;
-}
+    // Función para mostrar el contenido de la noticia
+    function mostrarNoticia(noticia) {
+        noticiaContenido.innerHTML = `<h3>${noticia.titulo}</h3><p>${noticia.contenido}</p>`;
+    }
+});
