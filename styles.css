@@ -72,7 +72,7 @@ footer {
 
 /* Estilos específicos de cada página */
 .hero {
-    background-color: #f1f1f1;
+    background-color: #FEB201;
 }
 
 .hero-title {
@@ -118,4 +118,20 @@ footer {
 .error {
     color: red;
     font-weight: bold;
+}
+
+/* Estilos adicionales */
+.hero-description {
+    color: #FEE2EE;
+}
+
+.nav-link {
+    background-color: #6E263F;
+    padding: 10px 20px;
+    border-radius: 4px;
+    color: #FEE2EE;
+}
+
+.nav-link:hover {
+    background-color: #8D3958;
 }
