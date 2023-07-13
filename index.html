@@ -13,29 +13,26 @@
     <nav>
         <ul>
             <li><a href="index.html">Inicio</a></li>
-            <li><a href="page1.html">Noticias</a></li>
-            <li><a href="page2.html" id="ultima-hora">Ultima Hora</a></li>
-            <li><a href="page3.html">Ofertas</a></li>
+            <li><a href="page1.html?categoria=1">Noticias</a></li>
+            <li><a href="page2.html?categoria=2">Ultima Hora</a></li>
+            <li><a href="page3.html?categoria=3">Ofertas</a></li>
         </ul>
     </nav>
     <section class="hero-section">
         <div class="container">
             <h2>Bienvenido a TecnoNewsUY</h2>
             <p>La fuente de noticias de tecnología líder en Uruguay</p>
-            <a href="page1.html" class="btn">Noticias</a>
-            <a href="page2.html" class="btn">Ultima Hora</a>
-            <a href="page3.html" class="btn">Ofertas</a>
+            <a href="page1.html?categoria=1" class="btn">Noticias</a>
+            <a href="page2.html?categoria=2" class="btn">Ultima Hora</a>
+            <a href="page3.html?categoria=3" class="btn">Ofertas</a>
         </div>
     </section>
     <section class="ultima-hora" id="ultima-hora-section">
-    <div class="container">
-        <h2>Última Hora</h2>
-        <div id="noticias-ultima-hora">
-            <!-- Aquí se insertarán las noticias de Última Hora dinámicamente -->
+        <div class="container">
+            <h2>Ultima Hora</h2>
+            <div id="noticias-ultima-hora"></div>
         </div>
-    </div>
-</section>
-
+    </section>
     <footer>
         <p>&copy; 2023 TecnoNewsUY. Todos los derechos reservados.</p>
     </footer>
@@ -43,3 +40,4 @@
     <script src="script.js"></script>
 </body>
 </html>
+
