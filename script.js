@@ -34,37 +34,28 @@ window.addEventListener('DOMContentLoaded', () => {
             const noticiaElement = document.createElement('div');
             noticiaElement.classList.add('noticia');
 
-            if (noticia.enlace) {
-                const noticiaLink = document.createElement('a');
-                noticiaLink.href = generarEnlaceNoticia(noticia);
+            const noticiaLink = document.createElement('a');
+            noticiaLink.href = generarEnlaceNoticia(noticia);
 
-                const noticiaImagen = document.createElement('div');
-                noticiaImagen.classList.add('noticia-imagen');
+            const noticiaImagen = document.createElement('div');
+            noticiaImagen.classList.add('noticia-imagen');
 
-                const imagen = document.createElement('img');
-                imagen.src = generarEnlaceImagen(noticia);
-                imagen.alt = noticia.titulo;
+            const imagen = document.createElement('img');
+            imagen.src = generarEnlaceImagen(noticia);
+            imagen.alt = noticia.titulo;
 
-                noticiaImagen.appendChild(imagen);
-                noticiaLink.appendChild(noticiaImagen);
-                noticiaElement.appendChild(noticiaLink);
-            } else {
-                const noticiaImagen = document.createElement('div');
-                noticiaImagen.classList.add('noticia-imagen');
-
-                const imagen = document.createElement('img');
-                imagen.src = generarEnlaceImagen(noticia);
-                imagen.alt = noticia.titulo;
-
-                noticiaImagen.appendChild(imagen);
-                noticiaElement.appendChild(noticiaImagen);
-            }
+            noticiaImagen.appendChild(imagen);
+            noticiaLink.appendChild(noticiaImagen);
+            noticiaElement.appendChild(noticiaLink);
 
             const noticiaContenido = document.createElement('div');
             noticiaContenido.classList.add('noticia-contenido');
 
             const titulo = document.createElement('h3');
-            titulo.textContent = noticia.titulo;
+            const tituloLink = document.createElement('a');
+            tituloLink.href = generarEnlaceNoticia(noticia);
+            tituloLink.textContent = noticia.titulo;
+            titulo.appendChild(tituloLink);
             noticiaContenido.appendChild(titulo);
 
             const contenido = document.createElement('p');
