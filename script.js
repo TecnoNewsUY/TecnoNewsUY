@@ -1,9 +1,6 @@
 window.addEventListener('DOMContentLoaded', () => {
-    // Obtener la sección del selector de noticias
-    const noticiasSelector = document.getElementById('noticias-selector');
-
-    // Obtener el contenedor del contenido de la noticia
-    const noticiaContenido = document.getElementById('noticia-contenido');
+    // Obtener el contenedor del contenido de las noticias
+    const noticiasContainer = document.getElementById('latest-news');
 
     // Cargar las noticias desde el archivo JSON
     fetch('https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/todaslasnoticias/todaslasnoticias.json')
@@ -17,9 +14,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
                 // Verificar si hay noticias en la categoría seleccionada
                 if (noticiasFiltradas.length > 0) {
-                    // Mostrar las últimas 5 noticias en la sección
-                    const ultimasNoticias = noticiasFiltradas.slice(-5).reverse();
-                    mostrarNoticias(ultimasNoticias);
+                    // Mostrar las últimas noticias en el contenedor
+                    mostrarNoticias(noticiasFiltradas);
                 } else {
                     mostrarError("No se encontraron noticias en la categoría seleccionada.");
                 }
@@ -31,58 +27,49 @@ window.addEventListener('DOMContentLoaded', () => {
             mostrarError("Error al cargar las noticias: " + error);
         });
 
-    // Cambiar el contenido de la noticia al seleccionar una opción del selector
-    noticiasSelector.addEventListener('change', () => {
-        const selectedIndex = noticiasSelector.value;
-        fetch('https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/todaslasnoticias/todaslasnoticias.json')
-            .then(response => response.json())
-            .then(data => {
-                // Verificar si el archivo JSON contiene datos
-                if (data && data.length > 0) {
-                    // Filtrar las noticias por categoría
-                    const categoriaSeleccionada = obtenerCategoriaSeleccionada();
-                    const noticiasFiltradas = data.filter(noticia => noticia.categoria === categoriaSeleccionada);
-
-                    // Verificar si hay noticias en la categoría seleccionada
-                    if (noticiasFiltradas.length > 0) {
-                        const selectedNoticia = noticiasFiltradas[selectedIndex];
-                        mostrarNoticia(selectedNoticia);
-                    } else {
-                        mostrarError("No se encontraron noticias en la categoría seleccionada.");
-                    }
-                } else {
-                    mostrarError("No se encontraron noticias.");
-                }
-            })
-            .catch(error => {
-                mostrarError("Error al cargar las noticias: " + error);
-            });
-    });
-
-    // Función para mostrar las últimas noticias
+    // Función para mostrar las noticias en el contenedor
     function mostrarNoticias(noticias) {
-        noticiaContenido.innerHTML = '';
+        noticiasContainer.innerHTML = '';
         noticias.forEach(noticia => {
-            const noticiaItem = document.createElement('div');
-            noticiaItem.classList.add('noticia');
-            noticiaItem.innerHTML = `
-                <a href="${generarEnlaceNoticia(noticia)}">
-                    <div class="noticia-imagen">
-                        <img src="${generarEnlaceImagen(noticia)}" alt="${noticia.titulo}">
-                    </div>
-                    <div class="noticia-info">
-                        <h3>${noticia.titulo}</h3>
-                        <p>${limitarTexto(noticia.contenido, 3)}</p>
-                    </div>
-                </a>
-            `;
-            noticiaContenido.appendChild(noticiaItem);
+            const noticiaElement = document.createElement('div');
+            noticiaElement.classList.add('noticia');
+
+            const noticiaLink = document.createElement('a');
+            noticiaLink.href = generarEnlaceNoticia(noticia);
+
+            if (noticia.enlace) {
+                const noticiaImagen = document.createElement('div');
+                noticiaImagen.classList.add('noticia-imagen');
+
+                const imagen = document.createElement('img');
+                imagen.src = generarEnlaceImagen(noticia);
+                imagen.alt = noticia.titulo;
+
+                noticiaImagen.appendChild(imagen);
+                noticiaLink.appendChild(noticiaImagen);
+            }
+
+            const noticiaContenido = document.createElement('div');
+            noticiaContenido.classList.add('noticia-contenido');
+
+            const titulo = document.createElement('h3');
+            titulo.textContent = noticia.titulo;
+            noticiaContenido.appendChild(titulo);
+
+            const contenido = document.createElement('p');
+            contenido.textContent = limitarTexto(noticia.contenido, 3);
+            noticiaContenido.appendChild(contenido);
+
+            noticiaLink.appendChild(noticiaContenido);
+            noticiaElement.appendChild(noticiaLink);
+
+            noticiasContainer.appendChild(noticiaElement);
         });
     }
 
     // Función para mostrar un mensaje de error
     function mostrarError(mensaje) {
-        noticiaContenido.innerHTML = `<p class="error">${mensaje}</p>`;
+        noticiasContainer.innerHTML = `<p class="error">${mensaje}</p>`;
     }
 
     // Función para obtener la categoría seleccionada
@@ -93,17 +80,17 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // Función para generar el enlace de la noticia
     function generarEnlaceNoticia(noticia) {
-        const enlaceBase = `https://tecnonewsuy.github.io/TecnoNewsUY/page${noticia.categoria}.html`;
+        const categoria = noticia.categoria;
+        const enlaceBase = `https://tecnonewsuy.github.io/TecnoNewsUY/page${categoria}.html`;
         const enlaceFormateado = enlaceBase + "?categoria=" + encodeURIComponent(noticia.enlace);
         return enlaceFormateado;
     }
 
     // Función para generar el enlace de la imagen de la noticia
     function generarEnlaceImagen(noticia) {
-        // Aquí debes agregar la lógica para generar el enlace de la imagen
+        // Aquí puedes agregar la lógica para generar el enlace de la imagen
         // Puedes usar el enlace de la noticia o cualquier otro método que desees
         // Por ejemplo, puedes tener un directorio en el repositorio donde guardas las imágenes y generar el enlace en base a eso
-        // return "https://ejemplo.com/imagen.jpg";
         return "";
     }
 
@@ -113,4 +100,5 @@ window.addEventListener('DOMContentLoaded', () => {
         return lineasLimitadas;
     }
 });
+
 
