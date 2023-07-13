@@ -11,16 +11,24 @@ window.addEventListener('DOMContentLoaded', () => {
         .then(data => {
             // Verificar si el archivo JSON contiene datos
             if (data && data.length > 0) {
-                // Recorrer las noticias y agregar opciones al selector
-                data.forEach((noticia, index) => {
-                    const option = document.createElement('option');
-                    option.value = index;
-                    option.textContent = noticia.titulo;
-                    noticiasSelector.appendChild(option);
-                });
+                // Filtrar las noticias por categoría
+                const noticiasCategoria = data.filter(noticia => noticia.categoria === '3');
 
-                // Mostrar la primera noticia por defecto
-                mostrarNoticia(data[0]);
+                // Verificar si hay noticias en la categoría seleccionada
+                if (noticiasCategoria.length > 0) {
+                    // Recorrer las noticias y agregar opciones al selector
+                    noticiasCategoria.forEach((noticia, index) => {
+                        const option = document.createElement('option');
+                        option.value = index;
+                        option.textContent = noticia.titulo;
+                        noticiasSelector.appendChild(option);
+                    });
+
+                    // Mostrar la primera noticia por defecto
+                    mostrarNoticia(noticiasCategoria[0]);
+                } else {
+                    mostrarError("No se encontraron noticias en la categoría seleccionada.");
+                }
             } else {
                 mostrarError("No se encontraron noticias.");
             }
@@ -37,8 +45,16 @@ window.addEventListener('DOMContentLoaded', () => {
             .then(data => {
                 // Verificar si el archivo JSON contiene datos
                 if (data && data.length > 0) {
-                    const selectedNoticia = data[selectedIndex];
-                    mostrarNoticia(selectedNoticia);
+                    // Filtrar las noticias por categoría
+                    const noticiasCategoria = data.filter(noticia => noticia.categoria === '3');
+
+                    // Verificar si hay noticias en la categoría seleccionada
+                    if (noticiasCategoria.length > 0) {
+                        const selectedNoticia = noticiasCategoria[selectedIndex];
+                        mostrarNoticia(selectedNoticia);
+                    } else {
+                        mostrarError("No se encontraron noticias en la categoría seleccionada.");
+                    }
                 } else {
                     mostrarError("No se encontraron noticias.");
                 }
