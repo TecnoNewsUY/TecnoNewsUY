@@ -1,25 +1,42 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <title>Noticias en Uruguay</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
+
 <body>
     <header>
-        <h1>TecnoNewsUY</h1>
-    </header>
-    <section class="noticias-section">
-        <h2>Noticias en Uruguay</h2>
-        <div id="noticias-selector-container">
-            <label for="noticias-selector">Seleccionar noticia:</label>
-            <select id="noticias-selector"></select>
+        <div class="container">
+            <h1 class="logo">TecnoNewsUY</h1>
+            <nav class="nav-menu">
+                <ul class="nav-list">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="page1.html?categoria=1">Noticias</a></li>
+                    <li class="nav-item"><a class="nav-link" href="page2.html?categoria=2">Ultima Hora</a></li>
+                    <li class="nav-item"><a class="nav-link" href="page3.html?categoria=3">Ofertas</a></li>
+                </ul>
+            </nav>
         </div>
-        <div id="noticia-contenido"></div>
-    </section>
+    </header>
+    <main>
+        <section class="news-section">
+            <div class="container">
+                <h2 class="section-title">Noticias en Uruguay</h2>
+                <div id="noticias-lista"></div>
+            </div>
+        </section>
+    </main>
     <footer>
-        <p>&copy; 2023 TecnoNewsUY. Todos los derechos reservados.</p>
+        <div class="container">
+            <p class="footer-text">&copy; 2023 TecnoNewsUY. Todos los derechos reservados.</p>
+        </div>
     </footer>
     <script src="script.js"></script>
 </body>
+
 </html>
+
