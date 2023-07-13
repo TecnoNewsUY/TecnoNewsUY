@@ -35,30 +35,25 @@
             // Obtener el contenedor de noticias de Última Hora
             const noticiasUltimaHoraContainer = document.getElementById('noticias-ultima-hora');
 
-            // Array de noticias de Última Hora
-            const noticias = [
-                // Aquí se agregarán dinámicamente las noticias
-            ];
-
-            // Función para mostrar las noticias de Última Hora
-            const mostrarNoticiasUltimaHora = () => {
-                // Vaciar el contenedor de noticias de Última Hora
-                noticiasUltimaHoraContainer.innerHTML = '';
-
-                // Crear y agregar elementos de noticias al contenedor
-                noticias.forEach(noticia => {
-                    const noticiaElement = document.createElement('div');
-                    noticiaElement.innerHTML = `
-                        <h3>${noticia.titulo}</h3>
-                        <p>${noticia.contenido}</p>
-                    `;
-                    noticiasUltimaHoraContainer.appendChild(noticiaElement);
+            // Cargar las noticias de Última Hora
+            fetch('https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/todaslasnoticias.json')
+                .then(response => response.json())
+                .then(data => {
+                    // Mostrar las noticias en el contenedor
+                    data.forEach(noticia => {
+                        const noticiaElement = document.createElement('div');
+                        noticiaElement.innerHTML = `
+                            <h3>${noticia.titulo}</h3>
+                            <p>${noticia.contenido}</p>
+                        `;
+                        noticiasUltimaHoraContainer.appendChild(noticiaElement);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error al cargar las noticias de Última Hora:', error);
                 });
-            };
-
-            // Cargar las noticias de Última Hora al cargar la página
-            mostrarNoticiasUltimaHora();
         });
     </script>
 </body>
 </html>
+
