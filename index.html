@@ -28,45 +28,67 @@
     
     <script src="script.js"></script>
     <script>
+      window.addEventListener('DOMContentLoaded', () => {
+        const noticiasLista = document.getElementById('noticias-lista');
+
+        if (!noticiasLista) {
+          console.error("Error: No se encontró el elemento con el ID 'noticias-lista'");
+          return;
+        }
+
+        // Obtener las noticias desde el archivo JSON
         fetch('https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/todaslasnoticias/todaslasnoticias.json')
-            .then(response => response.json())
-            .then(data => {
-                const noticiasLista = document.getElementById('noticias-lista');
-                
-                // Obtener todas las noticias sin repetir
-                const noticiasSinRepetir = [];
-                const noticiasRepetidas = new Set();
-                data.forEach(noticia => {
-                    if (!noticiasRepetidas.has(noticia.titulo)) {
-                        noticiasSinRepetir.push(noticia);
-                        noticiasRepetidas.add(noticia.titulo);
-                    }
-                });
-                
-                // Mostrar las últimas 3 noticias sin repetir
-                const ultimasNoticias = noticiasSinRepetir.slice(0, 3);
-                ultimasNoticias.forEach(noticia => {
-                    const divNoticia = document.createElement('div');
-                    divNoticia.classList.add('noticia');
-                    
-                    const titulo = document.createElement('h3');
-                    titulo.textContent = noticia.titulo;
-                    
-                    const contenido = document.createElement('p');
-                    contenido.textContent = noticia.contenido;
-                    
-                    const imagen = document.createElement('img');
-                    imagen.src = noticia.imagen;
-                    imagen.alt = noticia.titulo;
-                    
-                    divNoticia.appendChild(titulo);
-                    divNoticia.appendChild(contenido);
-                    divNoticia.appendChild(imagen);
-                    
-                    noticiasLista.appendChild(divNoticia);
-                });
-            })
-            .catch(error => console.log(error));
+          .then(response => response.json())
+          .then(data => {
+            // Filtrar las noticias por categoría y eliminar duplicados
+            const noticiasPorCategoria = {};
+
+            data.forEach(noticia => {
+              const categoria = noticia.categoria;
+              if (!noticiasPorCategoria.hasOwnProperty(categoria)) {
+                noticiasPorCategoria[categoria] = [];
+              }
+              if (!noticiasPorCategoria[categoria].some(n => n.titulo === noticia.titulo)) {
+                noticiasPorCategoria[categoria].push(noticia);
+              }
+            });
+
+            // Obtener las últimas 3 noticias
+            const ultimasNoticias = [];
+            for (let categoria in noticiasPorCategoria) {
+              const noticiasCategoria = noticiasPorCategoria[categoria];
+              if (noticiasCategoria.length > 0) {
+                ultimasNoticias.push(noticiasCategoria[noticiasCategoria.length - 1]);
+              }
+            }
+
+            // Ordenar las últimas noticias por fecha descendente
+            ultimasNoticias.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
+
+            // Mostrar las últimas noticias en la página index.html
+            ultimasNoticias.slice(0, 3).forEach(noticia => {
+              const divNoticia = document.createElement('div');
+              divNoticia.classList.add('noticia');
+
+              const titulo = document.createElement('h3');
+              titulo.textContent = noticia.titulo;
+
+              const contenido = document.createElement('p');
+              contenido.textContent = noticia.contenido;
+
+              const imagen = document.createElement('img');
+              imagen.src = noticia.imagen;
+              imagen.alt = noticia.titulo;
+
+              divNoticia.appendChild(titulo);
+              divNoticia.appendChild(contenido);
+              divNoticia.appendChild(imagen);
+
+              noticiasLista.appendChild(divNoticia);
+            });
+          })
+          .catch(error => console.log(error));
+      });
     </script>
 </body>
 </html>
