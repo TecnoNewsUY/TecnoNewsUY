@@ -28,7 +28,7 @@
     
     <script src="script.js"></script>
     <script>
-        fetch('noticias.json')
+        fetch('https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/todaslasnoticias/todaslasnoticias.json')
             .then(response => response.json())
             .then(data => {
                 const noticiasLista = document.getElementById('noticias-lista');
