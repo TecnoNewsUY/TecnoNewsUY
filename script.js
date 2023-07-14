@@ -12,11 +12,13 @@ window.addEventListener('DOMContentLoaded', () => {
       const noticiasPorCategoria = {};
 
       data.forEach(noticia => {
-        const categoria = noticia.categoria;
-        if (!noticiasPorCategoria.hasOwnProperty(categoria)) {
-          noticiasPorCategoria[categoria] = [];
-        }
-        noticiasPorCategoria[categoria].push(noticia);
+        const categorias = noticia.categorias;
+        categorias.forEach(categoria => {
+          if (!noticiasPorCategoria.hasOwnProperty(categoria)) {
+            noticiasPorCategoria[categoria] = [];
+          }
+          noticiasPorCategoria[categoria].push(noticia);
+        });
       });
 
       const noticias = [];
