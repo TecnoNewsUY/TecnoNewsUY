@@ -18,22 +18,18 @@ window.addEventListener('DOMContentLoaded', () => {
         if (!noticiasPorCategoria.hasOwnProperty(categoria)) {
           noticiasPorCategoria[categoria] = [];
         }
-        noticiasPorCategoria[categoria].push(noticia);
+        if (noticiasPorCategoria[categoria].length < 5) {
+          noticiasPorCategoria[categoria].push(noticia);
+        }
       });
 
       // Mostrar las últimas noticias en la página index.html
-      if (document.body.classList.contains('index')) {
-        mostrarUltimasNoticias(noticiasPorCategoria);
-      }
+      mostrarUltimasNoticias(noticiasPorCategoria);
 
       // Mostrar las noticias en las páginas correspondientes
-      if (document.body.classList.contains('page1')) {
-        mostrarNoticiasPorCategoria(noticiasPorCategoria, '1');
-      } else if (document.body.classList.contains('page2')) {
-        mostrarNoticiasPorCategoria(noticiasPorCategoria, '2');
-      } else if (document.body.classList.contains('page3')) {
-        mostrarNoticiasPorCategoria(noticiasPorCategoria, '3');
-      }
+      const currentPage = window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1);
+      const categoria = currentPage.includes('page') ? currentPage.replace('page', '') : '';
+      mostrarNoticiasEnPagina(noticiasPorCategoria, categoria);
     })
     .catch(error => {
       mostrarError("Error al cargar las noticias: " + error);
@@ -42,10 +38,8 @@ window.addEventListener('DOMContentLoaded', () => {
   // Función para mostrar las últimas noticias en la sección "Últimas noticias" de la página index.html
   function mostrarUltimasNoticias(noticiasPorCategoria) {
     const noticias = [];
-
     for (let categoria in noticiasPorCategoria) {
       const noticiasCategoria = noticiasPorCategoria[categoria];
-
       noticiasCategoria.forEach(noticia => {
         if (noticias.length < 3 && !noticias.some(n => n.titulo === noticia.titulo)) {
           noticias.push(noticia);
@@ -54,23 +48,28 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     noticias.forEach(noticia => {
-      mostrarNoticia(noticia);
+      const noticiaElement = crearElementoNoticia(noticia);
+      noticiasLista.appendChild(noticiaElement);
     });
   }
 
-  // Función para mostrar las noticias por categoría en las páginas correspondientes
-  function mostrarNoticiasPorCategoria(noticiasPorCategoria, categoria) {
-    const noticias = noticiasPorCategoria[categoria];
-
-    if (noticias) {
-      noticias.forEach(noticia => {
-        mostrarNoticia(noticia);
-      });
+  // Función para mostrar las noticias en la página correspondiente
+  function mostrarNoticiasEnPagina(noticiasPorCategoria, categoria) {
+    if (!categoria || !noticiasPorCategoria.hasOwnProperty(categoria)) {
+      mostrarError("Error: No se encontró la categoría de noticias");
+      return;
     }
+
+    const noticiasCategoria = noticiasPorCategoria[categoria];
+
+    noticiasCategoria.forEach(noticia => {
+      const noticiaElement = crearElementoNoticia(noticia);
+      noticiasLista.appendChild(noticiaElement);
+    });
   }
 
-  // Función para mostrar una noticia en la lista
-  function mostrarNoticia(noticia) {
+  // Función para crear el elemento de noticia
+  function crearElementoNoticia(noticia) {
     const noticiaElement = document.createElement('div');
     noticiaElement.classList.add('noticia');
 
@@ -100,7 +99,7 @@ window.addEventListener('DOMContentLoaded', () => {
       mostrarNoticiaCompleta(noticia);
     });
 
-    noticiasLista.appendChild(noticiaElement);
+    return noticiaElement;
   }
 
   // Función para mostrar la noticia completa
