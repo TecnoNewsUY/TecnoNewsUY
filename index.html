@@ -75,7 +75,10 @@
                     divNoticia.classList.add('noticia');
         
                     const titulo = document.createElement('h3');
-                    titulo.textContent = noticia.titulo;
+                    const enlace = document.createElement('a'); // Nuevo elemento
+                    enlace.href = noticia.enlace_noticia; // Nuevo código
+                    enlace.textContent = noticia.titulo; // Nuevo código
+                    titulo.appendChild(enlace); // Nuevo código
         
                     const contenido = document.createElement('p');
                     contenido.textContent = noticia.contenido;
