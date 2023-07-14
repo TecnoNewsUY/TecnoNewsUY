@@ -1,24 +1,132 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TecnoNewsUY - Inicio</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            background-color: #6F273E;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .titulo-principal {
+            font-size: 32px;
+            color: #FFFFFF;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            color: #6F273E;
+            margin: 0;
+        }
+
+        .noticias-lista {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .noticia {
+            width: calc(33.33% - 10px);
+            margin-bottom: 20px;
+            border: 1px solid #E0E0E0;
+            border-radius: 5px;
+            padding: 10px;
+            box-sizing: border-box;
+            background-color: #F7F7F7;
+            cursor: pointer;
+        }
+
+        .noticia:hover {
+            background-color: #F1F1F1;
+        }
+
+        .noticia-imagen {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .noticia-titulo {
+            font-size: 18px;
+            color: #6F273E;
+            margin: 10px 0;
+        }
+
+        .noticia-contenido {
+            font-size: 14px;
+            color: #444444;
+        }
+
+        .noticia-completa {
+            background-color: #FFFFFF;
+            padding: 20px;
+        }
+
+        .noticia-completa h2 {
+            font-size: 24px;
+            color: #6F273E;
+            margin: 0 0 10px;
+        }
+
+        .noticia-completa p {
+            font-size: 16px;
+            color: #444444;
+            margin: 0;
+        }
+
+        .error {
+            color: #FF0000;
+            font-weight: bold;
+        }
+
+        /* Botones */
+        .boton {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #6F3000;
+            color: #FFFFFF;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            margin-right: 10px;
+        }
+
+        .boton:hover {
+            background-color: #6F273E;
+        }
+
+        @media (max-width: 768px) {
+            .noticia {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
+
 <body>
     <header>
         <h1 class="titulo-principal">TecnoNewsUY</h1>
-        <nav>
-            <ul class="menu">
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="page1.html">Noticias en Uruguay</a></li>
-                <li><a href="page2.html">Última Hora</a></li>
-                <li><a href="page3.html">Ofertas en Uruguay</a></li>
-            </ul>
-        </nav>
     </header>
-    
+
     <div class="container">
         <h2 class="section-title">Últimas noticias</h2>
 
@@ -26,7 +134,170 @@
             <!-- Aquí se mostrarán las últimas noticias -->
         </section>
     </div>
-    
-    <script src="script.js"></script>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const noticiasLista = document.getElementById('noticias-lista');
+
+            if (!noticiasLista) {
+                console.error("Error: No se encontró el elemento con el ID 'noticias-lista'");
+                return;
+            }
+
+            // Obtener las noticias desde el archivo JSON
+            axios.get('https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/todaslasnoticias/todaslasnoticias.json')
+                .then(response => {
+                    const data = response.data;
+
+                    // Filtrar las noticias por categoría y obtener las últimas 5 noticias de cada categoría
+                    const noticiasPorCategoria = {};
+                    const ultimasNoticias = [];
+                    data.forEach(noticia => {
+                        const categoria = noticia.categoria;
+                        if (!noticiasPorCategoria.hasOwnProperty(categoria)) {
+                            noticiasPorCategoria[categoria] = [];
+                        }
+                        if (noticiasPorCategoria[categoria].length < 5) {
+                            noticiasPorCategoria[categoria].push(noticia);
+                        }
+                        if (ultimasNoticias.length < 3 && !ultimasNoticias.some(n => n.titulo === noticia.titulo)) {
+                            ultimasNoticias.push(noticia);
+                        }
+                    });
+
+                    // Mostrar las últimas noticias en las páginas correspondientes
+                    mostrarNoticiasPorCategoria(noticiasPorCategoria);
+                    mostrarUltimasNoticias(ultimasNoticias);
+                })
+                .catch(error => {
+                    mostrarError("Error al cargar las noticias: " + error);
+                });
+
+            // Función para mostrar las noticias de cada categoría en las páginas correspondientes
+            function mostrarNoticiasPorCategoria(noticiasPorCategoria) {
+                for (let categoria in noticiasPorCategoria) {
+                    const noticias = noticiasPorCategoria[categoria];
+
+                    if (noticias.length > 0) {
+                        const categoriaElement = document.getElementById(`categoria-${categoria}`);
+                        const noticiasListaElement = categoriaElement ? categoriaElement.querySelector('.noticias-lista') : null;
+
+                        if (!noticiasListaElement) {
+                            console.error(`Error: No se encontró el elemento '.noticias-lista' para la categoría ${categoria}`);
+                            continue;
+                        }
+
+                        noticias.forEach(noticia => {
+                            const noticiaElement = document.createElement('div');
+                            noticiaElement.classList.add('noticia');
+
+                            const imagenElement = document.createElement('img');
+                            imagenElement.src = noticia.imagen;
+                            imagenElement.alt = noticia.titulo;
+                            imagenElement.classList.add('noticia-imagen');
+
+                            const contenidoElement = document.createElement('div');
+                            contenidoElement.classList.add('noticia-contenido');
+
+                            const tituloElement = document.createElement('h3');
+                            tituloElement.textContent = noticia.titulo;
+                            tituloElement.classList.add('noticia-titulo');
+
+                            const cuerpoElement = document.createElement('p');
+                            cuerpoElement.textContent = noticia.contenido.substring(0, 100) + '...';
+
+                            contenidoElement.appendChild(tituloElement);
+                            contenidoElement.appendChild(cuerpoElement);
+
+                            noticiaElement.appendChild(imagenElement);
+                            noticiaElement.appendChild(contenidoElement);
+
+                            // Agregar evento de click para mostrar la noticia completa
+                            noticiaElement.addEventListener('click', () => {
+                                mostrarNoticiaCompleta(noticia);
+                            });
+
+                            noticiasListaElement.appendChild(noticiaElement);
+                        });
+                    }
+                }
+            }
+
+            // Función para mostrar las últimas noticias en la sección "Últimas noticias"
+            function mostrarUltimasNoticias(ultimasNoticias) {
+                const noticiasListaElement = document.getElementById('noticias-lista');
+
+                ultimasNoticias.forEach(noticia => {
+                    const noticiaElement = document.createElement('div');
+                    noticiaElement.classList.add('noticia');
+
+                    const imagenElement = document.createElement('img');
+                    imagenElement.src = noticia.imagen;
+                    imagenElement.alt = noticia.titulo;
+                    imagenElement.classList.add('noticia-imagen');
+
+                    const contenidoElement = document.createElement('div');
+                    contenidoElement.classList.add('noticia-contenido');
+
+                    const tituloElement = document.createElement('h3');
+                    tituloElement.textContent = noticia.titulo;
+                    tituloElement.classList.add('noticia-titulo');
+
+                    const cuerpoElement = document.createElement('p');
+                    cuerpoElement.textContent = noticia.contenido.substring(0, 100) + '...';
+
+                    contenidoElement.appendChild(tituloElement);
+                    contenidoElement.appendChild(cuerpoElement);
+
+                    noticiaElement.appendChild(imagenElement);
+                    noticiaElement.appendChild(contenidoElement);
+
+                    // Agregar evento de click para mostrar la noticia completa
+                    noticiaElement.addEventListener('click', () => {
+                        mostrarNoticiaCompleta(noticia);
+                    });
+
+                    noticiasListaElement.appendChild(noticiaElement);
+                });
+            }
+
+            // Función para mostrar la noticia completa
+            function mostrarNoticiaCompleta(noticia) {
+                const noticiaCompleta = document.createElement('div');
+                noticiaCompleta.classList.add('noticia-completa');
+
+                const tituloElement = document.createElement('h2');
+                tituloElement.textContent = noticia.titulo;
+
+                const contenidoElement = document.createElement('p');
+                contenidoElement.textContent = noticia.contenido;
+
+                noticiaCompleta.appendChild(tituloElement);
+                noticiaCompleta.appendChild(contenidoElement);
+
+                noticiasLista.innerHTML = '';
+                noticiasLista.appendChild(noticiaCompleta);
+            }
+
+            // Función para mostrar un mensaje de error
+            function mostrarError(mensaje) {
+                const errorElement = document.createElement('p');
+                errorElement.classList.add('error');
+                errorElement.textContent = mensaje;
+
+                noticiasLista.innerHTML = '';
+                noticiasLista.appendChild(errorElement);
+            }
+        });
+    </script>
+
+    <div style="text-align: center; margin-top: 50px;">
+        <a class="boton" href="index.html">Inicio</a>
+        <a class="boton" href="page1.html">Noticias en Uruguay</a>
+        <a class="boton" href="page2.html">Última Hora</a>
+        <a class="boton" href="page3.html">Ofertas en Uruguay</a>
+    </div>
 </body>
+
 </html>
