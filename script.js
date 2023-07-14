@@ -10,66 +10,72 @@ window.addEventListener('DOMContentLoaded', () => {
     fetch('https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/todaslasnoticias/todaslasnoticias.json')
         .then(response => response.json())
         .then(data => {
-            // Filtrar las últimas 3 noticias sin repeticiones
-            const noticiasUltimas = filtrarUltimasNoticias(data);
+            // Filtrar las noticias por categoría
+            const noticiasPorCategoria = {};
 
-            // Mostrar las últimas noticias en la sección correspondiente
-            mostrarNoticias(noticiasUltimas);
+            data.forEach(noticia => {
+                const categoria = noticia.categoria;
+                if (!noticiasPorCategoria.hasOwnProperty(categoria)) {
+                    noticiasPorCategoria[categoria] = [];
+                }
+                if (noticiasPorCategoria[categoria].length < 5) {
+                    noticiasPorCategoria[categoria].push(noticia);
+                }
+            });
+
+            // Mostrar las últimas noticias en las páginas correspondientes
+            mostrarNoticiasEnPaginas(noticiasPorCategoria);
         })
         .catch(error => {
             mostrarError("Error al cargar las noticias: " + error);
         });
 
-    // Función para filtrar las últimas 3 noticias sin repeticiones
-    function filtrarUltimasNoticias(data) {
-        const noticiasFiltradas = [];
-        const noticiasVistas = [];
+    // Función para mostrar las noticias en las páginas correspondientes
+    function mostrarNoticiasEnPaginas(noticiasPorCategoria) {
+        const categorias = Object.keys(noticiasPorCategoria);
 
-        for (let i = data.length - 1; i >= 0 && noticiasFiltradas.length < 3; i--) {
-            const noticia = data[i];
+        categorias.forEach(categoria => {
+            const noticias = noticiasPorCategoria[categoria];
+            const categoriaElement = document.getElementById(`categoria-${categoria}`);
+            const noticiasListaElement = categoriaElement ? categoriaElement.querySelector('.noticias-lista') : null;
 
-            if (!noticiasVistas.includes(noticia.titulo)) {
-                noticiasFiltradas.push(noticia);
-                noticiasVistas.push(noticia.titulo);
+            if (!noticiasListaElement) {
+                console.error(`Error: No se encontró el elemento '.noticias-lista' para la categoría ${categoria}`);
+                return;
             }
-        }
 
-        return noticiasFiltradas;
-    }
+            noticias.forEach(noticia => {
+                const noticiaElement = document.createElement('div');
+                noticiaElement.classList.add('noticia');
 
-    // Función para mostrar las noticias en la sección correspondiente
-    function mostrarNoticias(noticias) {
-        noticias.forEach(noticia => {
-            const noticiaElement = document.createElement('div');
-            noticiaElement.classList.add('noticia');
+                const imagenElement = document.createElement('img');
+                imagenElement.src = noticia.imagen;
+                imagenElement.alt = noticia.titulo;
+                imagenElement.classList.add('noticia-imagen');
 
-            const imagenElement = document.createElement('img');
-            imagenElement.src = noticia.imagen || 'https://via.placeholder.com/150/FF0000/FFFFFF?text=No+Image';
-            imagenElement.alt = noticia.titulo;
-            imagenElement.classList.add('noticia-imagen');
+                const contenidoElement = document.createElement('div');
+                contenidoElement.classList.add('noticia-contenido');
 
-            const contenidoElement = document.createElement('div');
-            contenidoElement.classList.add('noticia-contenido');
+                const tituloElement = document.createElement('h3');
+                tituloElement.textContent = noticia.titulo;
+                tituloElement.classList.add('noticia-titulo');
 
-            const tituloElement = document.createElement('h3');
-            tituloElement.textContent = noticia.titulo;
-            tituloElement.classList.add('noticia-titulo');
+                const cuerpoElement = document.createElement('p');
+                cuerpoElement.textContent = noticia.contenido.substring(0, 100) + '...';
 
-            const cuerpoElement = document.createElement('p');
-            cuerpoElement.textContent = noticia.contenido.substring(0, 100) + '...';
+                contenidoElement.appendChild(tituloElement);
+                contenidoElement.appendChild(cuerpoElement);
 
-            contenidoElement.appendChild(tituloElement);
-            contenidoElement.appendChild(cuerpoElement);
+                noticiaElement.appendChild(imagenElement);
+                noticiaElement.appendChild(contenidoElement);
 
-            noticiaElement.appendChild(imagenElement);
-            noticiaElement.appendChild(contenidoElement);
+                // Agregar evento de click para mostrar la noticia completa
+                noticiaElement.addEventListener('click', () => {
+                    mostrarNoticiaCompleta(noticia);
+                });
 
-            // Agregar evento de click para mostrar la noticia completa
-            noticiaElement.addEventListener('click', () => {
-                mostrarNoticiaCompleta(noticia);
+                noticiasListaElement.appendChild(noticiaElement);
             });
-
-            noticiasLista.appendChild(noticiaElement);
         });
     }
 
