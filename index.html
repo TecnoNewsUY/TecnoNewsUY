@@ -32,7 +32,19 @@
             .then(response => response.json())
             .then(data => {
                 const noticiasLista = document.getElementById('noticias-lista');
-                const ultimasNoticias = data.slice(0, 3);
+                
+                // Obtener todas las noticias sin repetir
+                const noticiasSinRepetir = [];
+                const noticiasRepetidas = new Set();
+                data.forEach(noticia => {
+                    if (!noticiasRepetidas.has(noticia.titulo)) {
+                        noticiasSinRepetir.push(noticia);
+                        noticiasRepetidas.add(noticia.titulo);
+                    }
+                });
+                
+                // Mostrar las últimas 3 noticias sin repetir
+                const ultimasNoticias = noticiasSinRepetir.slice(0, 3);
                 ultimasNoticias.forEach(noticia => {
                     const divNoticia = document.createElement('div');
                     divNoticia.classList.add('noticia');
