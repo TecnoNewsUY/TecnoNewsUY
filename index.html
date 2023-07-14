@@ -27,6 +27,34 @@
     </div>
     
     <script src="script.js"></script>
+    <script>
+        fetch('noticias.json')
+            .then(response => response.json())
+            .then(data => {
+                const noticiasLista = document.getElementById('noticias-lista');
+                const ultimasNoticias = data.slice(0, 3);
+                ultimasNoticias.forEach(noticia => {
+                    const divNoticia = document.createElement('div');
+                    divNoticia.classList.add('noticia');
+                    
+                    const titulo = document.createElement('h3');
+                    titulo.textContent = noticia.titulo;
+                    
+                    const contenido = document.createElement('p');
+                    contenido.textContent = noticia.contenido;
+                    
+                    const imagen = document.createElement('img');
+                    imagen.src = noticia.imagen;
+                    imagen.alt = noticia.titulo;
+                    
+                    divNoticia.appendChild(titulo);
+                    divNoticia.appendChild(contenido);
+                    divNoticia.appendChild(imagen);
+                    
+                    noticiasLista.appendChild(divNoticia);
+                });
+            })
+            .catch(error => console.log(error));
+    </script>
 </body>
 </html>
-
