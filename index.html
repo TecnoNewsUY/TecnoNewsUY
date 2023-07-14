@@ -39,41 +39,24 @@
             fetch('https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/todaslasnoticias/todaslasnoticias.json')
                 .then(response => response.json())
                 .then(data => {
-                    const noticiasPorCategoria = {};
-        
-                    data.forEach(noticia => {
-                        const categoria = noticia.categoria;
-                        if (!noticiasPorCategoria.hasOwnProperty(categoria)) {
-                            noticiasPorCategoria[categoria] = [];
-                        }
-                        noticiasPorCategoria[categoria].push(noticia);
-                    });
-        
-                    const noticias = obtenerUltimasNoticias(noticiasPorCategoria, 3);
+                    const noticias = obtenerUltimasNoticias(data, 3);
                     mostrarNoticias(noticias, noticiasLista);
                 })
                 .catch(error => {
                     mostrarError("Error al cargar las noticias: " + error);
                 });
         
-            function obtenerUltimasNoticias(noticiasPorCategoria, cantidad) {
+            function obtenerUltimasNoticias(noticias, cantidad) {
                 const noticiasUnicas = [];
                 const noticiasVistas = new Set();
                 let contador = 0;
         
-                for (let categoria in noticiasPorCategoria) {
-                    const noticiasCategoria = noticiasPorCategoria[categoria];
-                    for (let i = noticiasCategoria.length - 1; i >= 0; i--) {
-                        const noticia = noticiasCategoria[i];
-                        if (!noticiasVistas.has(noticia.titulo)) {
-                            noticiasUnicas.push(noticia);
-                            noticiasVistas.add(noticia.titulo);
-                            contador++;
-                        }
-        
-                        if (contador === cantidad) {
-                            break;
-                        }
+                for (let i = noticias.length - 1; i >= 0; i--) {
+                    const noticia = noticias[i];
+                    if (!noticiasVistas.has(noticia.titulo)) {
+                        noticiasUnicas.push(noticia);
+                        noticiasVistas.add(noticia.titulo);
+                        contador++;
                     }
         
                     if (contador === cantidad) {
@@ -85,6 +68,8 @@
             }
         
             function mostrarNoticias(noticias, contenedor) {
+                contenedor.innerHTML = '';
+        
                 noticias.forEach(noticia => {
                     const divNoticia = document.createElement('div');
                     divNoticia.classList.add('noticia');
