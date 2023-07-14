@@ -22,11 +22,64 @@
         <h2 class="section-title">Últimas noticias</h2>
 
         <section id="noticias-lista" class="noticias-lista">
-            <!-- Aquí se mostrarán las últimas 3 noticias -->
+            <!-- Aquí se mostrarán las últimas 3 noticias de todas las categorías -->
         </section>
     </div>
     
     <script src="script.js"></script>
+    <script>
+        fetch('https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/todaslasnoticias/todaslasnoticias.json')
+            .then(response => response.json())
+            .then(data => {
+                const noticiasLista = document.getElementById('noticias-lista');
+                const noticias = obtenerUltimasNoticias(data, 3);
+                mostrarNoticias(noticias, noticiasLista);
+            })
+            .catch(error => console.log(error));
+
+        function obtenerUltimasNoticias(noticias, cantidad) {
+            const noticiasUnicas = [];
+            const noticiasVistas = new Set();
+            let contador = 0;
+
+            for (let i = noticias.length - 1; i >= 0; i--) {
+                const noticia = noticias[i];
+                if (!noticiasVistas.has(noticia.titulo)) {
+                    noticiasUnicas.push(noticia);
+                    noticiasVistas.add(noticia.titulo);
+                    contador++;
+                }
+
+                if (contador === cantidad) {
+                    break;
+                }
+            }
+
+            return noticiasUnicas;
+        }
+
+        function mostrarNoticias(noticias, contenedor) {
+            noticias.forEach(noticia => {
+                const divNoticia = document.createElement('div');
+                divNoticia.classList.add('noticia');
+
+                const titulo = document.createElement('h3');
+                titulo.textContent = noticia.titulo;
+
+                const contenido = document.createElement('p');
+                contenido.textContent = noticia.contenido;
+
+                const imagen = document.createElement('img');
+                imagen.src = noticia.imagen;
+                imagen.alt = noticia.titulo;
+
+                divNoticia.appendChild(titulo);
+                divNoticia.appendChild(contenido);
+                divNoticia.appendChild(imagen);
+
+                contenedor.appendChild(divNoticia);
+            });
+        }
+    </script>
 </body>
 </html>
-
