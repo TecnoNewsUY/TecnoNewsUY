@@ -1,6 +1,11 @@
 window.addEventListener('DOMContentLoaded', () => {
     const noticiasLista = document.getElementById('noticias-lista');
 
+    if (!noticiasLista) {
+        console.error("Error: No se encontró el elemento con el ID 'noticias-lista'");
+        return;
+    }
+
     // Obtener las noticias desde el archivo JSON
     fetch('https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/todaslasnoticias/todaslasnoticias.json')
         .then(response => response.json())
@@ -31,7 +36,12 @@ window.addEventListener('DOMContentLoaded', () => {
 
             if (noticias.length > 0) {
                 const categoriaElement = document.getElementById(`categoria-${categoria}`);
-                const noticiasListaElement = categoriaElement.querySelector('.noticias-lista');
+                const noticiasListaElement = categoriaElement ? categoriaElement.querySelector('.noticias-lista') : null;
+
+                if (!noticiasListaElement) {
+                    console.error(`Error: No se encontró el elemento '.noticias-lista' para la categoría ${categoria}`);
+                    continue;
+                }
 
                 noticias.forEach(noticia => {
                     const noticiaElement = document.createElement('div');
