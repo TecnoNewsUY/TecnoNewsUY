@@ -6,11 +6,9 @@ window.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
-  // Obtener las noticias desde el archivo JSON
   fetch('https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/todaslasnoticias/todaslasnoticias.json')
     .then(response => response.json())
     .then(data => {
-      // Filtrar las noticias por categoría y eliminar duplicados
       const noticiasPorCategoria = {};
 
       data.forEach(noticia => {
@@ -18,52 +16,87 @@ window.addEventListener('DOMContentLoaded', () => {
         if (!noticiasPorCategoria.hasOwnProperty(categoria)) {
           noticiasPorCategoria[categoria] = [];
         }
-        if (!noticiasPorCategoria[categoria].some(n => n.titulo === noticia.titulo)) {
-          noticiasPorCategoria[categoria].push(noticia);
-        }
+        noticiasPorCategoria[categoria].push(noticia);
       });
 
-      // Obtener las últimas 3 noticias sin repeticiones
-      const ultimasNoticias = [];
+      const noticias = [];
       for (let categoria in noticiasPorCategoria) {
         const noticiasCategoria = noticiasPorCategoria[categoria];
-        if (noticiasCategoria.length > 0) {
-          const noticiasOrdenadas = noticiasCategoria.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
-          for (let i = 0; i < noticiasOrdenadas.length && ultimasNoticias.length < 3; i++) {
-            const noticia = noticiasOrdenadas[i];
-            if (!ultimasNoticias.some(n => n.titulo === noticia.titulo)) {
-              ultimasNoticias.push(noticia);
-            }
+        noticiasCategoria.forEach(noticia => {
+          if (noticias.length < 3 && !noticias.some(n => n.titulo === noticia.titulo)) {
+            noticias.push(noticia);
           }
-        }
+        });
       }
 
-      // Mostrar las últimas noticias en la página index.html
-      ultimasNoticias.forEach(noticia => {
-        const divNoticia = document.createElement('div');
-        divNoticia.classList.add('noticia');
-
-        const titulo = document.createElement('h3');
-        titulo.textContent = noticia.titulo;
-
-        const contenido = document.createElement('p');
-        contenido.textContent = noticia.contenido;
-
-        const imagen = document.createElement('img');
-        imagen.src = noticia.imagen;
-        imagen.alt = noticia.titulo;
-
-        divNoticia.appendChild(titulo);
-        divNoticia.appendChild(contenido);
-        divNoticia.appendChild(imagen);
-
-        noticiasLista.appendChild(divNoticia);
+      noticias.forEach(noticia => {
+        const noticiaElement = crearElementoNoticia(noticia);
+        noticiasLista.appendChild(noticiaElement);
       });
     })
-    .catch(error => console.log(error));
+    .catch(error => {
+      mostrarError("Error al cargar las noticias: " + error);
+    });
+
+  function crearElementoNoticia(noticia) {
+    const noticiaElement = document.createElement('div');
+    noticiaElement.classList.add('noticia');
+
+    const imagenElement = document.createElement('img');
+    imagenElement.src = noticia.imagen;
+    imagenElement.alt = noticia.titulo;
+    imagenElement.classList.add('noticia-imagen');
+
+    const contenidoElement = document.createElement('div');
+    contenidoElement.classList.add('noticia-contenido');
+
+    const tituloElement = document.createElement('h3');
+    tituloElement.textContent = noticia.titulo;
+    tituloElement.classList.add('noticia-titulo');
+
+    const cuerpoElement = document.createElement('p');
+    cuerpoElement.textContent = noticia.contenido.substring(0, 100) + '...';
+
+    contenidoElement.appendChild(tituloElement);
+    contenidoElement.appendChild(cuerpoElement);
+
+    noticiaElement.appendChild(imagenElement);
+    noticiaElement.appendChild(contenidoElement);
+
+    noticiaElement.addEventListener('click', () => {
+      mostrarNoticiaCompleta(noticia);
+    });
+
+    return noticiaElement;
+  }
+
+  function mostrarNoticiaCompleta(noticia) {
+    const noticiaCompleta = document.createElement('div');
+    noticiaCompleta.classList.add('noticia-completa');
+
+    const tituloElement = document.createElement('h2');
+    tituloElement.textContent = noticia.titulo;
+
+    const contenidoElement = document.createElement('p');
+    contenidoElement.textContent = noticia.contenido;
+
+    noticiaCompleta.appendChild(tituloElement);
+    noticiaCompleta.appendChild(contenidoElement);
+
+    noticiasLista.innerHTML = '';
+    noticiasLista.appendChild(noticiaCompleta);
+  }
+
+  function mostrarError(mensaje) {
+    const errorElement = document.createElement('p');
+    errorElement.classList.add('error');
+    errorElement.textContent = mensaje;
+
+    noticiasLista.innerHTML = '';
+    noticiasLista.appendChild(errorElement);
+  }
 });
 
-// Limpiador de caché
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('/service-worker.js')
