@@ -1,9 +1,6 @@
 window.addEventListener('DOMContentLoaded', () => {
-    // Obtener la sección del selector de noticias
-    const noticiasSelector = document.getElementById('noticias-selector');
-
-    // Obtener el contenedor del contenido de la noticia
-    const noticiaContenido = document.getElementById('noticia-contenido');
+    // Obtener la sección de noticias
+    const noticiasContainer = document.getElementById('noticias-container');
 
     // Cargar las noticias desde el archivo JSON
     fetch('https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/todaslasnoticias/todaslasnoticias.json')
@@ -11,25 +8,22 @@ window.addEventListener('DOMContentLoaded', () => {
         .then(data => {
             // Verificar si el archivo JSON contiene datos
             if (data && data.length > 0) {
-                // Filtrar las noticias por categoría
-                const categoriaSeleccionada = obtenerCategoriaSeleccionada();
-                const noticiasFiltradas = data.filter(noticia => noticia.categoria === categoriaSeleccionada);
+                // Obtener las últimas 5 noticias
+                const ultimasNoticias = data.slice(-5);
 
-                // Verificar si hay noticias en la categoría seleccionada
-                if (noticiasFiltradas.length > 0) {
-                    // Recorrer las noticias filtradas y agregar opciones al selector
-                    noticiasFiltradas.forEach((noticia, index) => {
-                        const option = document.createElement('option');
-                        option.value = index;
-                        option.textContent = noticia.titulo;
-                        noticiasSelector.appendChild(option);
-                    });
+                // Generar el contenido HTML para las noticias
+                const noticiasHTML = ultimasNoticias.map(noticia => {
+                    return `
+                        <div class="noticia" onclick="mostrarNoticia('${noticia.titulo}')">
+                            ${noticia.imagen ? `<img src="${noticia.imagen}" alt="${noticia.titulo}" class="noticia-img">` : ''}
+                            <h3 class="noticia-titulo">${noticia.titulo}</h3>
+                            <p class="noticia-cuerpo">${noticia.contenido}</p>
+                        </div>
+                    `;
+                }).join('');
 
-                    // Mostrar la primera noticia por defecto
-                    mostrarNoticia(noticiasFiltradas[0]);
-                } else {
-                    mostrarError("No se encontraron noticias en la categoría seleccionada.");
-                }
+                // Agregar el contenido HTML al contenedor de noticias
+                noticiasContainer.innerHTML = noticiasHTML;
             } else {
                 mostrarError("No se encontraron noticias.");
             }
@@ -37,73 +31,15 @@ window.addEventListener('DOMContentLoaded', () => {
         .catch(error => {
             mostrarError("Error al cargar las noticias: " + error);
         });
-
-    // Cambiar el contenido de la noticia al seleccionar una opción del selector
-    noticiasSelector.addEventListener('change', () => {
-        const selectedIndex = noticiasSelector.value;
-        fetch('https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/todaslasnoticias/todaslasnoticias.json')
-            .then(response => response.json())
-            .then(data => {
-                // Verificar si el archivo JSON contiene datos
-                if (data && data.length > 0) {
-                    // Filtrar las noticias por categoría
-                    const categoriaSeleccionada = obtenerCategoriaSeleccionada();
-                    const noticiasFiltradas = data.filter(noticia => noticia.categoria === categoriaSeleccionada);
-
-                    // Verificar si hay noticias en la categoría seleccionada
-                    if (noticiasFiltradas.length > 0) {
-                        const selectedNoticia = noticiasFiltradas[selectedIndex];
-                        mostrarNoticia(selectedNoticia);
-                    } else {
-                        mostrarError("No se encontraron noticias en la categoría seleccionada.");
-                    }
-                } else {
-                    mostrarError("No se encontraron noticias.");
-                }
-            })
-            .catch(error => {
-                mostrarError("Error al cargar las noticias: " + error);
-            });
-    });
-
-    // Función para mostrar el contenido de la noticia
-    function mostrarNoticia(noticia) {
-        noticiaContenido.innerHTML = `
-            <div class="noticia-item">
-                <a href="${generarEnlaceNoticia(noticia)}">
-                    <div class="noticia-imagen">
-                        <img src="${noticia.imagen_url}" alt="${noticia.titulo}">
-                    </div>
-                    <div class="noticia-info">
-                        <h3>${noticia.titulo}</h3>
-                        <p>${limitarTexto(noticia.contenido, 3)}</p>
-                    </div>
-                </a>
-            </div>
-        `;
-    }
-
-    // Función para mostrar un mensaje de error
-    function mostrarError(mensaje) {
-        noticiaContenido.innerHTML = `<p class="error">${mensaje}</p>`;
-    }
-
-    // Función para obtener la categoría seleccionada
-    function obtenerCategoriaSeleccionada() {
-        const urlParams = new URLSearchParams(window.location.search);
-        return urlParams.get('categoria');
-    }
-
-    // Función para generar el enlace de la noticia
-    function generarEnlaceNoticia(noticia) {
-        const enlaceBase = `https://tecnonewsuy.github.io/TecnoNewsUY/page${noticia.categoria}.html`;
-        const enlaceFormateado = enlaceBase + "?categoria=" + encodeURIComponent(noticia.enlace);
-        return enlaceFormateado;
-    }
-
-    // Función para limitar el texto a un número específico de líneas
-    function limitarTexto(texto, lineas) {
-        const lineasLimitadas = texto.split('\n').slice(0, lineas).join('\n');
-        return lineasLimitadas;
-    }
 });
+
+// Función para mostrar la noticia completa
+function mostrarNoticia(titulo) {
+    // Redirigir a la página de la noticia completa
+    window.location.href = `noticias/${titulo.toLowerCase().replace(/ /g, '-')}.html`;
+}
+
+// Función para mostrar un mensaje de error
+function mostrarError(mensaje) {
+    noticiasContainer.innerHTML = `<p class="error">${mensaje}</p>`;
+}
