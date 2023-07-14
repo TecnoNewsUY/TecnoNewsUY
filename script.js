@@ -10,7 +10,7 @@ window.addEventListener('DOMContentLoaded', () => {
   fetch('https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/todaslasnoticias/todaslasnoticias.json')
     .then(response => response.json())
     .then(data => {
-      // Filtrar las noticias por categoría
+      // Filtrar las noticias por categoría y eliminar duplicados
       const noticiasPorCategoria = {};
 
       data.forEach(noticia => {
@@ -18,117 +18,49 @@ window.addEventListener('DOMContentLoaded', () => {
         if (!noticiasPorCategoria.hasOwnProperty(categoria)) {
           noticiasPorCategoria[categoria] = [];
         }
-        noticiasPorCategoria[categoria].push(noticia);
-      });
-
-      // Mostrar las últimas noticias en la página index.html
-      if (noticiasLista.id === "noticias-lista") {
-        mostrarUltimasNoticias(noticiasPorCategoria);
-      }
-
-      // Mostrar las noticias en la página correspondiente
-      const categoria = noticiasLista.parentNode.id.replace('categoria-', '');
-      mostrarNoticiasEnPagina(categoria, noticiasPorCategoria);
-    })
-    .catch(error => {
-      mostrarError("Error al cargar las noticias: " + error);
-    });
-
-  // Función para mostrar las últimas noticias en la sección "Últimas noticias" de la página index.html
-  function mostrarUltimasNoticias(noticiasPorCategoria) {
-    const noticias = [];
-
-    for (let categoria in noticiasPorCategoria) {
-      const noticiasCategoria = noticiasPorCategoria[categoria];
-      noticiasCategoria.forEach(noticia => {
-        if (noticias.length < 3 && !noticias.some(n => n.titulo === noticia.titulo)) {
-          noticias.push(noticia);
+        if (!noticiasPorCategoria[categoria].some(n => n.titulo === noticia.titulo)) {
+          noticiasPorCategoria[categoria].push(noticia);
         }
       });
-    }
 
-    noticias.forEach(noticia => {
-      const noticiaElement = crearElementoNoticia(noticia);
-      noticiasLista.appendChild(noticiaElement);
-    });
-  }
+      // Obtener las últimas 3 noticias sin repeticiones
+      const ultimasNoticias = [];
+      for (let categoria in noticiasPorCategoria) {
+        const noticiasCategoria = noticiasPorCategoria[categoria];
+        if (noticiasCategoria.length > 0) {
+          const noticiasOrdenadas = noticiasCategoria.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
+          for (let i = 0; i < noticiasOrdenadas.length && ultimasNoticias.length < 3; i++) {
+            const noticia = noticiasOrdenadas[i];
+            if (!ultimasNoticias.some(n => n.titulo === noticia.titulo)) {
+              ultimasNoticias.push(noticia);
+            }
+          }
+        }
+      }
 
-  // Función para mostrar las noticias en la página correspondiente
-  function mostrarNoticiasEnPagina(categoria, noticiasPorCategoria) {
-    const noticiasCategoria = noticiasPorCategoria[categoria];
+      // Mostrar las últimas noticias en la página index.html
+      ultimasNoticias.forEach(noticia => {
+        const divNoticia = document.createElement('div');
+        divNoticia.classList.add('noticia');
 
-    if (!noticiasCategoria) {
-      console.error(`Error: No se encontró la categoría de noticias para la página actual`);
-      return;
-    }
+        const titulo = document.createElement('h3');
+        titulo.textContent = noticia.titulo;
 
-    noticiasCategoria.forEach(noticia => {
-      const noticiaElement = crearElementoNoticia(noticia);
-      noticiasLista.appendChild(noticiaElement);
-    });
-  }
+        const contenido = document.createElement('p');
+        contenido.textContent = noticia.contenido;
 
-  // Función para crear un elemento de noticia
-  function crearElementoNoticia(noticia) {
-    const noticiaElement = document.createElement('div');
-    noticiaElement.classList.add('noticia');
+        const imagen = document.createElement('img');
+        imagen.src = noticia.imagen;
+        imagen.alt = noticia.titulo;
 
-    const imagenElement = document.createElement('img');
-    imagenElement.src = noticia.imagen;
-    imagenElement.alt = noticia.titulo;
-    imagenElement.classList.add('noticia-imagen');
+        divNoticia.appendChild(titulo);
+        divNoticia.appendChild(contenido);
+        divNoticia.appendChild(imagen);
 
-    const contenidoElement = document.createElement('div');
-    contenidoElement.classList.add('noticia-contenido');
-
-    const tituloElement = document.createElement('h3');
-    tituloElement.textContent = noticia.titulo;
-    tituloElement.classList.add('noticia-titulo');
-
-    const cuerpoElement = document.createElement('p');
-    cuerpoElement.textContent = noticia.contenido.substring(0, 100) + '...';
-
-    contenidoElement.appendChild(tituloElement);
-    contenidoElement.appendChild(cuerpoElement);
-
-    noticiaElement.appendChild(imagenElement);
-    noticiaElement.appendChild(contenidoElement);
-
-    // Agregar evento de click para mostrar la noticia completa
-    noticiaElement.addEventListener('click', () => {
-      mostrarNoticiaCompleta(noticia);
-    });
-
-    return noticiaElement;
-  }
-
-  // Función para mostrar la noticia completa
-  function mostrarNoticiaCompleta(noticia) {
-    const noticiaCompleta = document.createElement('div');
-    noticiaCompleta.classList.add('noticia-completa');
-
-    const tituloElement = document.createElement('h2');
-    tituloElement.textContent = noticia.titulo;
-
-    const contenidoElement = document.createElement('p');
-    contenidoElement.textContent = noticia.contenido;
-
-    noticiaCompleta.appendChild(tituloElement);
-    noticiaCompleta.appendChild(contenidoElement);
-
-    noticiasLista.innerHTML = '';
-    noticiasLista.appendChild(noticiaCompleta);
-  }
-
-  // Función para mostrar un mensaje de error
-  function mostrarError(mensaje) {
-    const errorElement = document.createElement('p');
-    errorElement.classList.add('error');
-    errorElement.textContent = mensaje;
-
-    noticiasLista.innerHTML = '';
-    noticiasLista.appendChild(errorElement);
-  }
+        noticiasLista.appendChild(divNoticia);
+      });
+    })
+    .catch(error => console.log(error));
 });
 
 // Limpiador de caché
