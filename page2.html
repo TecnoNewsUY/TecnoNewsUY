@@ -1,26 +1,35 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>Página 2</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TecnoNewsUY - Última Hora</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1>TecnoNewsUY</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="page1.html">Noticias en Uruguay</a></li>
+                <li><a href="page2.html">Última Hora</a></li>
+                <li><a href="page3.html">Ofertas en Uruguay</a></li>
+            </ul>
+        </nav>
     </header>
-    <section class="noticias-section">
-        <div class="container">
-            <h2>Última Hora</h2>
-            <div id="noticias-container"></div>
-        </div>
-    </section>
-    <footer>
-        <p>&copy; 2023 TecnoNewsUY. Todos los derechos reservados.</p>
-    </footer>
+
+    <div class="container">
+        <h1>Última Hora</h1>
+        <h2>Últimas noticias</h2>
+
+        <section id="noticias-lista" class="noticias-lista">
+            <!-- Aquí se mostrarán las últimas noticias -->
+        </section>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
