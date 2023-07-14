@@ -63,7 +63,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
             const titulo = document.createElement('h3');
             const enlace = document.createElement('a');
-            enlace.href = "https://tecnonewsuy.github.io/TecnoNewsUY/" + noticia.enlace;
+            enlace.href = noticia.enlace_noticia;
             enlace.textContent = noticia.titulo;
             titulo.appendChild(enlace);
 
