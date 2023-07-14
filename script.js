@@ -155,7 +155,9 @@ window.addEventListener('DOMContentLoaded', () => {
     noticiasLista.innerHTML = '';
     noticiasLista.appendChild(errorElement);
   }
-   // Limpiador de caché
+});
+
+// Limpiador de caché
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('/service-worker.js')
