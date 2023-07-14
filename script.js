@@ -53,7 +53,7 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Función para mostrar las noticias en la página correspondiente
+ // Función para mostrar las noticias en la página correspondiente
   function mostrarNoticiasEnPagina(noticiasPorCategoria, categoria) {
     if (!categoria || !noticiasPorCategoria.hasOwnProperty(categoria)) {
       mostrarError("Error: No se encontró la categoría de noticias");
@@ -62,11 +62,14 @@ window.addEventListener('DOMContentLoaded', () => {
 
     const noticiasCategoria = noticiasPorCategoria[categoria];
 
+    noticiasLista.innerHTML = '';
+
     noticiasCategoria.forEach(noticia => {
       const noticiaElement = crearElementoNoticia(noticia);
       noticiasLista.appendChild(noticiaElement);
     });
   }
+
 
   // Función para crear el elemento de noticia
   function crearElementoNoticia(noticia) {
