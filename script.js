@@ -62,10 +62,10 @@ window.addEventListener('DOMContentLoaded', () => {
             divNoticia.classList.add('noticia');
 
             const titulo = document.createElement('h3');
-            const enlace = document.createElement('a'); // Nuevo elemento
-            enlace.href = noticia.enlace_noticia; // Nuevo código
-            enlace.textContent = noticia.titulo; // Nuevo código
-            titulo.appendChild(enlace); // Nuevo código
+            const enlace = document.createElement('a');
+            enlace.href = noticia.enlace_noticia;
+            enlace.textContent = noticia.titulo;
+            titulo.appendChild(enlace);
 
             const contenido = document.createElement('p');
             contenido.textContent = noticia.contenido;
