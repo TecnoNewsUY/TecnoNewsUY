@@ -58,8 +58,14 @@ window.addEventListener('DOMContentLoaded', () => {
       contenidoElement.classList.add('noticia-contenido');
 
       const tituloElement = document.createElement('h3');
-      tituloElement.textContent = noticia.titulo;
       tituloElement.classList.add('noticia-titulo');
+
+      const enlaceElement = document.createElement('a');
+      enlaceElement.href = generarEnlace("index", noticia.titulo);
+      enlaceElement.target = "_blank";
+      enlaceElement.textContent = noticia.titulo;
+
+      tituloElement.appendChild(enlaceElement);
 
       const cuerpoElement = document.createElement('p');
       cuerpoElement.textContent = noticia.contenido.substring(0, 100) + '...';
@@ -106,8 +112,14 @@ window.addEventListener('DOMContentLoaded', () => {
         contenidoElement.classList.add('noticia-contenido');
 
         const tituloElement = document.createElement('h3');
-        tituloElement.textContent = noticia.titulo;
         tituloElement.classList.add('noticia-titulo');
+
+        const enlaceElement = document.createElement('a');
+        enlaceElement.href = generarEnlace(categoria, noticia.titulo);
+        enlaceElement.target = "_blank";
+        enlaceElement.textContent = noticia.titulo;
+
+        tituloElement.appendChild(enlaceElement);
 
         const cuerpoElement = document.createElement('p');
         cuerpoElement.textContent = noticia.contenido.substring(0, 100) + '...';
@@ -155,17 +167,16 @@ window.addEventListener('DOMContentLoaded', () => {
     noticiasLista.innerHTML = '';
     noticiasLista.appendChild(errorElement);
   }
-});
 
-// Limpiador de caché
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/service-worker.js')
-      .then(registration => {
-        console.log('Service Worker registrado con éxito:', registration.scope);
-      })
-      .catch(error => {
-        console.error('Error al registrar el Service Worker:', error);
-      });
-  });
+  // Función para generar el enlace con el formato deseado
+  function generarEnlace(categoria, titulo) {
+    const url = `https://tecnonewsuy.github.io/TecnoNewsUY/page${categoria}.html`;
+    const tituloSlug = slugify(titulo);
+    return `${url}/${tituloSlug}`;
+  }
+
+  // Función para convertir un texto en formato slug
+  function slugify(text) {
+    return text.toLowerCase().replace(/ /g, "-").replace(/[^\w-]+/g, "");
+  }
 }
