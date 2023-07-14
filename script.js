@@ -12,6 +12,8 @@ window.addEventListener('DOMContentLoaded', () => {
         .then(data => {
             // Filtrar las noticias por categoría y obtener las últimas 5 noticias de cada categoría
             const noticiasPorCategoria = {};
+            const noticiasUltimas = [];
+
             data.forEach(noticia => {
                 const categoria = noticia.categoria;
                 if (!noticiasPorCategoria.hasOwnProperty(categoria)) {
@@ -20,10 +22,19 @@ window.addEventListener('DOMContentLoaded', () => {
                 if (noticiasPorCategoria[categoria].length < 5) {
                     noticiasPorCategoria[categoria].push(noticia);
                 }
+
+                if (noticiasUltimas.length < 3) {
+                    const tituloNoticia = noticia.titulo;
+                    const existeNoticia = noticiasUltimas.find(noticia => noticia.titulo === tituloNoticia);
+                    if (!existeNoticia) {
+                        noticiasUltimas.push(noticia);
+                    }
+                }
             });
 
             // Mostrar las últimas noticias en las páginas correspondientes
             mostrarNoticiasPorCategoria(noticiasPorCategoria);
+            mostrarUltimasNoticias(noticiasUltimas);
         })
         .catch(error => {
             mostrarError("Error al cargar las noticias: " + error);
@@ -77,6 +88,31 @@ window.addEventListener('DOMContentLoaded', () => {
                 });
             }
         }
+    }
+
+    // Función para mostrar las últimas noticias en la sección "Últimas noticias"
+    function mostrarUltimasNoticias(noticiasUltimas) {
+        const noticiasUltimasElement = document.getElementById('noticias-ultimas');
+        if (!noticiasUltimasElement) return;
+
+        noticiasUltimas.forEach(noticia => {
+            const noticiaElement = document.createElement('div');
+            noticiaElement.classList.add('noticia-ultima');
+
+            const imagenElement = document.createElement('img');
+            imagenElement.src = noticia.imagen;
+            imagenElement.alt = noticia.titulo;
+            imagenElement.classList.add('noticia-ultima-imagen');
+
+            const tituloElement = document.createElement('h3');
+            tituloElement.textContent = noticia.titulo;
+            tituloElement.classList.add('noticia-ultima-titulo');
+
+            noticiaElement.appendChild(imagenElement);
+            noticiaElement.appendChild(tituloElement);
+
+            noticiasUltimasElement.appendChild(noticiaElement);
+        });
     }
 
     // Función para mostrar la noticia completa
