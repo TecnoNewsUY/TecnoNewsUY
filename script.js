@@ -93,8 +93,6 @@ window.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      noticiasListaElement.innerHTML = ''; // Limpiar el contenido anterior antes de agregar las nuevas noticias
-
       noticias.forEach(noticia => {
         const noticiaElement = document.createElement('div');
         noticiaElement.classList.add('noticia');
@@ -166,6 +164,12 @@ if ('serviceWorker' in navigator) {
       .then(registration => {
         console.log('Service Worker registrado con éxito:', registration.scope);
       })
+      .catch(error => {
+        console.error('Error al registrar el Service Worker:', error);
+      });
+  });
+}
+
       .catch(error => {
         console.error('Error al registrar el Service Worker:', error);
       });
