@@ -5,21 +5,32 @@ window.addEventListener('DOMContentLoaded', () => {
     fetch('https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/todaslasnoticias/todaslasnoticias.json')
         .then(response => response.json())
         .then(data => {
-            // Filtrar las noticias por categoría y obtener las últimas 5 noticias
-            const categoriaSeleccionada = obtenerCategoriaSeleccionada();
-            const noticiasFiltradas = data.filter(noticia => noticia.categoria === categoriaSeleccionada).slice(0, 5);
+            // Obtener las últimas noticias sin repetir por categoría
+            const noticiasUltimas = obtenerUltimasNoticias(data);
 
-            // Verificar si hay noticias en la categoría seleccionada
-            if (noticiasFiltradas.length > 0) {
+            // Verificar si hay noticias disponibles
+            if (noticiasUltimas.length > 0) {
                 // Mostrar las últimas noticias en la lista
-                mostrarNoticias(noticiasFiltradas);
+                mostrarNoticias(noticiasUltimas);
             } else {
-                mostrarError("No se encontraron noticias en la categoría seleccionada.");
+                mostrarError("No se encontraron noticias.");
             }
         })
         .catch(error => {
             mostrarError("Error al cargar las noticias: " + error);
         });
+
+    // Función para obtener las últimas noticias sin repetir por categoría
+    function obtenerUltimasNoticias(noticias) {
+        const ultimasNoticias = new Map();
+        noticias.forEach(noticia => {
+            const categoria = noticia.categoria;
+            if (!ultimasNoticias.has(categoria)) {
+                ultimasNoticias.set(categoria, noticia);
+            }
+        });
+        return Array.from(ultimasNoticias.values()).slice(0, 5);
+    }
 
     // Función para mostrar las noticias en la lista
     function mostrarNoticias(noticias) {
@@ -85,11 +96,5 @@ window.addEventListener('DOMContentLoaded', () => {
 
         noticiasLista.innerHTML = '';
         noticiasLista.appendChild(errorElement);
-    }
-
-    // Función para obtener la categoría seleccionada de la URL
-    function obtenerCategoriaSeleccionada() {
-        const urlParams = new URLSearchParams(window.location.search);
-        return urlParams.get('categoria');
     }
 });
