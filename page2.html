@@ -23,13 +23,43 @@
 
         <section id="categoria-2" class="noticias-categoria">
             <h3 class="categoria-title">Última Hora</h3>
-            <div id="noticias-lista" class="noticias-lista">
+            <div id="noticias-lista-2" class="noticias-lista">
                 <!-- Aquí se mostrarán las noticias de la categoría 2 -->
             </div>
         </section>
     </div>
     
     <script src="script.js"></script>
+    <script>
+        fetch('noticias.json')
+            .then(response => response.json())
+            .then(data => {
+                const noticiasLista = document.getElementById('noticias-lista-2');
+                const noticiasCategoria2 = data.filter(noticia => noticia.categoria === "2");
+                noticiasCategoria2.forEach(noticia => {
+                    const divNoticia = document.createElement('div');
+                    divNoticia.classList.add('noticia');
+                    
+                    const titulo = document.createElement('h3');
+                    titulo.textContent = noticia.titulo;
+                    
+                    const contenido = document.createElement('p');
+                    contenido.textContent = noticia.contenido;
+                    
+                    const imagen = document.createElement('img');
+                    imagen.src = noticia.imagen;
+                    imagen.alt = noticia.titulo;
+                    
+                    divNoticia.appendChild(titulo);
+                    divNoticia.appendChild(contenido);
+                    divNoticia.appendChild(imagen);
+                    
+                    noticiasLista.appendChild(divNoticia);
+                });
+            })
+            .catch(error => console.log(error));
+    </script>
 </body>
 </html>
+
 
