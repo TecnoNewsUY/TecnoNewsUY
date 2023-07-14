@@ -36,7 +36,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
             if (noticias.length > 0) {
                 const categoriaElement = document.getElementById(`categoria-${categoria}`);
-                const noticiasListaElement = categoriaElement ? categoriaElement.querySelector('.noticias-lista') : null;
+                const noticiasListaElement = categoriaElement ? categoriaElement.querySelector('.noticias-lista') : noticiasLista;
 
                 if (!noticiasListaElement) {
                     console.error(`Error: No se encontró el elemento '.noticias-lista' para la categoría ${categoria}`);
