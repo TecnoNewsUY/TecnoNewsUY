@@ -21,17 +21,14 @@
     <div class="container">
         <h2 class="section-title">Ofertas</h2>
 
-        <section id="categoria-3" class="noticias-categoria">
-            <h3 class="categoria-title">Ofertas</h3>
-            <div id="noticias-lista-3" class="noticias-lista">
-                <!-- Aquí se mostrarán las noticias de la categoría 3 -->
-            </div>
+        <section id="noticias-lista-3" class="noticias-lista">
+            <!-- Aquí se mostrarán las noticias de la categoría 3 -->
         </section>
     </div>
     
     <script src="script.js"></script>
     <script>
-        fetch('noticias.json')
+        fetch('https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/todaslasnoticias/todaslasnoticias.json')
             .then(response => response.json())
             .then(data => {
                 const noticiasLista = document.getElementById('noticias-lista-3');
@@ -61,4 +58,3 @@
     </script>
 </body>
 </html>
-
