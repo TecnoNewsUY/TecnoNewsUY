@@ -61,7 +61,7 @@ window.addEventListener('DOMContentLoaded', () => {
       tituloElement.classList.add('noticia-titulo');
 
       const enlaceElement = document.createElement('a');
-      enlaceElement.href = generarEnlace("index", noticia.titulo);
+      enlaceElement.href = generarEnlace("index", noticia.categoria, noticia.titulo);
       enlaceElement.target = "_blank";
       enlaceElement.textContent = noticia.titulo;
 
@@ -115,7 +115,7 @@ window.addEventListener('DOMContentLoaded', () => {
         tituloElement.classList.add('noticia-titulo');
 
         const enlaceElement = document.createElement('a');
-        enlaceElement.href = generarEnlace(categoria, noticia.titulo);
+        enlaceElement.href = generarEnlace(categoria, noticia.categoria, noticia.titulo);
         enlaceElement.target = "_blank";
         enlaceElement.textContent = noticia.titulo;
 
@@ -169,8 +169,8 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   // Función para generar el enlace con el formato deseado
-  function generarEnlace(categoria, titulo) {
-    const url = `https://tecnonewsuy.github.io/TecnoNewsUY/page${categoria}.html`;
+  function generarEnlace(categoria, categoriaId, titulo) {
+    const url = `https://tecnonewsuy.github.io/TecnoNewsUY/page${categoriaId}.html`;
     const tituloSlug = slugify(titulo);
     return `${url}/${tituloSlug}`;
   }
@@ -180,3 +180,4 @@ window.addEventListener('DOMContentLoaded', () => {
     return text.toLowerCase().replace(/ /g, "-").replace(/[^\w-]+/g, "");
   }
 });
+
