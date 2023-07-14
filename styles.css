@@ -31,7 +31,7 @@ header nav ul li {
 }
 
 header nav ul li a {
-    color: #6F3000;
+    color: #6E3000;
     text-decoration: none;
     padding: 10px;
     border-radius: 5px;
@@ -39,7 +39,7 @@ header nav ul li a {
 }
 
 header nav ul li a:hover {
-    background-color: #6F273E;
+    background-color: #6E273E;
     color: #FFFFFF;
 }
 
@@ -48,14 +48,4 @@ h1 {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 48px;
     margin: 0 0 20px 0;
-}
-
-.container::after {
-    content: '';
-    display: block;
-    height: 50px;
-    background-color: #FFFFFF;
-    background-image: radial-gradient(#FFFFFF 50%, transparent 50%);
-    background-size: 20px 20px;
-    transform: translateY(-50%);
 }
