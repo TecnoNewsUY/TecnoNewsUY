@@ -19,13 +19,69 @@
     </header>
     
     <div class="container">
-        <h2 class="section-title">Últimas noticias</h2>
+        <h2 class="section-title">Noticias Destacadas</h2>
 
-        <section id="noticias-lista" class="noticias-lista">
-            <!-- Aquí se mostrarán las últimas 3 noticias de todas las categorías -->
+        <section id="noticias-destacadas" class="noticias-lista">
+            <!-- Aquí se mostrarán las noticias destacadas -->
         </section>
     </div>
     
     <script src="script.js"></script>
+    <script>
+        fetch('https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/todaslasnoticias/todaslasnoticias.json')
+            .then(response => response.json())
+            .then(data => {
+                const noticiasDestacadas = obtenerUltimasNoticias(data, 3);
+                mostrarNoticiasDestacadas(noticiasDestacadas);
+            })
+            .catch(error => console.log(error));
+
+        function obtenerUltimasNoticias(noticias, cantidad) {
+            const noticiasOrdenadas = noticias.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
+            return noticiasOrdenadas.slice(0, cantidad);
+        }
+
+        function mostrarNoticiasDestacadas(noticias) {
+            const noticiasDestacadasContainer = document.getElementById('noticias-destacadas');
+
+            noticias.forEach(noticia => {
+                const divNoticia = document.createElement('div');
+                divNoticia.classList.add('noticia');
+
+                const titulo = document.createElement('h3');
+                titulo.classList.add('noticia-titulo');
+                titulo.textContent = noticia.titulo;
+
+                const contenido = document.createElement('p');
+                contenido.textContent = noticia.contenido;
+
+                const imagen = document.createElement('img');
+                imagen.src = noticia.imagen;
+                imagen.alt = noticia.titulo;
+
+                divNoticia.appendChild(titulo);
+                divNoticia.appendChild(contenido);
+                divNoticia.appendChild(imagen);
+
+                noticiasDestacadasContainer.appendChild(divNoticia);
+            });
+
+            agregarEnlaces(noticiasDestacadasContainer);
+        }
+
+        function agregarEnlaces(contenedor) {
+            const noticias = contenedor.querySelectorAll('.noticia');
+
+            noticias.forEach((noticia, index) => {
+                const tituloNoticia = noticia.querySelector('.noticia-titulo');
+                const enlace = document.createElement('a');
+                enlace.href = `page1.html#${index}`;
+                enlace.innerText = tituloNoticia.innerText;
+
+                tituloNoticia.innerHTML = '';
+                tituloNoticia.appendChild(enlace);
+            });
+        }
+    </script>
 </body>
 </html>
