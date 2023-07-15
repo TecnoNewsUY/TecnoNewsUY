@@ -15,6 +15,7 @@ window.addEventListener('DOMContentLoaded', () => {
         .then(data => {
             const noticiasPorCategoria = agruparNoticiasPorCategoria(data);
             const ultimasNoticias = obtenerUltimasNoticias(noticiasPorCategoria, 3);
+            ultimasNoticias.sort((a, b) => new Date(b.fecha_creacion) - new Date(a.fecha_creacion)); // Ordenar las noticias por fecha descendente
             mostrarNoticias(ultimasNoticias, noticiasLista);
             agregarEnlaces(ultimasNoticias, noticiasLista);
 
@@ -60,7 +61,7 @@ window.addEventListener('DOMContentLoaded', () => {
                     });
                     paginaBoton.appendChild(boton);
                 }
-            });
+          });
         })
         .catch(error => console.log(error));
 });
