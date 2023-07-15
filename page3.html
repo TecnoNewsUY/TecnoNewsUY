@@ -21,7 +21,7 @@
     <div class="container">
         <h2 class="section-title">Ofertas</h2>
 
-        <section id="noticias-lista-3" class="noticias-lista">
+        <section id="noticias-lista-3" class="noticias-lista" data-categoria="3">
             <!-- Aquí se mostrarán las noticias de la categoría 3 -->
         </section>
     </div>
@@ -34,6 +34,7 @@
                 const noticiasLista = document.getElementById('noticias-lista-3');
                 const noticiasCategoria3 = data.filter(noticia => noticia.categoria === "3");
                 mostrarNoticias(noticiasCategoria3, noticiasLista);
+                agregarEnlaces(noticiasCategoria3, noticiasLista);
             })
             .catch(error => console.log(error));
 
@@ -43,8 +44,10 @@
             noticias.forEach(noticia => {
                 const divNoticia = document.createElement('div');
                 divNoticia.classList.add('noticia');
+                divNoticia.dataset.titulo = noticia.titulo;
 
                 const titulo = document.createElement('h3');
+                titulo.classList.add('noticia-titulo');
                 titulo.textContent = noticia.titulo;
 
                 const contenido = document.createElement('p');
@@ -59,6 +62,19 @@
                 divNoticia.appendChild(imagen);
 
                 contenedor.appendChild(divNoticia);
+            });
+        }
+
+        function agregarEnlaces(noticias, contenedor) {
+            const titulosNoticias = contenedor.querySelectorAll('.noticia-titulo');
+
+            titulosNoticias.forEach(tituloNoticia => {
+                const enlace = document.createElement('a');
+                enlace.href = noticias.find(noticia => noticia.titulo === tituloNoticia.innerText).enlace_noticia;
+                enlace.innerText = tituloNoticia.innerText;
+
+                tituloNoticia.innerHTML = '';
+                tituloNoticia.appendChild(enlace);
             });
         }
     </script>
