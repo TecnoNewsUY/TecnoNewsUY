@@ -19,10 +19,10 @@
     </header>
     
     <div class="container">
-        <h2 class="section-title">Noticias Destacadas</h2>
+        <h2 class="section-title">Últimas Noticias</h2>
 
-        <section id="noticias-destacadas" class="noticias-lista">
-            <!-- Aquí se mostrarán las noticias destacadas -->
+        <section id="noticias-lista-index" class="noticias-lista">
+            <!-- Aquí se mostrarán las últimas noticias -->
         </section>
     </div>
     
@@ -31,22 +31,30 @@
         fetch('https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/todaslasnoticias/todaslasnoticias.json')
             .then(response => response.json())
             .then(data => {
-                const noticiasDestacadas = obtenerUltimasNoticias(data, 3);
-                mostrarNoticiasDestacadas(noticiasDestacadas);
+                const noticiasLista = document.getElementById('noticias-lista-index');
+                const ultimasNoticias = obtenerUltimasNoticias(data);
+                mostrarNoticias(ultimasNoticias, noticiasLista);
+                agregarEnlaces(data, noticiasLista);
             })
             .catch(error => console.log(error));
 
-        function obtenerUltimasNoticias(noticias, cantidad) {
-            const noticiasOrdenadas = noticias.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
-            return noticiasOrdenadas.slice(0, cantidad);
+        function obtenerUltimasNoticias(data) {
+            const noticiasUnicas = new Map();
+
+            data.forEach(noticia => {
+                noticiasUnicas.set(noticia.titulo, noticia);
+            });
+
+            return Array.from(noticiasUnicas.values()).slice(-3);
         }
 
-        function mostrarNoticiasDestacadas(noticias) {
-            const noticiasDestacadasContainer = document.getElementById('noticias-destacadas');
+        function mostrarNoticias(noticias, contenedor) {
+            contenedor.innerHTML = '';
 
             noticias.forEach(noticia => {
                 const divNoticia = document.createElement('div');
                 divNoticia.classList.add('noticia');
+                divNoticia.dataset.titulo = noticia.titulo;
 
                 const titulo = document.createElement('h3');
                 titulo.classList.add('noticia-titulo');
@@ -63,25 +71,28 @@
                 divNoticia.appendChild(contenido);
                 divNoticia.appendChild(imagen);
 
-                noticiasDestacadasContainer.appendChild(divNoticia);
+                contenedor.appendChild(divNoticia);
             });
-
-            agregarEnlaces(noticiasDestacadasContainer);
         }
 
-        function agregarEnlaces(contenedor) {
+        function agregarEnlaces(data, contenedor) {
             const noticias = contenedor.querySelectorAll('.noticia');
 
-            noticias.forEach((noticia, index) => {
+            noticias.forEach(noticia => {
                 const tituloNoticia = noticia.querySelector('.noticia-titulo');
-                const enlace = document.createElement('a');
-                enlace.href = `page1.html#${index}`;
-                enlace.innerText = tituloNoticia.innerText;
+                const noticiaCorrespondiente = data.find(n => n.titulo === tituloNoticia.innerText);
 
-                tituloNoticia.innerHTML = '';
-                tituloNoticia.appendChild(enlace);
+                if (noticiaCorrespondiente) {
+                    const enlace = document.createElement('a');
+                    enlace.href = `page${noticiaCorrespondiente.categoria}.html#${noticiaCorrespondiente.categoria}-${noticiaCorrespondiente.id}`;
+                    enlace.innerText = tituloNoticia.innerText;
+
+                    tituloNoticia.innerHTML = '';
+                    tituloNoticia.appendChild(enlace);
+                }
             });
         }
     </script>
 </body>
 </html>
+
