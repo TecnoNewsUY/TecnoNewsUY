@@ -133,12 +133,8 @@ window.addEventListener('DOMContentLoaded', () => {
 }
 
 function mostrarNoticiaCompleta(noticia) {
-    alert(`Noticia completa: ${noticia.titulo}\n\n${noticia.contenido}`);
-}
-
-function mostrarNoticiaCompleta(noticia) {
-    alert(`Noticia completa: ${noticia.titulo}\n\n${noticia.contenido}`);
-}
+        alert(`Noticia completa: ${noticia.titulo}\n\n${noticia.contenido}`);
+    }
 
     function agregarEnlaces(noticias, contenedor) {
         const titulosNoticias = contenedor.querySelectorAll('.noticia-titulo');
@@ -155,5 +151,5 @@ function mostrarNoticiaCompleta(noticia) {
 
     function ordenarNoticiasPorFechaDescendente(noticias) {
         return noticias.sort((a, b) => new Date(b.fecha_creacion) - new Date(a.fecha_creacion));
-   });
     }
+});
