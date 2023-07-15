@@ -43,8 +43,10 @@
             noticias.forEach(noticia => {
                 const divNoticia = document.createElement('div');
                 divNoticia.classList.add('noticia');
+                divNoticia.dataset.titulo = noticia.titulo;
 
                 const titulo = document.createElement('h3');
+                titulo.classList.add('noticia-titulo');
                 titulo.textContent = noticia.titulo;
 
                 const contenido = document.createElement('p');
@@ -61,6 +63,23 @@
                 contenedor.appendChild(divNoticia);
             });
         }
+
+        // Agregar enlaces a los títulos de las noticias en la página 1
+        const noticiasPagina1 = document.querySelectorAll('#noticias-lista-1 .noticia');
+
+        noticiasPagina1.forEach(noticia => {
+            const tituloNoticia = noticia.querySelector('h3.noticia-titulo');
+            const categoriaPagina = noticia.parentElement.id.split('-')[2];
+
+            const noticiasMismaCategoriaPagina = data.filter(noticia => noticia.categoria === categoriaPagina);
+
+            const enlacePagina1 = document.createElement('a');
+            enlacePagina1.href = `page1.html#${noticiasMismaCategoriaPagina.indexOf(noticia) + 1}`;
+            enlacePagina1.innerText = tituloNoticia.innerText;
+
+            tituloNoticia.innerHTML = '';
+            tituloNoticia.appendChild(enlacePagina1);
+        });
     </script>
 </body>
 </html>
