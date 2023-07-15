@@ -92,9 +92,10 @@ header {
 
 /* Estilos para los botones */
 .boton {
-    display: inline-block;
+    display: block;
+    width: 100%;
     padding: 10px 20px;
-    margin-right: 10px;
+    margin-bottom: 10px;
     color: #fff;
     background-color: #3366cc;
     border: none;
@@ -102,16 +103,26 @@ header {
     cursor: pointer;
     text-decoration: none;
     transition: background-color 0.3s ease;
-    
 }
 
 .boton:hover {
     background-color: #ff6600;
 }
 
-.boton {
-    width: 100%;
-    box-sizing: border-box;
+.boton.inicio {
+    background-color: #428bca;
+}
+
+.boton.noticias {
+    background-color: #5cb85c;
+}
+
+.boton.ultima-hora {
+    background-color: #f0ad4e;
+}
+
+.boton.ofertas {
+    background-color: #d9534f;
 }
 
 /* Estilos específicos para los botones de las páginas de noticias */
