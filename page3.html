@@ -38,6 +38,8 @@
             .catch(error => console.log(error));
 
         function mostrarNoticias(noticias, contenedor) {
+            contenedor.innerHTML = '';
+
             noticias.forEach(noticia => {
                 const divNoticia = document.createElement('div');
                 divNoticia.classList.add('noticia');
