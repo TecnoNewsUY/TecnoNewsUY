@@ -32,7 +32,7 @@
             .then(response => response.json())
             .then(data => {
                 const noticiasLista = document.getElementById('noticias-lista-1');
-                const noticiasCategoria1 = data.filter(noticia => noticia.categoria === "1");
+                const noticiasCategoria1 = ordenarNoticiasPorFechaDescendente(data.filter(noticia => noticia.categoria === "1"));
                 mostrarNoticias(noticiasCategoria1, noticiasLista);
                 agregarEnlaces(noticiasCategoria1, noticiasLista);
             })
@@ -40,6 +40,11 @@
 
         function mostrarNoticias(noticias, contenedor) {
             contenedor.innerHTML = '';
+
+            noticias.forEach(noticia => {
+        const divNoticia = document.createElement('div');
+        divNoticia.classList.add('noticia');
+        divNoticia.dataset.fecha = noticia.fecha; // Agregar el atributo data-fecha
 
             noticias.forEach(noticia => {
                 const divNoticia = document.createElement('div');
