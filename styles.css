@@ -130,3 +130,27 @@ header {
     margin-top: 20px;
     text-align: center;
 }
+
+/* Animaciones para los botones */
+.boton {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.boton:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background: #ff6600;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: -1;
+}
+
+.boton:hover:before {
+    transform: translateX(0);
+}
