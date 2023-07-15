@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TecnoNewsUY - Noticias</title>
+    <title>TecnoNewsUY - Inicio</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
 </head>
@@ -19,10 +19,10 @@
     </header>
     
     <div class="container">
-        <h2 class="section-title">Noticias</h2>
+        <h2 class="section-title">Últimas Noticias</h2>
 
-        <section id="noticias-lista-1" class="noticias-lista" data-categoria="1">
-            <!-- Aquí se mostrarán las noticias de la categoría 1 -->
+        <section id="noticias-lista" class="noticias-lista" data-categoria="">
+            <!-- Aquí se mostrarán las últimas noticias -->
         </section>
     </div>
     
@@ -31,20 +31,46 @@
         fetch('https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/todaslasnoticias/todaslasnoticias.json')
             .then(response => response.json())
             .then(data => {
-                const noticiasLista = document.getElementById('noticias-lista-1');
-                const noticiasCategoria1 = ordenarNoticiasPorFechaDescendente(data.filter(noticia => noticia.categoria === "1"));
-                mostrarNoticias(noticiasCategoria1, noticiasLista);
-                agregarEnlaces(noticiasCategoria1, noticiasLista);
+                const noticiasLista = document.getElementById('noticias-lista');
+                const noticiasPorCategoria = agruparNoticiasPorCategoria(data);
+                const ultimasNoticias = obtenerUltimasNoticias(noticiasPorCategoria, 3);
+                mostrarNoticias(ultimasNoticias, noticiasLista);
+                agregarEnlaces(ultimasNoticias, noticiasLista);
             })
             .catch(error => console.log(error));
 
+        function agruparNoticiasPorCategoria(noticias) {
+            const noticiasPorCategoria = {};
+            noticias.forEach(noticia => {
+                const categoria = noticia.categoria;
+                if (!noticiasPorCategoria.hasOwnProperty(categoria)) {
+                    noticiasPorCategoria[categoria] = [];
+                }
+                noticiasPorCategoria[categoria].push(noticia);
+            });
+            return noticiasPorCategoria;
+        }
+
+        function obtenerUltimasNoticias(noticiasPorCategoria, cantidad) {
+            const ultimasNoticias = [];
+            const noticiasVistas = new Set();
+
+            for (const categoria in noticiasPorCategoria) {
+                const noticiasCategoria = noticiasPorCategoria[categoria];
+                for (let i = noticiasCategoria.length - 1; i >= 0 && ultimasNoticias.length < cantidad; i--) {
+                    const noticia = noticiasCategoria[i];
+                    if (!noticiasVistas.has(noticia.titulo)) {
+                        ultimasNoticias.push(noticia);
+                        noticiasVistas.add(noticia.titulo);
+                    }
+                }
+            }
+
+            return ultimasNoticias;
+        }
+
         function mostrarNoticias(noticias, contenedor) {
             contenedor.innerHTML = '';
-
-            noticias.forEach(noticia => {
-        const divNoticia = document.createElement('div');
-        divNoticia.classList.add('noticia');
-        divNoticia.dataset.fecha = noticia.fecha; // Agregar el atributo data-fecha
 
             noticias.forEach(noticia => {
                 const divNoticia = document.createElement('div');
