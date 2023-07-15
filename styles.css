@@ -80,7 +80,7 @@ h1 {
     font-weight: bold;
 }
 
-/* Estilos específicos para los botones */
+/* Estilos para los botones */
 .boton {
     display: block;
     width: 100%;
@@ -119,13 +119,25 @@ h1 {
     background-color: #d9534f;
 }
 
-/* Estilos específicos para los botones de las páginas de noticias */
+/* Estilos para los botones en el menú */
+.menu a.boton {
+    margin: 0 10px;
+}
+
+/* Estilos para los botones del pie de página */
+footer .boton {
+    margin-right: 10px;
+}
+
+/* Estilos para los botones en las páginas de noticias */
 .pagina-boton {
-    margin-top: 20px;
     text-align: center;
 }
 
-
+/* Estilos para los botones de las páginas de noticias en el menú */
+.menu .pagina-boton {
+    margin: 0 10px;
+}
 /* Configuración del Service Worker */
 <script>
   if ('serviceWorker' in navigator) {
