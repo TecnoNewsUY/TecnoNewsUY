@@ -44,7 +44,6 @@
             noticias.forEach(noticia => {
                 const divNoticia = document.createElement('div');
                 divNoticia.classList.add('noticia');
-                divNoticia.dataset.titulo = noticia.titulo;
 
                 const titulo = document.createElement('h3');
                 titulo.classList.add('noticia-titulo');
@@ -57,9 +56,14 @@
                 imagen.src = noticia.imagen;
                 imagen.alt = noticia.titulo;
 
+                const enlace = document.createElement('a');
+                enlace.href = noticia.enlace_noticia;
+                enlace.textContent = 'Leer más';
+
                 divNoticia.appendChild(titulo);
-                divNoticia.appendChild(contenido);
                 divNoticia.appendChild(imagen);
+                divNoticia.appendChild(contenido);
+                divNoticia.appendChild(enlace);
 
                 contenedor.appendChild(divNoticia);
             });
@@ -80,4 +84,3 @@
     </script>
 </body>
 </html>
-
