@@ -8,6 +8,7 @@ header {
     background-color: #3366cc;
     padding: 20px;
     color: #fff;
+    text-align: center; /* Alineación centrada del título */
 }
 
 .titulo-principal {
@@ -68,6 +69,7 @@ header {
 /* Estilos específicos para las noticias nuevas */
 .noticia .noticia-titulo {
     font-size: 24px;
+    text-align: center; /* Alineación centrada del título de la noticia */
 }
 
 .noticia .noticia-titulo:hover {
@@ -77,6 +79,7 @@ header {
 .noticia .contenido {
     font-size: 18px;
     line-height: 1.5;
+    text-align: justify; /* Alineación justificada del contenido de la noticia */
 }
 
 .noticia .enlace {
@@ -84,4 +87,29 @@ header {
     margin-top: 10px;
     color: #ff6600;
     font-weight: bold;
+    text-align: center; /* Alineación centrada del enlace */
+}
+
+/* Estilos para los botones */
+.boton {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-right: 10px;
+    color: #fff;
+    background-color: #3366cc;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.boton:hover {
+    background-color: #ff6600;
+}
+
+/* Estilos específicos para los botones de las páginas de noticias */
+.pagina-boton {
+    margin-top: 20px;
+    text-align: center;
 }
