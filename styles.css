@@ -15,24 +15,28 @@ header {
 h1 {
     margin: 0;
 }
-
 /* Estilos para el menú */
 .menu {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     margin-top: 20px;
 }
 
 .menu a {
-    margin: 0 10px;
+    display: block;
+    width: 100%;
+    padding: 10px 20px;
     color: #fff;
+    background-color: #ffcc00;
+    text-align: center;
     text-decoration: none;
     font-size: 16px;
-    transition: color 0.3s ease;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .menu a:hover {
-    color: #ff6600;
+    background-color: #fff;
+    color: #b80000;
 }
 
 /* Estilos para el contenido */
@@ -80,14 +84,14 @@ h1 {
     font-weight: bold;
 }
 
-/* Estilos para los botones */
+/* Estilos específicos para los botones */
 .boton {
     display: block;
     width: 100%;
     padding: 10px 20px;
     margin-bottom: 10px;
     color: #fff;
-    background-color: #ffc107; /* Amarillo */
+    background-color: #3366cc;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -100,31 +104,31 @@ h1 {
 }
 
 .boton:hover {
-    background-color: #fff; /* Blanco al pasar el mouse */
-    color: #ffc107; /* Texto amarillo al pasar el mouse */
+    background-color: #ff6600;
 }
 
-/* Estilos para los botones del menú */
-.menu .boton {
-    margin: 0;
-    flex: 1; /* Para ocupar todo el ancho disponible */
+.boton.inicio {
+    background-color: #428bca;
 }
 
-/* Estilos para los botones del pie de página */
-footer .boton {
-    margin-right: 10px;
+.boton.noticias {
+    background-color: #5cb85c;
 }
 
-/* Estilos para los botones en las páginas de noticias */
+.boton.ultima-hora {
+    background-color: #f0ad4e;
+}
+
+.boton.ofertas {
+    background-color: #d9534f;
+}
+
+/* Estilos específicos para los botones de las páginas de noticias */
 .pagina-boton {
+    margin-top: 20px;
     text-align: center;
 }
 
-/* Estilos para los botones de las páginas de noticias en el menú */
-.menu .pagina-boton {
-    margin: 0;
-    flex: 1; /* Para ocupar todo el ancho disponible */
-}
 
 /* Configuración del Service Worker */
 <script>
