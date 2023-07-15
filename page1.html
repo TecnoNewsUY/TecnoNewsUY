@@ -34,14 +34,14 @@
                 const noticiasLista = document.getElementById('noticias-lista-1');
                 const noticiasCategoria1 = data.filter(noticia => noticia.categoria === "1");
                 mostrarNoticias(noticiasCategoria1, noticiasLista);
-                agregarEnlaces(noticiasCategoria1, noticiasLista);
+                agregarEnlaces(data, noticiasLista);
             })
             .catch(error => console.log(error));
 
         function mostrarNoticias(noticias, contenedor) {
             contenedor.innerHTML = '';
 
-            noticias.forEach((noticia, index) => {
+            noticias.forEach(noticia => {
                 const divNoticia = document.createElement('div');
                 divNoticia.classList.add('noticia');
                 divNoticia.dataset.titulo = noticia.titulo;
@@ -65,17 +65,21 @@
             });
         }
 
-        function agregarEnlaces(noticias, contenedor) {
-            const noticiasElementos = contenedor.querySelectorAll('.noticia');
+        function agregarEnlaces(data, contenedor) {
+            const noticias = contenedor.querySelectorAll('.noticia');
 
-            noticiasElementos.forEach((noticiaElemento, index) => {
-                const tituloNoticia = noticiaElemento.querySelector('.noticia-titulo');
-                const enlace = document.createElement('a');
-                enlace.href = `page1.html#${noticias[index].categoria}-${index}`;
-                enlace.innerText = tituloNoticia.innerText;
+            noticias.forEach(noticia => {
+                const tituloNoticia = noticia.querySelector('.noticia-titulo');
+                const noticiaCorrespondiente = data.find(n => n.titulo === tituloNoticia.innerText);
 
-                tituloNoticia.innerHTML = '';
-                tituloNoticia.appendChild(enlace);
+                if (noticiaCorrespondiente) {
+                    const enlace = document.createElement('a');
+                    enlace.href = `page${noticiaCorrespondiente.categoria}.html#${noticiaCorrespondiente.categoria}-${noticiaCorrespondiente.id}`;
+                    enlace.innerText = tituloNoticia.innerText;
+
+                    tituloNoticia.innerHTML = '';
+                    tituloNoticia.appendChild(enlace);
+                }
             });
         }
     </script>
