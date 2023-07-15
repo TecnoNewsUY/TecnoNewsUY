@@ -21,7 +21,7 @@
     <div class="container">
         <h2 class="section-title">Últimas Noticias</h2>
 
-        <section id="noticias-lista-index" class="noticias-lista">
+        <section id="noticias-lista" class="noticias-lista" data-categoria="">
             <!-- Aquí se mostrarán las últimas noticias -->
         </section>
     </div>
@@ -31,21 +31,42 @@
         fetch('https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/todaslasnoticias/todaslasnoticias.json')
             .then(response => response.json())
             .then(data => {
-                const noticiasLista = document.getElementById('noticias-lista-index');
-                const ultimasNoticias = obtenerUltimasNoticias(data);
+                const noticiasLista = document.getElementById('noticias-lista');
+                const noticiasPorCategoria = agruparNoticiasPorCategoria(data);
+                const ultimasNoticias = obtenerUltimasNoticias(noticiasPorCategoria, 3);
                 mostrarNoticias(ultimasNoticias, noticiasLista);
-                agregarEnlaces(data, noticiasLista);
+                agregarEnlaces(ultimasNoticias, noticiasLista);
             })
             .catch(error => console.log(error));
 
-        function obtenerUltimasNoticias(data) {
-            const noticiasUnicas = new Map();
-
-            data.forEach(noticia => {
-                noticiasUnicas.set(noticia.titulo, noticia);
+        function agruparNoticiasPorCategoria(noticias) {
+            const noticiasPorCategoria = {};
+            noticias.forEach(noticia => {
+                const categoria = noticia.categoria;
+                if (!noticiasPorCategoria.hasOwnProperty(categoria)) {
+                    noticiasPorCategoria[categoria] = [];
+                }
+                noticiasPorCategoria[categoria].push(noticia);
             });
+            return noticiasPorCategoria;
+        }
 
-            return Array.from(noticiasUnicas.values()).slice(-3);
+        function obtenerUltimasNoticias(noticiasPorCategoria, cantidad) {
+            const ultimasNoticias = [];
+            const noticiasVistas = new Set();
+
+            for (const categoria in noticiasPorCategoria) {
+                const noticiasCategoria = noticiasPorCategoria[categoria];
+                for (let i = noticiasCategoria.length - 1; i >= 0 && ultimasNoticias.length < cantidad; i--) {
+                    const noticia = noticiasCategoria[i];
+                    if (!noticiasVistas.has(noticia.titulo)) {
+                        ultimasNoticias.push(noticia);
+                        noticiasVistas.add(noticia.titulo);
+                    }
+                }
+            }
+
+            return ultimasNoticias;
         }
 
         function mostrarNoticias(noticias, contenedor) {
@@ -75,24 +96,20 @@
             });
         }
 
-        function agregarEnlaces(data, contenedor) {
-            const noticias = contenedor.querySelectorAll('.noticia');
+        function agregarEnlaces(noticias, contenedor) {
+            const titulosNoticias = contenedor.querySelectorAll('.noticia-titulo');
 
-            noticias.forEach(noticia => {
-                const tituloNoticia = noticia.querySelector('.noticia-titulo');
-                const noticiaCorrespondiente = data.find(n => n.titulo === tituloNoticia.innerText);
+            titulosNoticias.forEach(tituloNoticia => {
+                const enlace = document.createElement('a');
+                enlace.href = noticias.find(noticia => noticia.titulo === tituloNoticia.innerText).enlace_noticia;
+                enlace.innerText = tituloNoticia.innerText;
 
-                if (noticiaCorrespondiente) {
-                    const enlace = document.createElement('a');
-                    enlace.href = `page${noticiaCorrespondiente.categoria}.html#${noticiaCorrespondiente.categoria}-${noticiaCorrespondiente.id}`;
-                    enlace.innerText = tituloNoticia.innerText;
-
-                    tituloNoticia.innerHTML = '';
-                    tituloNoticia.appendChild(enlace);
-                }
+                tituloNoticia.innerHTML = '';
+                tituloNoticia.appendChild(enlace);
             });
         }
     </script>
 </body>
 </html>
+
 
