@@ -36,6 +36,23 @@ window.addEventListener('DOMContentLoaded', () => {
         titulo.innerHTML = '';
         titulo.appendChild(enlace);
       });
+
+      // Agregar enlaces a los títulos de las noticias en las páginas 1, 2 y 3
+      const noticiasPaginas = document.querySelectorAll('.noticias-pagina');
+
+      noticiasPaginas.forEach(pagina => {
+        const tituloNoticia = pagina.querySelector('.noticia-titulo');
+        const categoriaPagina = pagina.dataset.categoria;
+
+        const noticiasMismaCategoriaPagina = data.filter(noticia => noticia.categoria.includes(categoriaPagina));
+
+        const enlacePagina = document.createElement('a');
+        enlacePagina.href = `page${categoriaPagina}.html#${noticiasMismaCategoriaPagina.indexOf(tituloNoticia.parentElement) + 1}`;
+        enlacePagina.innerText = tituloNoticia.innerText;
+
+        tituloNoticia.innerHTML = '';
+        tituloNoticia.appendChild(enlacePagina);
+      });
     })
     .catch(error => {
       mostrarError("Error al cargar las noticias: " + error);
@@ -105,4 +122,3 @@ window.addEventListener('DOMContentLoaded', () => {
     noticiasLista.appendChild(errorElement);
   }
 });
-
