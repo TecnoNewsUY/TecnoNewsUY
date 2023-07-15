@@ -15,7 +15,6 @@ window.addEventListener('DOMContentLoaded', () => {
         .then(data => {
             const noticiasPorCategoria = agruparNoticiasPorCategoria(data);
             const ultimasNoticias = obtenerUltimasNoticias(noticiasPorCategoria, 3);
-            ultimasNoticias.sort((a, b) => new Date(b.fecha_creacion) - new Date(a.fecha_creacion)); // Ordenar las noticias por fecha descendente
             mostrarNoticias(ultimasNoticias, noticiasLista);
             agregarEnlaces(ultimasNoticias, noticiasLista);
 
@@ -24,49 +23,13 @@ window.addEventListener('DOMContentLoaded', () => {
                 const categoria = pagina.dataset.categoria;
                 const noticiasCategoria = noticiasPorCategoria[categoria];
                 const noticiasOrdenadas = ordenarNoticiasPorFechaDescendente(noticiasCategoria);
-
-                // Muestra solo 5 noticias por página
-                const noticiasPorPagina = 5;
-                const totalPaginas = Math.ceil(noticiasOrdenadas.length / noticiasPorPagina);
-
-                for (let i = 0; i < totalPaginas; i++) {
-                    const inicio = i * noticiasPorPagina;
-                    const fin = inicio + noticiasPorPagina;
-                    const noticiasPagina = noticiasOrdenadas.slice(inicio, fin);
-
-                    // Crea un nuevo contenedor para las noticias de esta página
-                    const contenedorPagina = document.createElement('div');
-
-                    // Muestra las noticias en el contenedor de la página
-                    mostrarNoticias(noticiasPagina, contenedorPagina);
-
-                    // Oculta el contenedor si no es la primera página
-                    if (i > 0) {
-                        contenedorPagina.style.display = 'none';
-                    }
-
-                    // Agrega el contenedor de la página a la sección correspondiente
-                    pagina.appendChild(contenedorPagina);
-
-                    // Agrega el selector de páginas dinámico
-                    const paginaBoton = document.getElementById(`pagina-boton-${categoria}`);
-                    const boton = document.createElement('button');
-                    boton.classList.add('boton', 'pagina');
-                    boton.textContent = i + 1;
-                    boton.addEventListener('click', () => {
-                        // Oculta todas las páginas y muestra la seleccionada
-                        const paginas = pagina.querySelectorAll('.noticias-lista > div');
-                        paginas.forEach(p => (p.style.display = 'none'));
-                        contenedorPagina.style.display = 'block';
-                    });
-                    paginaBoton.appendChild(boton);
-                }
-          });
+                mostrarNoticias(noticiasOrdenadas, pagina);
+                agregarEnlaces(noticiasOrdenadas, pagina);
+            });
         })
         .catch(error => console.log(error));
-});
 
-   function agruparNoticiasPorCategoria(noticias) {
+    function agruparNoticiasPorCategoria(noticias) {
         const noticiasPorCategoria = {};
         noticias.forEach(noticia => {
             const categoria = noticia.categoria;
@@ -93,49 +56,34 @@ window.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Ordenar las noticias por fecha descendente antes de devolverlas
-        return ultimasNoticias.sort((a, b) => new Date(b.fecha_creacion) - new Date(a.fecha_creacion));
+        return ultimasNoticias;
     }
 
-   function mostrarNoticias(noticias, contenedor) {
-    contenedor.innerHTML = '';
+    function mostrarNoticias(noticias, contenedor) {
+        contenedor.innerHTML = '';
 
-    noticias.forEach(noticia => {
-        const divNoticia = document.createElement('div');
-        divNoticia.classList.add('noticia');
+        noticias.forEach(noticia => {
+            const divNoticia = document.createElement('div');
+            divNoticia.classList.add('noticia');
+            divNoticia.dataset.titulo = noticia.titulo;
 
-        const imagen = document.createElement('img');
-        imagen.src = noticia.imagen;
-        imagen.alt = noticia.titulo;
+            const titulo = document.createElement('h3');
+            titulo.classList.add('noticia-titulo');
+            titulo.textContent = noticia.titulo;
 
-        const contenidoDiv = document.createElement('div');
-        contenidoDiv.classList.add('noticia-contenido'); // Agregamos una clase para dar estilo al contenido
+            const contenido = document.createElement('p');
+            contenido.textContent = noticia.contenido;
 
-        const titulo = document.createElement('h3');
-        titulo.classList.add('noticia-titulo');
-        titulo.textContent = noticia.titulo;
+            const imagen = document.createElement('img');
+            imagen.src = noticia.imagen;
+            imagen.alt = noticia.titulo;
 
-        const contenido = document.createElement('p');
-        contenido.textContent = noticia.contenido.slice(0, 50) + (noticia.contenido.length > 50 ? '...' : '');
+            divNoticia.appendChild(titulo);
+            divNoticia.appendChild(contenido);
+            divNoticia.appendChild(imagen);
 
-        const enlace = document.createElement('span'); // Cambiamos <a> por <span>
-        enlace.classList.add('boton-leer-mas'); // Agregamos la clase para dar estilo al botón
-        enlace.textContent = 'Leer más';
-        enlace.addEventListener('click', () => mostrarNoticiaCompleta(noticia)); // Mostrar noticia completa al hacer clic
-
-        contenidoDiv.appendChild(titulo);
-        contenidoDiv.appendChild(contenido);
-        contenidoDiv.appendChild(enlace);
-
-        divNoticia.appendChild(imagen);
-        divNoticia.appendChild(contenidoDiv);
-
-        contenedor.appendChild(divNoticia);
-    });
-}
-
-function mostrarNoticiaCompleta(noticia) {
-        alert(`Noticia completa: ${noticia.titulo}\n\n${noticia.contenido}`);
+            contenedor.appendChild(divNoticia);
+        });
     }
 
     function agregarEnlaces(noticias, contenedor) {
@@ -151,7 +99,8 @@ function mostrarNoticiaCompleta(noticia) {
         });
     }
 
-    return noticias.sort((a, b) => new Date(b.fecha_creacion) - new Date(a.fecha_creacion));
-}
-
+    function ordenarNoticiasPorFechaDescendente(noticias) {
+        return noticias.sort((a, b) => new Date(b.fecha_creacion) - new Date(a.fecha_creacion));
+    }
 });
+
