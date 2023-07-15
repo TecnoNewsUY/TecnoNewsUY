@@ -32,7 +32,7 @@
             .then(response => response.json())
             .then(data => {
                 const noticiasLista = document.getElementById('noticias-lista-3');
-                const noticiasCategoria3 = data.filter(noticia => noticia.categoria === "3");
+                const noticiasCategoria3 = ordenarNoticiasPorFechaDescendente(data.filter(noticia => noticia.categoria === "3"));
                 mostrarNoticias(noticiasCategoria3, noticiasLista);
                 agregarEnlaces(noticiasCategoria3, noticiasLista);
             })
@@ -40,6 +40,11 @@
 
         function mostrarNoticias(noticias, contenedor) {
             contenedor.innerHTML = '';
+
+            noticias.forEach(noticia => {
+        const divNoticia = document.createElement('div');
+        divNoticia.classList.add('noticia');
+        divNoticia.dataset.fecha = noticia.fecha; // Agregar el atributo data-fecha
 
             noticias.forEach(noticia => {
                 const divNoticia = document.createElement('div');
@@ -81,6 +86,10 @@
                 tituloNoticia.appendChild(enlace);
             });
         }
+// La función para ordenar las noticias por fecha descendente
+function ordenarNoticiasPorFechaDescendente(noticias) {
+    return noticias.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
+}
     </script>
 </body>
 </html>
