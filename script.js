@@ -19,30 +19,50 @@ window.addEventListener('DOMContentLoaded', () => {
             agregarEnlaces(ultimasNoticias, noticiasLista);
 
             const paginasNoticias = document.querySelectorAll('.noticias-lista');
-    paginasNoticias.forEach(pagina => {
-        const categoria = pagina.dataset.categoria;
-        const noticiasCategoria = noticiasPorCategoria[categoria];
-        const noticiasOrdenadas = ordenarNoticiasPorFechaDescendente(noticiasCategoria);
+            paginasNoticias.forEach(pagina => {
+                const categoria = pagina.dataset.categoria;
+                const noticiasCategoria = noticiasPorCategoria[categoria];
+                const noticiasOrdenadas = ordenarNoticiasPorFechaDescendente(noticiasCategoria);
 
-        // Muestra solo 5 noticias por página
-        const noticiasPorPagina = 5;
-        const totalPaginas = Math.ceil(noticiasOrdenadas.length / noticiasPorPagina);
+                // Muestra solo 5 noticias por página
+                const noticiasPorPagina = 5;
+                const totalPaginas = Math.ceil(noticiasOrdenadas.length / noticiasPorPagina);
 
-        for (let i = 0; i < totalPaginas; i++) {
-            const inicio = i * noticiasPorPagina;
-            const fin = inicio + noticiasPorPagina;
-            const noticiasPagina = noticiasOrdenadas.slice(inicio, fin);
-            mostrarNoticias(noticiasPagina, pagina);
+                for (let i = 0; i < totalPaginas; i++) {
+                    const inicio = i * noticiasPorPagina;
+                    const fin = inicio + noticiasPorPagina;
+                    const noticiasPagina = noticiasOrdenadas.slice(inicio, fin);
 
-            // Agrega el selector de páginas dinámico
-            const paginaBoton = document.getElementById(`pagina-boton-${categoria}`);
-            const boton = document.createElement('button');
-            boton.classList.add('boton', 'pagina');
-            boton.textContent = i + 1;
-            boton.addEventListener('click', () => mostrarNoticias(noticiasPagina, pagina));
-            paginaBoton.appendChild(boton);
-        }
-    });
+                    // Crea un nuevo contenedor para las noticias de esta página
+                    const contenedorPagina = document.createElement('div');
+
+                    // Muestra las noticias en el contenedor de la página
+                    mostrarNoticias(noticiasPagina, contenedorPagina);
+
+                    // Oculta el contenedor si no es la primera página
+                    if (i > 0) {
+                        contenedorPagina.style.display = 'none';
+                    }
+
+                    // Agrega el contenedor de la página a la sección correspondiente
+                    pagina.appendChild(contenedorPagina);
+
+                    // Agrega el selector de páginas dinámico
+                    const paginaBoton = document.getElementById(`pagina-boton-${categoria}`);
+                    const boton = document.createElement('button');
+                    boton.classList.add('boton', 'pagina');
+                    boton.textContent = i + 1;
+                    boton.addEventListener('click', () => {
+                        // Oculta todas las páginas y muestra la seleccionada
+                        const paginas = pagina.querySelectorAll('.noticias-lista > div');
+                        paginas.forEach(p => (p.style.display = 'none'));
+                        contenedorPagina.style.display = 'block';
+                    });
+                    paginaBoton.appendChild(boton);
+                }
+            });
+        })
+        .catch(error => console.log(error));
 });
 
     function agruparNoticiasPorCategoria(noticias) {
