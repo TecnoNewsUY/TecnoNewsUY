@@ -59,7 +59,7 @@ window.addEventListener('DOMContentLoaded', () => {
         return ultimasNoticias;
     }
 
-    function mostrarNoticias(noticias, contenedor) {
+   function mostrarNoticias(noticias, contenedor) {
     contenedor.innerHTML = '';
 
     noticias.forEach(noticia => {
@@ -94,6 +94,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
         contenedor.appendChild(divNoticia);
     });
+}
+
+function mostrarNoticiaCompleta(noticia) {
+    alert(`Noticia completa: ${noticia.titulo}\n\n${noticia.contenido}`);
 }
 
 function mostrarNoticiaCompleta(noticia) {
