@@ -1,33 +1,126 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TecnoNewsUY</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TecnoNewsUY - Inicio</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
 </head>
 <body>
-  <div class="container">
     <header>
-      <h1>TecnoNewsUY</h1>
-      <nav>
-        <button class="boton">Inicio</button>
-        <button class="boton">Noticias</button>
-        <button class="boton">Última Hora</button>
-        <button class="boton">Ofertas</button>
-      </nav>
+        <h1 class="titulo-principal">TecnoNewsUY</h1>
+        <nav class="menu">
+            <a class="boton inicio" href="index.html">Inicio</a>
+            <a class="boton noticias" href="page1.html">Noticias</a>
+            <a class="boton ultima-hora" href="page2.html">Última Hora</a>
+            <a class="boton ofertas" href="page3.html">Ofertas</a>
+        </nav>
     </header>
+    
+    <div class="container">
+        <h2 class="section-title">Últimas Noticias</h2>
 
-    <div id="noticias-container">
-      <h2>Noticias Destacadas</h2>
-      <div id="noticias-lista"></div>
+        <section id="noticias-lista" class="noticias-lista" data-categoria="">
+            <!-- Aquí se mostrarán las últimas noticias -->
+        </section>
     </div>
-  </div>
+    
+    <script src="script.js"></script>
+    <script>
+        fetch('https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/todaslasnoticias/todaslasnoticias.json')
+            .then(response => response.json())
+            .then(data => {
+                const noticiasLista = document.getElementById('noticias-lista');
+                const noticiasPorCategoria = agruparNoticiasPorCategoria(data);
+                const ultimasNoticias = obtenerUltimasNoticias(noticiasPorCategoria, 3);
+                mostrarNoticias(ultimasNoticias, noticiasLista);
+                agregarEnlaces(ultimasNoticias, noticiasLista);
 
-  <footer>
-    TecnoNewsUY. Todos los derechos reservados.
-  </footer>
+                const paginasNoticias = document.querySelectorAll('.noticias-lista');
+                paginasNoticias.forEach(pagina => {
+                    const categoria = pagina.dataset.categoria;
+                    const noticiasCategoria = noticiasPorCategoria[categoria];
+                    const noticiasOrdenadas = ordenarNoticiasPorFechaDescendente(noticiasCategoria);
+                    mostrarNoticias(noticiasOrdenadas, pagina);
+                    agregarEnlaces(noticiasOrdenadas, pagina);
+                });
+            })
+            .catch(error => console.log(error));
 
-  <script src="script.js"></script>
+        function agruparNoticiasPorCategoria(noticias) {
+            const noticiasPorCategoria = {};
+            noticias.forEach(noticia => {
+                const categoria = noticia.categoria;
+                if (!noticiasPorCategoria.hasOwnProperty(categoria)) {
+                    noticiasPorCategoria[categoria] = [];
+                }
+                noticiasPorCategoria[categoria].push(noticia);
+            });
+            return noticiasPorCategoria;
+        }
+
+        function obtenerUltimasNoticias(noticiasPorCategoria, cantidad) {
+            const ultimasNoticias = [];
+            const noticiasVistas = new Set();
+
+            for (const categoria in noticiasPorCategoria) {
+                const noticiasCategoria = noticiasPorCategoria[categoria];
+                for (let i = noticiasCategoria.length - 1; i >= 0 && ultimasNoticias.length < cantidad; i--) {
+                    const noticia = noticiasCategoria[i];
+                    if (!noticiasVistas.has(noticia.titulo)) {
+                        ultimasNoticias.push(noticia);
+                        noticiasVistas.add(noticia.titulo);
+                    }
+                }
+            }
+
+            return ultimasNoticias;
+        }
+
+        function mostrarNoticias(noticias, contenedor) {
+            contenedor.innerHTML = '';
+
+            noticias.forEach(noticia => {
+                const divNoticia = document.createElement('div');
+                divNoticia.classList.add('noticia');
+                divNoticia.dataset.titulo = noticia.titulo;
+
+                const titulo = document.createElement('h3');
+                titulo.classList.add('noticia-titulo');
+                titulo.textContent = noticia.titulo;
+
+                const contenido = document.createElement('p');
+                contenido.textContent = noticia.contenido;
+
+                const imagen = document.createElement('img');
+                imagen.src = noticia.imagen;
+                imagen.alt = noticia.titulo;
+
+                divNoticia.appendChild(titulo);
+                divNoticia.appendChild(contenido);
+                divNoticia.appendChild(imagen);
+
+                contenedor.appendChild(divNoticia);
+            });
+        }
+
+        function agregarEnlaces(noticias, contenedor) {
+            const titulosNoticias = contenedor.querySelectorAll('.noticia-titulo');
+
+            titulosNoticias.forEach(tituloNoticia => {
+                const enlace = document.createElement('a');
+                enlace.href = noticias.find(noticia => noticia.titulo === tituloNoticia.innerText).enlace_noticia;
+                enlace.innerText = tituloNoticia.innerText;
+
+                tituloNoticia.innerHTML = '';
+                tituloNoticia.appendChild(enlace);
+            });
+        }
+
+        function ordenarNoticiasPorFechaDescendente(noticias) {
+            return noticias.sort((a, b) => new Date(b.fecha).getTime() - new Date(a.fecha).getTime());
+        }
+    </script>
 </body>
 </html>
