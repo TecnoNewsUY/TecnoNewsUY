@@ -65,7 +65,7 @@ window.addEventListener('DOMContentLoaded', () => {
         .catch(error => console.log(error));
 });
 
-    function agruparNoticiasPorCategoria(noticias) {
+   function agruparNoticiasPorCategoria(noticias) {
         const noticiasPorCategoria = {};
         noticias.forEach(noticia => {
             const categoria = noticia.categoria;
@@ -92,7 +92,8 @@ window.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        return ultimasNoticias;
+        // Ordenar las noticias por fecha descendente antes de devolverlas
+        return ultimasNoticias.sort((a, b) => new Date(b.fecha_creacion) - new Date(a.fecha_creacion));
     }
 
    function mostrarNoticias(noticias, contenedor) {
