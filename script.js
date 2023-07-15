@@ -60,31 +60,45 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     function mostrarNoticias(noticias, contenedor) {
-        contenedor.innerHTML = '';
+    contenedor.innerHTML = '';
 
-        noticias.forEach(noticia => {
-            const divNoticia = document.createElement('div');
-            divNoticia.classList.add('noticia');
-            divNoticia.dataset.titulo = noticia.titulo;
+    noticias.forEach(noticia => {
+        const divNoticia = document.createElement('div');
+        divNoticia.classList.add('noticia');
 
-            const titulo = document.createElement('h3');
-            titulo.classList.add('noticia-titulo');
-            titulo.textContent = noticia.titulo;
+        const imagen = document.createElement('img');
+        imagen.src = noticia.imagen;
+        imagen.alt = noticia.titulo;
 
-            const contenido = document.createElement('p');
-            contenido.textContent = noticia.contenido;
+        const contenidoDiv = document.createElement('div');
+        contenidoDiv.classList.add('noticia-contenido'); // Agregamos una clase para dar estilo al contenido
 
-            const imagen = document.createElement('img');
-            imagen.src = noticia.imagen;
-            imagen.alt = noticia.titulo;
+        const titulo = document.createElement('h3');
+        titulo.classList.add('noticia-titulo');
+        titulo.textContent = noticia.titulo;
 
-            divNoticia.appendChild(titulo);
-            divNoticia.appendChild(contenido);
-            divNoticia.appendChild(imagen);
+        const contenido = document.createElement('p');
+        contenido.textContent = noticia.contenido.slice(0, 50) + (noticia.contenido.length > 50 ? '...' : '');
 
-            contenedor.appendChild(divNoticia);
-        });
-    }
+        const enlace = document.createElement('span'); // Cambiamos <a> por <span>
+        enlace.classList.add('boton-leer-mas'); // Agregamos la clase para dar estilo al botón
+        enlace.textContent = 'Leer más';
+        enlace.addEventListener('click', () => mostrarNoticiaCompleta(noticia)); // Mostrar noticia completa al hacer clic
+
+        contenidoDiv.appendChild(titulo);
+        contenidoDiv.appendChild(contenido);
+        contenidoDiv.appendChild(enlace);
+
+        divNoticia.appendChild(imagen);
+        divNoticia.appendChild(contenidoDiv);
+
+        contenedor.appendChild(divNoticia);
+    });
+}
+
+function mostrarNoticiaCompleta(noticia) {
+    alert(`Noticia completa: ${noticia.titulo}\n\n${noticia.contenido}`);
+}
 
     function agregarEnlaces(noticias, contenedor) {
         const titulosNoticias = contenedor.querySelectorAll('.noticia-titulo');
