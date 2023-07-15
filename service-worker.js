@@ -1,46 +1,43 @@
-// Nombre del caché
-const CACHE_NAME = 'tecnous-cache';
-
-// Archivos en caché
+// Cache de archivos estáticos
+const CACHE_NAME = 'tecnonews-cache-v1';
 const urlsToCache = [
   '/',
-  '/index.html',
-  '/page1.html',
-  '/page2.html',
-  '/page3.html',
   '/styles.css',
-  '/script.js'
+  '/script.js',
+  // Agrega aquí los archivos adicionales que deseas cachear
 ];
 
 // Instalación del Service Worker
-self.addEventListener('install', event => {
+self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME)
-      .then(cache => {
-        console.log('Caché abierta');
+      .then((cache) => {
         return cache.addAll(urlsToCache);
       })
   );
 });
 
 // Activación del Service Worker
-self.addEventListener('activate', event => {
+self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys()
-      .then(cacheNames => {
+      .then((cacheNames) => {
         return Promise.all(
-          cacheNames.filter(name => name !== CACHE_NAME)
-            .map(name => caches.delete(name))
+          cacheNames.filter((cacheName) => {
+            return cacheName !== CACHE_NAME;
+          }).map((cacheName) => {
+            return caches.delete(cacheName);
+          })
         );
       })
   );
 });
 
-// Interceptación de solicitudes y caché
-self.addEventListener('fetch', event => {
+// Interceptando las solicitudes y respondiendo desde el caché
+self.addEventListener('fetch', (event) => {
   event.respondWith(
     caches.match(event.request)
-      .then(response => {
+      .then((response) => {
         if (response) {
           return response;
         }
@@ -48,3 +45,4 @@ self.addEventListener('fetch', event => {
       })
   );
 });
+
