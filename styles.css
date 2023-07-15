@@ -103,6 +103,9 @@ header {
     cursor: pointer;
     text-decoration: none;
     transition: background-color 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
 }
 
 .boton:hover {
@@ -132,12 +135,6 @@ header {
 }
 
 /* Animaciones para los botones */
-.boton {
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-}
-
 .boton:before {
     content: "";
     position: absolute;
@@ -154,3 +151,18 @@ header {
 .boton:hover:before {
     transform: translateX(0);
 }
+
+/* Configuración del Service Worker */
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/service-worker.js')
+        .then((registration) => {
+          console.log('Service Worker registrado exitosamente:', registration.scope);
+        })
+        .catch((error) => {
+          console.log('Error al registrar el Service Worker:', error);
+        });
+    });
+  }
+</script>
