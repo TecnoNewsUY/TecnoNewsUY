@@ -107,27 +107,7 @@ h1 {
     background-color: #ff6600;
 }
 
-.boton.inicio {
-    background-color: #428bca;
-}
 
-.boton.noticias {
-    background-color: #5cb85c;
-}
-
-.boton.ultima-hora {
-    background-color: #f0ad4e;
-}
-
-.boton.ofertas {
-    background-color: #d9534f;
-}
-
-/* Estilos específicos para los botones de las páginas de noticias */
-.pagina-boton {
-    margin-top: 20px;
-    text-align: center;
-}
 
 
 /* Configuración del Service Worker */
