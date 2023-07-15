@@ -34,6 +34,7 @@
                 const noticiasLista = document.getElementById('noticias-lista-1');
                 const noticiasCategoria1 = data.filter(noticia => noticia.categoria === "1");
                 mostrarNoticias(noticiasCategoria1, noticiasLista);
+                agregarEnlaces(data, noticiasLista);
             })
             .catch(error => console.log(error));
 
@@ -64,22 +65,23 @@
             });
         }
 
-        // Agregar enlaces a los títulos de las noticias en la página 1
-        const noticiasPagina1 = document.querySelectorAll('#noticias-lista-1 .noticia');
+        function agregarEnlaces(data, contenedor) {
+            const noticias = contenedor.querySelectorAll('.noticia');
 
-        noticiasPagina1.forEach(noticia => {
-            const tituloNoticia = noticia.querySelector('h3.noticia-titulo');
-            const categoriaPagina = noticia.parentElement.id.split('-')[2];
+            noticias.forEach(noticia => {
+                const tituloNoticia = noticia.querySelector('.noticia-titulo');
+                const categoria = noticia.parentElement.id.split('-')[2];
+                const noticiasMismaCategoria = data.filter(noticia => noticia.categoria === categoria);
+                const index = Array.from(noticiasMismaCategoria).indexOf(noticia) + 1;
 
-            const noticiasMismaCategoriaPagina = data.filter(noticia => noticia.categoria === categoriaPagina);
-
-            const enlacePagina1 = document.createElement('a');
-            enlacePagina1.href = `page1.html#${noticiasMismaCategoriaPagina.indexOf(noticia) + 1}`;
-            enlacePagina1.innerText = tituloNoticia.innerText;
-
-            tituloNoticia.innerHTML = '';
-            tituloNoticia.appendChild(enlacePagina1);
-        });
+                const enlace = document.createElement('a');
+                enlace.href = `page1.html#${categoria}-${index}`;
+                enlace.innerText = tituloNoticia.innerText;
+                
+                tituloNoticia.innerHTML = '';
+                tituloNoticia.appendChild(enlace);
+            });
+        }
     </script>
 </body>
 </html>
