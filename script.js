@@ -1,4 +1,15 @@
 window.addEventListener('DOMContentLoaded', () => {
+    // Registrar el Service Worker
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('https://github.com/TecnoNewsUY/TecnoNewsUY/raw/master/service-worker.js')
+            .then(registration => {
+                console.log('Service Worker registrado exitosamente:', registration);
+            })
+            .catch(error => {
+                console.log('Error al registrar el Service Worker:', error);
+            });
+    }
+
     fetch('https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/todaslasnoticias/todaslasnoticias.json')
         .then(response => response.json())
         .then(data => {
