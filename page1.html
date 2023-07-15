@@ -34,14 +34,14 @@
                 const noticiasLista = document.getElementById('noticias-lista-1');
                 const noticiasCategoria1 = data.filter(noticia => noticia.categoria === "1");
                 mostrarNoticias(noticiasCategoria1, noticiasLista);
-                agregarEnlaces(data, noticiasLista);
+                agregarEnlaces(noticiasCategoria1, noticiasLista);
             })
             .catch(error => console.log(error));
 
         function mostrarNoticias(noticias, contenedor) {
             contenedor.innerHTML = '';
 
-            noticias.forEach(noticia => {
+            noticias.forEach((noticia, index) => {
                 const divNoticia = document.createElement('div');
                 divNoticia.classList.add('noticia');
                 divNoticia.dataset.titulo = noticia.titulo;
@@ -65,19 +65,15 @@
             });
         }
 
-        function agregarEnlaces(data, contenedor) {
-            const noticias = contenedor.querySelectorAll('.noticia');
+        function agregarEnlaces(noticias, contenedor) {
+            const noticiasElementos = contenedor.querySelectorAll('.noticia');
 
-            noticias.forEach(noticia => {
-                const tituloNoticia = noticia.querySelector('.noticia-titulo');
-                const categoria = noticia.parentElement.id.split('-')[2];
-                const noticiasMismaCategoria = data.filter(noticia => noticia.categoria === categoria);
-                const index = Array.from(noticiasMismaCategoria).indexOf(noticia) + 1;
-
+            noticiasElementos.forEach((noticiaElemento, index) => {
+                const tituloNoticia = noticiaElemento.querySelector('.noticia-titulo');
                 const enlace = document.createElement('a');
-                enlace.href = `page1.html#${categoria}-${index}`;
+                enlace.href = `page1.html#${noticias[index].categoria}-${index}`;
                 enlace.innerText = tituloNoticia.innerText;
-                
+
                 tituloNoticia.innerHTML = '';
                 tituloNoticia.appendChild(enlace);
             });
