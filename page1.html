@@ -21,7 +21,7 @@
     <div class="container">
         <h2 class="section-title">Noticias</h2>
 
-        <section id="noticias-lista-1" class="noticias-lista">
+        <section id="noticias-lista-1" class="noticias-lista" data-categoria="1">
             <!-- Aquí se mostrarán las noticias de la categoría 1 -->
         </section>
     </div>
@@ -34,7 +34,7 @@
                 const noticiasLista = document.getElementById('noticias-lista-1');
                 const noticiasCategoria1 = data.filter(noticia => noticia.categoria === "1");
                 mostrarNoticias(noticiasCategoria1, noticiasLista);
-                agregarEnlaces(data, noticiasLista);
+                agregarEnlaces(noticiasCategoria1, noticiasLista);
             })
             .catch(error => console.log(error));
 
@@ -65,21 +65,16 @@
             });
         }
 
-        function agregarEnlaces(data, contenedor) {
-            const noticias = contenedor.querySelectorAll('.noticia');
+        function agregarEnlaces(noticias, contenedor) {
+            const titulosNoticias = contenedor.querySelectorAll('.noticia-titulo');
 
-            noticias.forEach(noticia => {
-                const tituloNoticia = noticia.querySelector('.noticia-titulo');
-                const noticiaCorrespondiente = data.find(n => n.titulo === tituloNoticia.innerText);
+            titulosNoticias.forEach(tituloNoticia => {
+                const enlace = document.createElement('a');
+                enlace.href = noticias.find(noticia => noticia.titulo === tituloNoticia.innerText).enlace_noticia;
+                enlace.innerText = tituloNoticia.innerText;
 
-                if (noticiaCorrespondiente) {
-                    const enlace = document.createElement('a');
-                    enlace.href = `page${noticiaCorrespondiente.categoria}.html#${noticiaCorrespondiente.categoria}-${noticiaCorrespondiente.id}`;
-                    enlace.innerText = tituloNoticia.innerText;
-
-                    tituloNoticia.innerHTML = '';
-                    tituloNoticia.appendChild(enlace);
-                }
+                tituloNoticia.innerHTML = '';
+                tituloNoticia.appendChild(enlace);
             });
         }
     </script>
