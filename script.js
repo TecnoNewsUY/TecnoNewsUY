@@ -19,15 +19,31 @@ window.addEventListener('DOMContentLoaded', () => {
             agregarEnlaces(ultimasNoticias, noticiasLista);
 
             const paginasNoticias = document.querySelectorAll('.noticias-lista');
-            paginasNoticias.forEach(pagina => {
-                const categoria = pagina.dataset.categoria;
-                const noticiasCategoria = noticiasPorCategoria[categoria];
-                const noticiasOrdenadas = ordenarNoticiasPorFechaDescendente(noticiasCategoria);
-                mostrarNoticias(noticiasOrdenadas, pagina);
-                agregarEnlaces(noticiasOrdenadas, pagina);
-            });
-        })
-        .catch(error => console.log(error));
+    paginasNoticias.forEach(pagina => {
+        const categoria = pagina.dataset.categoria;
+        const noticiasCategoria = noticiasPorCategoria[categoria];
+        const noticiasOrdenadas = ordenarNoticiasPorFechaDescendente(noticiasCategoria);
+
+        // Muestra solo 5 noticias por página
+        const noticiasPorPagina = 5;
+        const totalPaginas = Math.ceil(noticiasOrdenadas.length / noticiasPorPagina);
+
+        for (let i = 0; i < totalPaginas; i++) {
+            const inicio = i * noticiasPorPagina;
+            const fin = inicio + noticiasPorPagina;
+            const noticiasPagina = noticiasOrdenadas.slice(inicio, fin);
+            mostrarNoticias(noticiasPagina, pagina);
+
+            // Agrega el selector de páginas dinámico
+            const paginaBoton = document.getElementById(`pagina-boton-${categoria}`);
+            const boton = document.createElement('button');
+            boton.classList.add('boton', 'pagina');
+            boton.textContent = i + 1;
+            boton.addEventListener('click', () => mostrarNoticias(noticiasPagina, pagina));
+            paginaBoton.appendChild(boton);
+        }
+    });
+});
 
     function agruparNoticiasPorCategoria(noticias) {
         const noticiasPorCategoria = {};
