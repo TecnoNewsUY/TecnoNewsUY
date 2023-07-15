@@ -1,93 +1,108 @@
 window.addEventListener('DOMContentLoaded', () => {
-    const noticiasLista = document.getElementById('noticias-lista');
+  const noticiasLista = document.getElementById('noticias-lista');
 
-    if (!noticiasLista) {
-        console.error("Error: No se encontró el elemento con el ID 'noticias-lista'");
-        return;
-    }
+  if (!noticiasLista) {
+    console.error("Error: No se encontró el elemento con el ID 'noticias-lista'");
+    return;
+  }
 
-    fetch('https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/todaslasnoticias/todaslasnoticias.json')
-        .then(response => response.json())
-        .then(data => {
-            const noticiasPorCategoria = {};
+  fetch('https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/todaslasnoticias/todaslasnoticias.json')
+    .then(response => response.json())
+    .then(data => {
+      const noticiasPorCategoria = {};
 
-            data.forEach(noticia => {
-                const categoria = noticia.categoria;
-                if (!noticiasPorCategoria.hasOwnProperty(categoria)) {
-                    noticiasPorCategoria[categoria] = [];
-                }
-                noticiasPorCategoria[categoria].push(noticia);
-            });
+      data.forEach(noticia => {
+        const categoria = noticia.categoria;
+        if (!noticiasPorCategoria.hasOwnProperty(categoria)) {
+          noticiasPorCategoria[categoria] = [];
+        }
+        noticiasPorCategoria[categoria].push(noticia);
+      });
 
-            const noticias = obtenerUltimasNoticias(noticiasPorCategoria, 3);
-            mostrarNoticias(noticias, noticiasLista);
-        })
-        .catch(error => {
-            mostrarError("Error al cargar las noticias: " + error);
-        });
+      const noticias = obtenerUltimasNoticias(noticiasPorCategoria, 3);
+      mostrarNoticias(noticias, noticiasLista);
 
-    function obtenerUltimasNoticias(noticiasPorCategoria, cantidad) {
-        const noticiasUnicas = [];
-        const noticiasVistas = new Set();
-        let contador = 0;
+      // Agregar enlaces a los títulos de las noticias
+      noticias.forEach(noticia => {
+        const titulo = noticiasLista.querySelector(`[data-titulo="${noticia.titulo}"] .noticia-titulo`);
+        const categoria = noticiasLista.dataset.categoria;
 
-        for (const categoria in noticiasPorCategoria) {
-            const noticiasCategoria = noticiasPorCategoria[categoria];
-            for (let i = noticiasCategoria.length - 1; i >= 0; i--) {
-                const noticia = noticiasCategoria[i];
-                if (!noticiasVistas.has(noticia.titulo)) {
-                    noticiasUnicas.push(noticia);
-                    noticiasVistas.add(noticia.titulo);
-                    contador++;
-                }
+        const noticiasMismaCategoria = data.filter(noticia => noticia.categoria.includes(categoria));
 
-                if (contador === cantidad) {
-                    break;
-                }
-            }
+        const enlace = document.createElement('a');
+        enlace.href = `page${categoria}.html#${noticiasMismaCategoria.indexOf(noticia) + 1}`;
+        enlace.innerText = titulo.innerText;
 
-            if (contador === cantidad) {
-                break;
-            }
+        titulo.innerHTML = '';
+        titulo.appendChild(enlace);
+      });
+    })
+    .catch(error => {
+      mostrarError("Error al cargar las noticias: " + error);
+    });
+
+  function obtenerUltimasNoticias(noticiasPorCategoria, cantidad) {
+    const noticiasUnicas = [];
+    const noticiasVistas = new Set();
+    let contador = 0;
+
+    for (const categoria in noticiasPorCategoria) {
+      const noticiasCategoria = noticiasPorCategoria[categoria];
+      for (let i = noticiasCategoria.length - 1; i >= 0; i--) {
+        const noticia = noticiasCategoria[i];
+        if (!noticiasVistas.has(noticia.titulo)) {
+          noticiasUnicas.push(noticia);
+          noticiasVistas.add(noticia.titulo);
+          contador++;
         }
 
-        return noticiasUnicas;
+        if (contador === cantidad) {
+          break;
+        }
+      }
+
+      if (contador === cantidad) {
+        break;
+      }
     }
 
-    function mostrarNoticias(noticias, contenedor) {
-        contenedor.innerHTML = '';
+    return noticiasUnicas;
+  }
 
-        noticias.forEach(noticia => {
-            const divNoticia = document.createElement('div');
-            divNoticia.classList.add('noticia');
+  function mostrarNoticias(noticias, contenedor) {
+    contenedor.innerHTML = '';
 
-            const titulo = document.createElement('h3');
-            const enlace = document.createElement('a');
-            enlace.href = noticia.enlace_noticia;
-            enlace.textContent = noticia.titulo;
-            titulo.appendChild(enlace);
+    noticias.forEach(noticia => {
+      const divNoticia = document.createElement('div');
+      divNoticia.classList.add('noticia');
+      divNoticia.dataset.titulo = noticia.titulo;
 
-            const contenido = document.createElement('p');
-            contenido.textContent = noticia.contenido;
+      const titulo = document.createElement('h3');
+      titulo.classList.add('noticia-titulo');
+      titulo.textContent = noticia.titulo;
 
-            const imagen = document.createElement('img');
-            imagen.src = noticia.imagen;
-            imagen.alt = noticia.titulo;
+      const contenido = document.createElement('p');
+      contenido.textContent = noticia.contenido;
 
-            divNoticia.appendChild(titulo);
-            divNoticia.appendChild(contenido);
-            divNoticia.appendChild(imagen);
+      const imagen = document.createElement('img');
+      imagen.src = noticia.imagen;
+      imagen.alt = noticia.titulo;
 
-            contenedor.appendChild(divNoticia);
-        });
-    }
+      divNoticia.appendChild(titulo);
+      divNoticia.appendChild(contenido);
+      divNoticia.appendChild(imagen);
 
-    function mostrarError(mensaje) {
-        const errorElement = document.createElement('p');
-        errorElement.classList.add('error');
-        errorElement.textContent = mensaje;
+      contenedor.appendChild(divNoticia);
+    });
+  }
 
-        noticiasLista.innerHTML = '';
-        noticiasLista.appendChild(errorElement);
-    }
+  function mostrarError(mensaje) {
+    const errorElement = document.createElement('p');
+    errorElement.classList.add('error');
+    errorElement.textContent = mensaje;
+
+    noticiasLista.innerHTML = '';
+    noticiasLista.appendChild(errorElement);
+  }
 });
+
