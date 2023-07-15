@@ -155,5 +155,5 @@ function mostrarNoticiaCompleta(noticia) {
 
     function ordenarNoticiasPorFechaDescendente(noticias) {
         return noticias.sort((a, b) => new Date(b.fecha_creacion) - new Date(a.fecha_creacion));
+   });
     }
-});
