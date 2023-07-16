@@ -22,15 +22,19 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            width: 100%; /* Encabezado ocupa el 100% del ancho de la pantalla */
-            position: fixed; /* Encabezado se mantiene fijo en la parte superior */
+            max-width: 1920px; /* Ancho máximo del encabezado */
+            width: 100%; /* El encabezado ocupa el 100% del ancho disponible */
+            position: fixed; /* El encabezado se mantiene fijo en la parte superior */
             top: 0;
             left: 0;
+            margin: 0 auto; /* Centrar el encabezado horizontalmente */
+            z-index: 9999; /* Asegurarse de que el encabezado esté en el frente */
         }
 
         .logo {
             display: flex;
             align-items: center;
+            margin-right: 15px; /* Pequeña separación entre el logo y el título */
         }
 
         .logo img {
@@ -47,6 +51,7 @@
         .menu {
             display: flex;
             align-items: center;
+            margin-left: 15px; /* Pequeña separación entre el título y los menús */
         }
 
         .menu a {
@@ -79,17 +84,15 @@
             <img src="https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/Orange_Simple_Online_Shopping_Logo-removebg-preview.png" alt="Logo">
             <h1 class="titulo-principal">TecnoNewsUY</h1>
         </div>
-        <div class="menu">
+        <nav class="menu">
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/index.html">Inicio</a>
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page1.html">Noticias</a>
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page2.html">Última Hora</a>
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page3.html">Ofertas</a>
-        </div>
+        </nav>
     </header>
-    <!-- El resto del contenido de la página -->
 </body>
 </html>
-
 
 
 
