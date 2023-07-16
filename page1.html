@@ -1,35 +1,84 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TecnoNewsUY - Inicio</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+    <title>TecnoNews - Categoría 1</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1 class="titulo-principal">TecnoNewsUY</h1>
-        <nav class="menu">
-            <a href="index.html">Inicio</a>
-            <a href="page1.html">Noticias</a>
-            <a href="page2.html">Última Hora</a>
-            <a href="page3.html">Ofertas</a>
-        </nav>
-    </header>
-    
-        <div class="container">
-        <h2 class="section-title">Noticias</h2>
+    <!-- Aquí se cargará el contenido del header desde el enlace proporcionado -->
+    <div id="header"></div>
 
-        <section id="noticias-lista-1" class="noticias-lista" data-categoria="1">
-            <!-- Aquí se mostrarán las noticias de la categoría 1 -->
-        </section>
-        
-        <div class="pagina-boton" id="pagina-boton-1">
-            <!-- Aquí se agregará el selector de páginas dinámico -->
-        </div>
+    <!-- Aquí se mostrarán las últimas 5 noticias de la categoría 1 -->
+    <div id="news-container"></div>
+
+    <!-- Paginación -->
+    <div id="pagination">
+        <button id="prev-btn">Anterior</button>
+        <button id="next-btn">Siguiente</button>
     </div>
-    
-    <script src="script.js"></script>
+
+    <!-- Aquí se cargará el contenido del footer desde el enlace proporcionado -->
+    <div id="footer"></div>
+
+    <script>
+        // Aquí es donde se cargará el contenido del header
+        fetch('https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/header.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('header').innerHTML = data);
+
+        // Aquí es donde se cargará el contenido del footer
+        fetch('https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/footer.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('footer').innerHTML = data);
+
+        // Lógica para mostrar las últimas 5 noticias de la categoría 1 y manejar la paginación
+        // Puedes obtener el JSON que proporcionaste y procesarlo aquí usando JavaScript
+        // Por ejemplo, podrías cargar el JSON desde una variable para simularlo:
+        const noticias = [{"titulo": "Título de la noticia 1", "contenido": "Contenido de la noticia 1...", "categoria": "1", "imagen": "https://ejemplo.com/imagen1.jpg", "enlace_noticia": "https://ejemplo.com/noticia1.html"}, {"titulo": "Título de la noticia 2", "contenido": "Contenido de la noticia 2...", "categoria": "2", "imagen": "https://ejemplo.com/imagen2.jpg", "enlace_noticia": "https://ejemplo.com/noticia2.html"}, {"titulo": "Título de la noticia 3", "contenido": "Contenido de la noticia 3...", "categoria": "1", "imagen": "https://ejemplo.com/imagen3.jpg", "enlace_noticia": "https://ejemplo.com/noticia3.html"}, /* ... */];
+
+        // Función para mostrar las últimas 5 noticias de la categoría 1
+        function mostrarNoticias(pagina) {
+            const noticiasPorPagina = 5;
+            const startIndex = (pagina - 1) * noticiasPorPagina;
+            const endIndex = startIndex + noticiasPorPagina;
+            const noticiasMostradas = noticias.slice(startIndex, endIndex);
+
+            const newsContainer = document.getElementById('news-container');
+            newsContainer.innerHTML = '';
+
+            noticiasMostradas.forEach(noticia => {
+                const noticiaPreview = document.createElement('div');
+                // Puedes agregar aquí el contenido y estilos para la previsualización de la noticia
+                noticiaPreview.innerHTML = `
+                    <h2>${noticia.titulo}</h2>
+                    <img src="${noticia.imagen}" alt="${noticia.titulo}">
+                    <p>${noticia.contenido.slice(0, 50)}${noticia.contenido.length > 50 ? '...' : ''}</p>
+                    <a href="${noticia.enlace_noticia}" target="_blank">Leer más</a>
+                `;
+                newsContainer.appendChild(noticiaPreview);
+            });
+        }
+
+        let currentPage = 1;
+        mostrarNoticias(currentPage);
+
+        // Manejador de eventos para cambiar de página
+        document.getElementById('prev-btn').addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage--;
+                mostrarNoticias(currentPage);
+            }
+        });
+
+        document.getElementById('next-btn').addEventListener('click', () => {
+            const totalPages = Math.ceil(noticias.length / 5);
+            if (currentPage < totalPages) {
+                currentPage++;
+                mostrarNoticias(currentPage);
+            }
+        });
+    </script>
 </body>
 </html>
+
