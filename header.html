@@ -16,10 +16,11 @@
 
         header {
             background-color: #FFAC06;
-            padding: 10px;
+            padding: 10px 20px;
             color: #fff;
             text-align: center;
             display: flex;
+            justify-content: space-between;
             align-items: center;
         }
 
@@ -27,8 +28,8 @@
             margin: 0;
             font-family: 'Shantell Sans', sans-serif;
             font-size: 24px;
-            flex-grow: 1; /* Ocupa el espacio restante */
-            margin-right: 40%; /* 20% de margen derecho */
+            flex-grow: 0; /* No ocupará espacio adicional */
+            margin-right: 10px; /* Separación reducida con el logo */
         }
 
         .logo {
@@ -39,16 +40,16 @@
 
         .menu {
             display: flex;
-            justify-content: flex-start; /* Menús a la izquierda */
+            justify-content: flex-start; /* Alinear a la izquierda */
             margin-top: 0;
             margin-bottom: 0;
-            flex-grow: 1; /* Ocupan el espacio restante */
-            margin-right: 40%; /* 20% de margen derecho */
+            flex-grow: 1; /* Ocupar espacio restante */
+            margin-right: 20%; /* Espacio libre del 20% a la derecha */
         }
 
         .menu a {
             display: block;
-            padding: 10px 15px; /* Aumentar padding entre menús */
+            padding: 5px 10px;
             color: #000;
             background-color: transparent;
             text-align: center;
@@ -62,6 +63,10 @@
         .menu a:hover {
             background-color: #6F273F;
             color: #fff;
+        }
+
+        .menu a {
+            flex: 1;
         }
     </style>
 </head>
@@ -78,3 +83,4 @@
     </header>
 </body>
 </html>
+
