@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TecnoNewsUY</title>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Work+Sans:wght@400;700&family=Slackey&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Slackey&family=Work+Sans:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -20,81 +20,53 @@
             color: #fff;
             text-align: center;
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            max-width: 1920px; /* Ancho máximo del encabezado */
-            width: 100%; /* El encabezado ocupa el 100% del ancho disponible */
-            position: fixed; /* El encabezado se mantiene fijo en la parte superior */
-            top: 0;
-            left: 0;
-            margin: 0 auto; /* Centrar el encabezado horizontalmente */
-            z-index: 9999; /* Asegurarse de que el encabezado esté en el frente */
-        }
-
-        .logo {
-            display: flex;
             align-items: center;
-            margin-right: 15px; /* Pequeña separación entre el logo y el título */
-        }
-
-        .logo img {
-            width: 80px; /* Tamaño del logo ajustado */
-            margin-right: 10px; /* Separación entre el logo y el título */
         }
 
         h1 {
             margin: 0;
-            font-family: 'Anton', sans-serif; /* Se aplica la tipografía Anton al título */
-            font-size: 28px; /* Tamaño del título ajustado */
+            font-family: 'Anton', sans-serif;
         }
 
         .menu {
             display: flex;
-            align-items: center;
-            margin-left: 15px; /* Pequeña separación entre el título y los menús */
+            justify-content: space-around;
+            margin-top: 20px;
         }
 
         .menu a {
             display: block;
             padding: 10px 20px;
-            color: black;
+            color: #000;
             background-color: transparent;
             text-align: center;
             text-decoration: none;
-            font-size: 14px; /* Tamaño del texto del menú ajustado */
+            font-size: 16px;
+            font-family: 'Slackey', cursive; /* Fuente Slackey */
+            text-transform: uppercase; /* Mayúsculas */
             transition: background-color 0.3s, color 0.3s;
-            text-transform: uppercase; /* Convierte el texto del menú a mayúsculas */
-            font-family: 'Slackey', cursive; /* Se aplica la tipografía Slackey al texto del menú */
         }
 
         .menu a:hover {
             background-color: #6F273F;
-            color: white;
+            color: #fff;
         }
 
-        /* Añadimos un margen superior al cuerpo para evitar que el contenido se oculte detrás del encabezado */
-        body {
-            margin-top: 70px; /* Altura del encabezado + margen */
+        .menu a {
+            flex: 1;
         }
     </style>
 </head>
 <body>
     <header>
-        <div class="logo">
-            <img src="https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/Orange_Simple_Online_Shopping_Logo-removebg-preview.png" alt="Logo">
-            <h1 class="titulo-principal">TecnoNewsUY</h1>
-        </div>
+        <h1 class="titulo-principal">TecnoNewsUY</h1>
         <nav class="menu">
-            <a href="https://tecnonewsuy.github.io/TecnoNewsUY/index.html">Inicio</a>
-            <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page1.html">Noticias</a>
-            <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page2.html">Última Hora</a>
-            <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page3.html">Ofertas</a>
+            <a href="https://tecnonewsuy.github.io/TecnoNewsUY/index.html">INICIO</a>
+            <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page1.html">NOTICIAS</a>
+            <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page2.html">ÚLTIMA HORA</a>
+            <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page3.html">OFERTAS</a>
         </nav>
     </header>
 </body>
 </html>
-
-
-
-
-
