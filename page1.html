@@ -126,7 +126,66 @@
                 }
             });
 
-            // Resto del código permanece igual...
+            // Función para cargar noticias en el cuerpo
+            function cargarNoticias(categoriaSeleccionada, pagina) {
+                $.getJSON('https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/todaslasnoticias/todaslasnoticias.json', function (data) {
+                    var noticiasFiltradas = data.filter(noticia => noticia.categoria === categoriaSeleccionada);
+                    var noticiasPorPagina = 5;
+                    var inicio = (pagina - 1) * noticiasPorPagina;
+                    var fin = inicio + noticiasPorPagina;
+                    var noticiasPagina = noticiasFiltradas.slice(inicio, fin);
+                    var cuerpoHTML = '';
+                    for (var i = noticiasPagina.length - 1; i >= 0; i--) {
+                        var noticia = noticiasPagina[i];
+                        var previewContenido = noticia.contenido.length > 50 ? noticia.contenido.slice(0, 50) + '...' : noticia.contenido;
+                        cuerpoHTML += `
+                            <div class="noticia">
+                                <a href="${noticia.enlace_noticia}" target="_blank">
+                                    <div class="imagen-noticia" style="background-image: url(${noticia.imagen});"></div>
+                                    <h3>${noticia.titulo}</h3>
+                                    <p>${previewContenido}</p>
+                                    <span class="leer-mas">Leer más</span>
+                                </a>
+                            </div>
+                        `;
+                    }
+                    $('#cuerpo').html(cuerpoHTML);
+                    agregarBotonPaginacion(noticiasFiltradas.length);
+                });
+            }
+
+            // Obtener el JSON y cargar las noticias de la categoría especificada
+            var categoriaSeleccionada = "1"; // Aquí puedes cambiar la categoría que desees mostrar
+            cargarNoticias(categoriaSeleccionada, 1);
+
+            // Función para agregar el botón de paginación
+            function agregarBotonPaginacion(totalNoticias) {
+                var numPaginas = Math.ceil(totalNoticias / 5);
+                var paginacionHTML = '';
+                for (var i = 1; i <= numPaginas; i++) {
+                    paginacionHTML += `<button class="btn-pagina">${i}</button>`;
+                }
+                $('#paginacion').html(paginacionHTML);
+
+                $('.btn-pagina').on('click', function () {
+                    $('.btn-pagina').removeClass('activo');
+                    $(this).addClass('activo');
+                    var pagina = parseInt($(this).text());
+                    cargarNoticias(categoriaSeleccionada, pagina);
+                });
+            }
+
+            // Obtener el footer
+            $.ajax({
+                url: 'https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/footer.html',
+                dataType: 'html',
+                success: function (data) {
+                    $('#footer').html(data);
+                },
+                error: function () {
+                    console.log('Error al obtener el footer');
+                }
+            });
         });
     </script>
 </head>
