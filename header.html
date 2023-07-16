@@ -16,35 +16,33 @@
 
         header {
             background-color: #FFAC06;
-            padding: 10px 20px;
+            padding: 10px;
             color: #fff;
             text-align: center;
             display: flex;
-            justify-content: space-between;
             align-items: center;
         }
 
         h1 {
             margin: 0;
-            font-family: 'Shantell Sans', sans-serif; /* Nueva fuente para el título */
-            font-size: 24px; /* Ajustar tamaño de fuente del título */
-            flex-grow: 1;
-            margin-right: auto;
+            font-family: 'Shantell Sans', sans-serif;
+            font-size: 24px;
+            flex-grow: 1; /* Ocupa el espacio restante */
         }
 
         .logo {
-            max-height: 50px; /* Tamaño fijo del logo */
+            max-height: 50px;
             max-width: 100%;
             margin-right: 10px;
         }
 
         .menu {
             display: flex;
-            justify-content: space-around;
+            justify-content: flex-start; /* Menús a la izquierda */
             margin-top: 0;
             margin-bottom: 0;
-            flex-grow: 1;
-            margin-left: auto;
+            flex-grow: 1; /* Ocupan el espacio restante */
+            margin-right: 50%; /* Deja el 50% de la parte derecha libre */
         }
 
         .menu a {
@@ -64,16 +62,12 @@
             background-color: #6F273F;
             color: #fff;
         }
-
-        .menu a {
-            flex: 1;
-        }
     </style>
 </head>
 <body>
     <header>
         <img class="logo" src="ruta_del_logo.png" alt="Logo TecnoNewsUY">
-        <h1 class="titulo-principal">YÄMÄRKÄ</h1> <!-- Nuevo título -->
+        <h1 class="titulo-principal">YÄMÄRKÄ</h1>
         <nav class="menu">
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/index.html">INICIO</a>
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page1.html">NOTICIAS</a>
@@ -83,3 +77,4 @@
     </header>
 </body>
 </html>
+
