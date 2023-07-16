@@ -15,17 +15,18 @@
         }
 
         header {
-            background-color: #FFAC06;
+            background-color: #3366cc;
             padding: 20px;
             color: #fff;
             text-align: center;
-            display: flex;
-            align-items: center;
+            position: relative;
         }
 
-        header img {
-            margin-right: 10px;
-            height: 40px; /* Ajustar la altura según el tamaño del logo */
+        .logo {
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            width: 100px; /* Adjust the width as needed */
         }
 
         h1 {
@@ -42,8 +43,8 @@
             display: block;
             width: 100%;
             padding: 10px 20px;
-            color: #000;
-            background-color: transparent;
+            color: #fff;
+            background-color: #ffcc00;
             text-align: center;
             text-decoration: none;
             font-size: 16px;
@@ -51,14 +52,14 @@
         }
 
         .menu a:hover {
-            background-color: #6F273F;
-            color: #fff;
+            background-color: #fff;
+            color: #b80000;
         }
     </style>
 </head>
 <body>
     <header>
-        <img src="https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/Orange_Simple_Online_Shopping_Logo-removebg-preview.png" alt="TecnoNewsUY Logo">
+        <img class="logo" src="https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/Orange_Simple_Online_Shopping_Logo-removebg-preview.png" alt="TecnoNewsUY Logo">
         <h1 class="titulo-principal">TecnoNewsUY</h1>
         <nav class="menu">
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/index.html">Inicio</a>
