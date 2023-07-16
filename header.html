@@ -22,8 +22,10 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            width: 70%; /* Se reduce el ancho del encabezado al 70% */
-            margin: auto; /* Centra el encabezado horizontalmente */
+            width: 100%; /* Encabezado ocupa el 100% del ancho de la pantalla */
+            position: fixed; /* Encabezado se mantiene fijo en la parte superior */
+            top: 0;
+            left: 0;
         }
 
         .logo {
@@ -32,14 +34,14 @@
         }
 
         .logo img {
-            width: 400px; /* Tamaño aumentado del logo */
-            margin-right: 5px; /* Separación entre el logo y el título */
+            width: 80px; /* Tamaño del logo ajustado */
+            margin-right: 10px; /* Separación entre el logo y el título */
         }
 
         h1 {
             margin: 0;
-            font-family: 'Slackey', cursive; /* Se aplica la tipografía Slackey al título */
-            font-size: 36px; /* Tamaño aumentado del título */
+            font-family: 'Anton', sans-serif; /* Se aplica la tipografía Anton al título */
+            font-size: 28px; /* Tamaño del título ajustado */
         }
 
         .menu {
@@ -55,7 +57,7 @@
             background-color: transparent;
             text-align: center;
             text-decoration: none;
-            font-size: 16px;
+            font-size: 14px; /* Tamaño del texto del menú ajustado */
             transition: background-color 0.3s, color 0.3s;
             text-transform: uppercase; /* Convierte el texto del menú a mayúsculas */
             font-family: 'Slackey', cursive; /* Se aplica la tipografía Slackey al texto del menú */
@@ -64,6 +66,11 @@
         .menu a:hover {
             background-color: #6F273F;
             color: white;
+        }
+
+        /* Añadimos un margen superior al cuerpo para evitar que el contenido se oculte detrás del encabezado */
+        body {
+            margin-top: 70px; /* Altura del encabezado + margen */
         }
     </style>
 </head>
