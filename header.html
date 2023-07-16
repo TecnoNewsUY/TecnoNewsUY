@@ -18,6 +18,7 @@
             background-color: #FFAC06;
             padding: 20px;
             color: #fff;
+            text-align: center;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -26,13 +27,14 @@
         h1 {
             margin: 0;
             font-family: 'Anton', sans-serif;
-            flex: 3; /* Ocupa 3 partes del espacio, el 70% del header */
+            flex-grow: 1; /* Ocupa 70% del header */
         }
 
         .menu {
             display: flex;
             justify-content: space-around;
-            flex: 7; /* Ocupa 7 partes del espacio, el 70% del header */
+            margin-top: 20px;
+            flex-grow: 1; /* Ocupa 70% del header */
         }
 
         .menu a {
@@ -43,20 +45,14 @@
             text-align: center;
             text-decoration: none;
             font-size: 16px;
-            font-family: 'Slackey', cursive;
-            text-transform: uppercase;
+            font-family: 'Slackey', cursive; /* Fuente Slackey */
+            text-transform: uppercase; /* Mayúsculas */
             transition: background-color 0.3s, color 0.3s;
         }
 
         .menu a:hover {
             background-color: #6F273F;
             color: #fff;
-        }
-
-        /* Modificación 1 */
-        .header-right {
-            flex: 3; /* Ocupa 3 partes del espacio, el 30% del header */
-            text-align: right; /* Alineación del contenido a la derecha */
         }
     </style>
 </head>
@@ -69,10 +65,9 @@
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page2.html">ÚLTIMA HORA</a>
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page3.html">OFERTAS</a>
         </nav>
-        <!-- Modificación 2 -->
-        <div class="header-right"></div>
     </header>
 </body>
 </html>
+
 
 
