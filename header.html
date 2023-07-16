@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TecnoNewsUY</title>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Work+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Work+Sans:wght@400;700&family=Slackey&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -22,6 +22,8 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            width: 70%; /* Se reduce el ancho del encabezado al 70% */
+            margin: auto; /* Centra el encabezado horizontalmente */
         }
 
         .logo {
@@ -30,18 +32,19 @@
         }
 
         .logo img {
-            width: 50px; /* Tamaño del logo, puedes ajustarlo según lo necesites */
-            margin-right: 10px;
+            width: 400px; /* Tamaño aumentado del logo */
+            margin-right: 5px; /* Separación entre el logo y el título */
         }
 
         h1 {
             margin: 0;
-            font-size: 28px; /* Puedes ajustar el tamaño del título según lo necesites */
+            font-family: 'Slackey', cursive; /* Se aplica la tipografía Slackey al título */
+            font-size: 36px; /* Tamaño aumentado del título */
         }
 
         .menu {
             display: flex;
-            justify-content: space-around;
+            justify-content: flex-start; /* Los menús se alinean a la izquierda */
             margin-top: 20px;
         }
 
@@ -54,6 +57,8 @@
             text-decoration: none;
             font-size: 16px;
             transition: background-color 0.3s, color 0.3s;
+            text-transform: uppercase; /* Convierte el texto del menú a mayúsculas */
+            font-family: 'Slackey', cursive; /* Se aplica la tipografía Slackey al texto del menú */
         }
 
         .menu a:hover {
@@ -77,6 +82,7 @@
     </header>
 </body>
 </html>
+
 
 
 
