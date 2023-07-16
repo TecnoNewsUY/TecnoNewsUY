@@ -20,6 +20,7 @@
             color: #fff;
             text-align: center;
             display: flex;
+            justify-content: space-between;
             align-items: center;
         }
 
@@ -27,12 +28,12 @@
             margin: 0;
             font-family: 'Anton', sans-serif;
             flex-grow: 1;
+            margin-right: auto; /* Desplazar hacia la izquierda */
         }
 
         .logo {
-            max-height: 100%;
+            max-height: 60px; /* Tamaño fijo del logo */
             max-width: 100%;
-            margin-right: 10px;
         }
 
         .menu {
@@ -40,6 +41,7 @@
             justify-content: space-around;
             margin-top: 20px;
             flex-grow: 1;
+            margin-left: auto; /* Desplazar hacia la izquierda */
         }
 
         .menu a {
@@ -67,7 +69,7 @@
 </head>
 <body>
     <header>
-        <img class="logo" src="https://cdn.logo.com/hotlink-ok/logo-social.png" alt="Logo TecnoNewsUY">
+        <img class="logo" src="ruta_del_logo.png" alt="Logo TecnoNewsUY">
         <h1 class="titulo-principal">TecnoNewsUY</h1>
         <nav class="menu">
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/index.html">INICIO</a>
@@ -78,5 +80,4 @@
     </header>
 </body>
 </html>
-
 
