@@ -43,6 +43,7 @@
             $.getJSON('https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/todaslasnoticias/todaslasnoticias.json', function (data) {
                 var noticiasCategoria1 = data.filter(noticia => noticia.categoria === "1");
                 cargarNoticias(noticiasCategoria1);
+                agregarBotonPaginacion(noticiasCategoria1.length);
             });
 
             // Función para cambiar de página
@@ -57,18 +58,22 @@
                 });
             }
 
-            // Botones de cambio de página
-            var paginaActual = 1;
-            $('#anterior').click(function () {
-                if (paginaActual > 1) {
-                    paginaActual--;
-                    cambiarPagina(paginaActual);
+            // Función para agregar el botón de paginación
+            function agregarBotonPaginacion(totalNoticias) {
+                var numPaginas = Math.ceil(totalNoticias / 5);
+                var paginacionHTML = '';
+                for (var i = 1; i <= numPaginas; i++) {
+                    paginacionHTML += `<button class="btn-pagina">${i}</button>`;
                 }
-            });
-            $('#siguiente').click(function () {
-                paginaActual++;
-                cambiarPagina(paginaActual);
-            });
+                $('#paginacion').html(paginacionHTML);
+
+                $('.btn-pagina').on('click', function () {
+                    $('.btn-pagina').removeClass('activo');
+                    $(this).addClass('activo');
+                    var pagina = parseInt($(this).text());
+                    cambiarPagina(pagina);
+                });
+            }
 
             // Obtener el footer
             $.ajax({
@@ -146,12 +151,42 @@
             color: #0056b3;
         }
 
+        /* Botón de paginación */
+        #paginacion {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .btn-pagina {
+            background-color: #b8860b;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-pagina:hover {
+            background-color: #ffd700;
+        }
+
+        .btn-pagina.activo {
+            background-color: #ffd700;
+            font-weight: bold;
+        }
+
         /* Estilos del footer */
     </style>
 </head>
 <body>
     <div id="header"></div>
     <div id="cuerpo"></div>
+    <div id="paginacion"></div>
     <div id="footer"></div>
 </body>
 </html>
+
