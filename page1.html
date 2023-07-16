@@ -3,24 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page 1</title>
+    <title id="titulo">Page 1</title>
     <!-- Obtener el header -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function () {
-            $.ajax({
-                url: 'https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/header.html',
-                dataType: 'html',
-                success: function (data) {
-                    $('#header').html(data);
-                },
-                error: function () {
-                    console.log('Error al obtener el header');
-                }
+            // Solicitar al usuario que ingrese la categoría y el título
+            var categoria = prompt("1");
+            var titulo = prompt("Page1.html");
+
+            // Obtener el JSON y cargar las noticias
+            $.getJSON('https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/todaslasnoticias/todaslasnoticias.json', function (data) {
+                var noticiasCategoria = data.filter(noticia => noticia.categoria === categoria && noticia.titulo === titulo);
+                var noticiasPorPagina = 5;
+                var noticiasPagina = noticiasCategoria.slice(0, noticiasPorPagina);
+                cargarNoticias(categoria, noticiasPagina);
+                agregarBotonPaginacion(noticiasCategoria.length);
             });
 
             // Función para cargar noticias en el cuerpo
-            function cargarNoticias(noticias) {
+            function cargarNoticias(categoria, noticias) {
                 var cuerpoHTML = '';
                 for (var i = noticias.length - 1; i >= 0; i--) {
                     var noticia = noticias[i];
@@ -39,25 +41,6 @@
                 $('#cuerpo').html(cuerpoHTML);
             }
 
-            // Obtener el JSON y cargar las noticias de categoría 1
-            $.getJSON('https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/todaslasnoticias/todaslasnoticias.json', function (data) {
-                var noticiasCategoria1 = data.filter(noticia => noticia.categoria === "1");
-                cargarNoticias(noticiasCategoria1);
-                agregarBotonPaginacion(noticiasCategoria1.length);
-            });
-
-            // Función para cambiar de página
-            function cambiarPagina(pagina) {
-                $.getJSON('https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/todaslasnoticias/todaslasnoticias.json', function (data) {
-                    var noticiasCategoria1 = data.filter(noticia => noticia.categoria === "1");
-                    var noticiasPorPagina = 5;
-                    var inicio = (pagina - 1) * noticiasPorPagina;
-                    var fin = inicio + noticiasPorPagina;
-                    var noticiasPagina = noticiasCategoria1.slice(inicio, fin);
-                    cargarNoticias(noticiasPagina);
-                });
-            }
-
             // Función para agregar el botón de paginación
             function agregarBotonPaginacion(totalNoticias) {
                 var numPaginas = Math.ceil(totalNoticias / 5);
@@ -72,6 +55,18 @@
                     $(this).addClass('activo');
                     var pagina = parseInt($(this).text());
                     cambiarPagina(pagina);
+                });
+            }
+
+            // Función para cambiar de página
+            function cambiarPagina(pagina) {
+                $.getJSON('https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/todaslasnoticias/todaslasnoticias.json', function (data) {
+                    var noticiasCategoria = data.filter(noticia => noticia.categoria === categoria && noticia.titulo === titulo);
+                    var noticiasPorPagina = 5;
+                    var inicio = (pagina - 1) * noticiasPorPagina;
+                    var fin = inicio + noticiasPorPagina;
+                    var noticiasPagina = noticiasCategoria.slice(inicio, fin);
+                    cargarNoticias(categoria, noticiasPagina);
                 });
             }
 
@@ -189,4 +184,5 @@
     <div id="footer"></div>
 </body>
 </html>
+
 
