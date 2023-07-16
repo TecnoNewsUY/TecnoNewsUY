@@ -16,7 +16,7 @@
 
         header {
             background-color: #FFAC06;
-            padding: 20px;
+            padding: 10px 20px; /* Ajustar padding del header */
             color: #fff;
             text-align: center;
             display: flex;
@@ -27,33 +27,36 @@
         h1 {
             margin: 0;
             font-family: 'Anton', sans-serif;
+            font-size: 28px; /* Ajustar tamaño de fuente del título */
             flex-grow: 1;
-            margin-right: auto; /* Desplazar hacia la izquierda */
+            margin-right: auto;
         }
 
         .logo {
-            max-height: 60px; /* Tamaño fijo del logo */
+            max-height: 50px; /* Tamaño fijo del logo */
             max-width: 100%;
+            margin-right: 10px;
         }
 
         .menu {
             display: flex;
             justify-content: space-around;
-            margin-top: 20px;
+            margin-top: 0; /* Eliminar margen superior */
+            margin-bottom: 0; /* Eliminar margen inferior */
             flex-grow: 1;
-            margin-left: auto; /* Desplazar hacia la izquierda */
+            margin-left: auto;
         }
 
         .menu a {
             display: block;
-            padding: 10px 20px;
+            padding: 5px 10px; /* Ajustar padding de los enlaces del menú */
             color: #000;
             background-color: transparent;
             text-align: center;
             text-decoration: none;
-            font-size: 16px;
-            font-family: 'Slackey', cursive; /* Fuente Slackey */
-            text-transform: uppercase; /* Mayúsculas */
+            font-size: 14px; /* Ajustar tamaño de fuente del menú */
+            font-family: 'Slackey', cursive;
+            text-transform: uppercase;
             transition: background-color 0.3s, color 0.3s;
         }
 
@@ -80,4 +83,3 @@
     </header>
 </body>
 </html>
-
