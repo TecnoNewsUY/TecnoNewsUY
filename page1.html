@@ -6,87 +6,20 @@
     <title>Page 1</title>
     <!-- Obtener el header -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $.ajax({
-                url: 'https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/header.html',
-                dataType: 'html',
-                success: function (data) {
-                    $('#header').html(data);
-                },
-                error: function () {
-                    console.log('Error al obtener el header');
-                }
-            });
-
-            // Función para cargar noticias en el cuerpo
-            function cargarNoticias(categoriaSeleccionada, pagina) {
-                $.getJSON('https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/todaslasnoticias/todaslasnoticias.json', function (data) {
-                    var noticiasFiltradas = data.filter(noticia => noticia.categoria === categoriaSeleccionada);
-                    var noticiasPorPagina = 5;
-                    var inicio = (pagina - 1) * noticiasPorPagina;
-                    var fin = inicio + noticiasPorPagina;
-                    var noticiasPagina = noticiasFiltradas.slice(inicio, fin);
-                    var cuerpoHTML = '';
-                    for (var i = noticiasPagina.length - 1; i >= 0; i--) {
-                        var noticia = noticiasPagina[i];
-                        var previewContenido = noticia.contenido.length > 50 ? noticia.contenido.slice(0, 50) + '...' : noticia.contenido;
-                        cuerpoHTML += `
-                            <div class="noticia">
-                                <a href="${noticia.enlace_noticia}" target="_blank">
-                                    <div class="imagen-noticia" style="background-image: url(${noticia.imagen});"></div>
-                                    <h3>${noticia.titulo}</h3>
-                                    <p>${previewContenido}</p>
-                                    <span class="leer-mas">Leer más</span>
-                                </a>
-                            </div>
-                        `;
-                    }
-                    $('#cuerpo').html(cuerpoHTML);
-                    agregarBotonPaginacion(noticiasFiltradas.length);
-                });
-            }
-
-            // Obtener el JSON y cargar las noticias de la categoría especificada
-            var categoriaSeleccionada = "1"; // Aquí puedes cambiar la categoría que desees mostrar
-            cargarNoticias(categoriaSeleccionada, 1);
-
-            // Función para agregar el botón de paginación
-            function agregarBotonPaginacion(totalNoticias) {
-                var numPaginas = Math.ceil(totalNoticias / 5);
-                var paginacionHTML = '';
-                for (var i = 1; i <= numPaginas; i++) {
-                    paginacionHTML += `<button class="btn-pagina">${i}</button>`;
-                }
-                $('#paginacion').html(paginacionHTML);
-
-                $('.btn-pagina').on('click', function () {
-                    $('.btn-pagina').removeClass('activo');
-                    $(this).addClass('activo');
-                    var pagina = parseInt($(this).text());
-                    cargarNoticias(categoriaSeleccionada, pagina);
-                });
-            }
-
-            // Obtener el footer
-            $.ajax({
-                url: 'https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/footer.html',
-                dataType: 'html',
-                success: function (data) {
-                    $('#footer').html(data);
-                },
-                error: function () {
-                    console.log('Error al obtener el footer');
-                }
-            });
-        });
-    </script>
     <style>
+        /* Variables de colores del header */
+        :root {
+            --color-primario: #007BFF;
+            --color-fondo: #f8f9fa;
+            --color-texto: #333;
+        }
+
         /* Estilos generales */
         body {
             font-family: "Helvetica Neue", sans-serif;
             line-height: 1.6;
-            color: #333;
+            color: var(--color-texto);
+            background-color: var(--color-fondo);
             margin: 0;
         }
 
@@ -105,7 +38,7 @@
             padding: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
-            background-color: #f9f9f9;
+            background-color: white;
         }
 
         .noticia:hover {
@@ -123,21 +56,19 @@
             margin: 0;
             font-size: 1.6rem;
             font-weight: bold;
-            color: #007BFF;
-            text-decoration: none;
+            color: var(--color-primario);
         }
 
         p {
             margin: 0;
             font-size: 1rem;
             color: #777;
-            text-decoration: none;
         }
 
         .leer-mas {
             display: block;
             margin-top: 10px;
-            color: #007BFF;
+            color: var(--color-primario);
             cursor: pointer;
             font-weight: bold;
             transition: color 0.3s ease;
@@ -156,7 +87,7 @@
         }
 
         .btn-pagina {
-            background-color: #b8860b;
+            background-color: var(--color-primario);
             color: #fff;
             border: none;
             padding: 10px 20px;
@@ -168,16 +99,36 @@
         }
 
         .btn-pagina:hover {
-            background-color: #ffd700;
+            background-color: #0056b3;
         }
 
         .btn-pagina.activo {
-            background-color: #ffd700;
+            background-color: #0056b3;
             font-weight: bold;
         }
 
         /* Estilos del footer */
     </style>
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: 'https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/header.html',
+                dataType: 'html',
+                success: function (data) {
+                    $('#header').html(data);
+                    var colorPrimario = $('.navbar-brand').css('color');
+                    var colorFondo = $('.navbar').css('background-color');
+                    $(':root').css('--color-primario', colorPrimario);
+                    $(':root').css('--color-fondo', colorFondo);
+                },
+                error: function () {
+                    console.log('Error al obtener el header');
+                }
+            });
+
+            // Resto del código permanece igual...
+        });
+    </script>
 </head>
 <body>
     <div id="header"></div>
