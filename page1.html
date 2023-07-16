@@ -84,6 +84,15 @@
         });
     </script>
     <style>
+        /* Estilos generales */
+        body {
+            font-family: "Helvetica Neue", sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+        }
+
+        /* Estilos del header */
         /* Estilos del cuerpo y las noticias */
         #cuerpo {
             display: flex;
@@ -113,12 +122,15 @@
 
         h3 {
             margin: 0;
-            font-size: 1.2rem;
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: #007BFF;
         }
 
         p {
             margin: 0;
-            color: #555;
+            font-size: 1rem;
+            color: #777;
         }
 
         .leer-mas {
@@ -126,9 +138,15 @@
             margin-top: 10px;
             color: #007BFF;
             cursor: pointer;
+            font-weight: bold;
+            transition: color 0.3s ease;
         }
 
-        /* Estilos del header y el footer */
+        .leer-mas:hover {
+            color: #0056b3;
+        }
+
+        /* Estilos del footer */
     </style>
 </head>
 <body>
@@ -137,4 +155,3 @@
     <div id="footer"></div>
 </body>
 </html>
-
