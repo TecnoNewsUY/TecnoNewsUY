@@ -27,10 +27,12 @@
                     var previewContenido = noticia.contenido.length > 50 ? noticia.contenido.slice(0, 50) + '...' : noticia.contenido;
                     cuerpoHTML += `
                         <div class="noticia">
-                            <img src="${noticia.imagen}" alt="${noticia.titulo}">
-                            <h3>${noticia.titulo}</h3>
-                            <p>${previewContenido}</p>
-                            <a href="${noticia.enlace_noticia}" target="_blank">Leer más</a>
+                            <a href="${noticia.enlace_noticia}" target="_blank">
+                                <div class="imagen-noticia" style="background-image: url(${noticia.imagen});"></div>
+                                <h3>${noticia.titulo}</h3>
+                                <p>${previewContenido}</p>
+                                <span class="leer-mas">Leer más</span>
+                            </a>
                         </div>
                     `;
                 }
@@ -83,6 +85,49 @@
     </script>
     <style>
         /* Estilos del cuerpo y las noticias */
+        #cuerpo {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .noticia {
+            width: 300px;
+            margin: 20px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .noticia:hover {
+            transform: translateY(-5px);
+        }
+
+        .imagen-noticia {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            margin-bottom: 10px;
+        }
+
+        h3 {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+
+        p {
+            margin: 0;
+            color: #555;
+        }
+
+        .leer-mas {
+            display: block;
+            margin-top: 10px;
+            color: #007BFF;
+            cursor: pointer;
+        }
+
         /* Estilos del header y el footer */
     </style>
 </head>
