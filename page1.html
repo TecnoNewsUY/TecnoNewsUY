@@ -3,43 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="titulo">Page 1</title>
+    <title>Page 1</title>
     <!-- Obtener el header -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function () {
-            // Solicitar al usuario que ingrese la categoría y el título
-            var categoria = prompt("1");
-            var titulo = prompt("Page1.html");
-
-            // Obtener el JSON y cargar las noticias
-            $.getJSON('https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/todaslasnoticias/todaslasnoticias.json', function (data) {
-                var noticiasCategoria = data.filter(noticia => noticia.categoria === categoria && noticia.titulo === titulo);
-                var noticiasPorPagina = 5;
-                var noticiasPagina = noticiasCategoria.slice(0, noticiasPorPagina);
-                cargarNoticias(categoria, noticiasPagina);
-                agregarBotonPaginacion(noticiasCategoria.length);
+            $.ajax({
+                url: 'https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/header.html',
+                dataType: 'html',
+                success: function (data) {
+                    $('#header').html(data);
+                },
+                error: function () {
+                    console.log('Error al obtener el header');
+                }
             });
 
             // Función para cargar noticias en el cuerpo
-            function cargarNoticias(categoria, noticias) {
-                var cuerpoHTML = '';
-                for (var i = noticias.length - 1; i >= 0; i--) {
-                    var noticia = noticias[i];
-                    var previewContenido = noticia.contenido.length > 50 ? noticia.contenido.slice(0, 50) + '...' : noticia.contenido;
-                    cuerpoHTML += `
-                        <div class="noticia">
-                            <a href="${noticia.enlace_noticia}" target="_blank">
-                                <div class="imagen-noticia" style="background-image: url(${noticia.imagen});"></div>
-                                <h3>${noticia.titulo}</h3>
-                                <p>${previewContenido}</p>
-                                <span class="leer-mas">Leer más</span>
-                            </a>
-                        </div>
-                    `;
-                }
-                $('#cuerpo').html(cuerpoHTML);
+            function cargarNoticias(categoriaSeleccionada, pagina) {
+                $.getJSON('https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/todaslasnoticias/todaslasnoticias.json', function (data) {
+                    var noticiasFiltradas = data.filter(noticia => noticia.categoria === categoriaSeleccionada);
+                    var noticiasPorPagina = 5;
+                    var inicio = (pagina - 1) * noticiasPorPagina;
+                    var fin = inicio + noticiasPorPagina;
+                    var noticiasPagina = noticiasFiltradas.slice(inicio, fin);
+                    var cuerpoHTML = '';
+                    for (var i = noticiasPagina.length - 1; i >= 0; i--) {
+                        var noticia = noticiasPagina[i];
+                        var previewContenido = noticia.contenido.length > 50 ? noticia.contenido.slice(0, 50) + '...' : noticia.contenido;
+                        cuerpoHTML += `
+                            <div class="noticia">
+                                <a href="${noticia.enlace_noticia}" target="_blank">
+                                    <div class="imagen-noticia" style="background-image: url(${noticia.imagen});"></div>
+                                    <h3>${noticia.titulo}</h3>
+                                    <p>${previewContenido}</p>
+                                    <span class="leer-mas">Leer más</span>
+                                </a>
+                            </div>
+                        `;
+                    }
+                    $('#cuerpo').html(cuerpoHTML);
+                    agregarBotonPaginacion(noticiasFiltradas.length);
+                });
             }
+
+            // Obtener el JSON y cargar las noticias de la categoría especificada
+            var categoriaSeleccionada = "2"; // Aquí puedes cambiar la categoría que desees mostrar
+            cargarNoticias(categoriaSeleccionada, 2);
 
             // Función para agregar el botón de paginación
             function agregarBotonPaginacion(totalNoticias) {
@@ -54,19 +64,7 @@
                     $('.btn-pagina').removeClass('activo');
                     $(this).addClass('activo');
                     var pagina = parseInt($(this).text());
-                    cambiarPagina(pagina);
-                });
-            }
-
-            // Función para cambiar de página
-            function cambiarPagina(pagina) {
-                $.getJSON('https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/todaslasnoticias/todaslasnoticias.json', function (data) {
-                    var noticiasCategoria = data.filter(noticia => noticia.categoria === categoria && noticia.titulo === titulo);
-                    var noticiasPorPagina = 5;
-                    var inicio = (pagina - 1) * noticiasPorPagina;
-                    var fin = inicio + noticiasPorPagina;
-                    var noticiasPagina = noticiasCategoria.slice(inicio, fin);
-                    cargarNoticias(categoria, noticiasPagina);
+                    cargarNoticias(categoriaSeleccionada, pagina);
                 });
             }
 
@@ -184,5 +182,4 @@
     <div id="footer"></div>
 </body>
 </html>
-
 
