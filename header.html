@@ -115,6 +115,26 @@
             h1 {
                 font-size: 20px; /* Ajustar el tamaño del título en dispositivos móviles */
             }
+
+            /* Mostrar el menú horizontal en dispositivos móviles */
+            .menu-horizontal {
+                display: flex;
+                justify-content: center;
+            }
+            
+            /* Alinear los elementos del menú en dispositivos móviles */
+            .menu-horizontal a {
+                margin: 0 10px;
+            }
+
+            /* Mostrar el menú desplegable al hacer clic en el símbolo del menú */
+            .menu-icon {
+                cursor: pointer;
+            }
+
+            .menu-icon.active ~ .menu {
+                display: flex;
+            }
         }
     </style>
 </head>
@@ -130,14 +150,14 @@
             <h1 class="titulo-principal">YÄMÄRKÄ</h1>
         </div>
         <!-- Menú de navegación para dispositivos de pantalla grande -->
-        <nav class="menu">
+        <nav class="menu menu-horizontal">
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/index.html">INICIO</a>
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page1.html">NOTICIAS</a>
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page2.html">ÚLTIMA HORA</a>
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page3.html">OFERTAS</a>
         </nav>
         <!-- Menú de navegación para dispositivos móviles -->
-        <div class="mobile-menu">
+        <div class="mobile-menu menu">
             <!-- El menú desplegado en dispositivos móviles -->
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/index.html">INICIO</a>
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page1.html">NOTICIAS</a>
@@ -157,5 +177,6 @@
     </header>
 </body>
 </html>
+
 
 
