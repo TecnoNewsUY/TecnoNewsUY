@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TecnoNewsUY</title>
-    <link href="https://fonts.googleapis.com/css2?family=Shantell+Sans&family=Slackey&family=Alfa+Slab+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Shantell+Sans&family=Slackey&family=Work+Sans:wght@400;700&display=swap" rel="stylesheet">
     <style>
         /* Estilos comunes para PC y dispositivos móviles */
         body {
-            font-family: 'Shantell Sans', sans-serif;
+            font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
             font-size: 16px;
@@ -74,6 +74,7 @@
 
             .menu {
                 flex-grow: 2;
+                margin-left: 20px; /* Agregamos un margen entre el título y el menú en PC */
             }
 
             .movil-header {
@@ -89,7 +90,7 @@
 
             .movil-header {
                 background-color: #FFAC06;
-                padding: 10px 20px;
+                padding: 10px;
                 color: #fff;
                 text-align: center;
                 display: flex;
@@ -160,6 +161,11 @@
             /* Estilos para el contenedor del menú móvil */
             .movil-header {
                 position: relative;
+            }
+
+            .movil-logo {
+                flex-grow: 1; /* El logo ocupará el espacio restante en móviles */
+                margin-left: 20px; /* Agregamos un margen entre el logo y el título en móviles */
             }
         }
     </style>
