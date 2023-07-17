@@ -65,10 +65,19 @@
 
         /* Estilos para dispositivos móviles */
         @media only screen and (max-width: 600px) {
+            /* Ocultar el encabezado de PC en dispositivos móviles */
+            header {
+                display: none;
+            }
+
+            /* Estilos para el encabezado móvil */
             .movil-header {
                 background-color: #FFAC06;
                 padding: 10px;
                 text-align: center;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
             }
 
             .movil-logo {
