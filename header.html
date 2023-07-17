@@ -72,17 +72,27 @@
 
         /* Estilos para dispositivos móviles */
         @media (max-width: 600px) {
-            header {
+            body {
+                font-family: 'Roboto', sans-serif;
+                margin: 0;
+                padding: 0;
+                font-size: 16px;
+                line-height: 1.6;
+            }
+
+            .movil-header {
+                background-color: #FFAC06;
                 padding: 10px;
                 position: relative;
                 text-align: center;
             }
 
-            .logo {
+            .movil-logo {
                 margin-left: 10px;
+                margin-right: 10px;
             }
 
-            .menu-toggle {
+            .movil-menu-toggle {
                 position: absolute;
                 left: 50%;
                 top: 50%;
@@ -91,7 +101,7 @@
                 cursor: pointer;
             }
 
-            .menu {
+            .movil-menu {
                 display: none;
                 flex-direction: column;
                 align-items: center;
@@ -103,23 +113,44 @@
                 z-index: 1;
             }
 
-            .menu a {
+            .movil-menu a {
                 margin: 5px 0;
             }
 
-            .menu.show-menu {
+            .movil-menu.show-menu {
                 display: flex;
+            }
+
+            /* Cambios específicos para dispositivos móviles */
+            .movil-h1 {
+                font-size: 18px;
             }
         }
     </style>
 </head>
 <body>
-    <header>
+    <!-- Header para dispositivos móviles -->
+    <header class="movil-header">
+        <!-- Símbolo "☰" para abrir el menú -->
+        <span class="movil-menu-toggle">&#9776;</span>
+        <a href="https://tecnonewsuy.github.io/TecnoNewsUY/index.html">
+            <img class="movil-logo" src="https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/corona.png" alt="Logo TecnoNewsUY">
+        </a>
+        <h1 class="movil-h1">YÄMÄRKÄ</h1>
+        <nav class="movil-menu">
+            <a href="https://tecnonewsuy.github.io/TecnoNewsUY/index.html">INICIO</a>
+            <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page1.html">NOTICIAS</a>
+            <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page2.html">ÚLTIMA HORA</a>
+            <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page3.html">OFERTAS</a>
+        </nav>
+    </header>
+
+    <!-- Header para PC -->
+    <header class="pc-header">
         <a href="https://tecnonewsuy.github.io/TecnoNewsUY/index.html">
             <img class="logo" src="https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/corona.png" alt="Logo TecnoNewsUY">
         </a>
         <h1 class="titulo-principal">YÄMÄRKÄ</h1>
-        <span class="menu-toggle">&#9776;</span>
         <nav class="menu">
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/index.html">INICIO</a>
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page1.html">NOTICIAS</a>
@@ -127,14 +158,16 @@
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page3.html">OFERTAS</a>
         </nav>
     </header>
+
     <script>
         // Script to toggle the menu on mobile devices
-        const menuToggle = document.querySelector('.menu-toggle');
-        const menu = document.querySelector('.menu');
+        const movilMenuToggle = document.querySelector('.movil-menu-toggle');
+        const movilMenu = document.querySelector('.movil-menu');
 
-        menuToggle.addEventListener('click', () => {
-            menu.classList.toggle('show-menu');
+        movilMenuToggle.addEventListener('click', () => {
+            movilMenu.classList.toggle('show-menu');
         });
     </script>
 </body>
 </html>
+
