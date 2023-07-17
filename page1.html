@@ -18,7 +18,7 @@
                     console.log('Error al obtener el header');
                 }
             });
-
+            
             // Función para cargar noticias en el cuerpo
             function cargarNoticias(categoriaSeleccionada, pagina) {
                 $.getJSON('https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/todaslasnoticias/todaslasnoticias.json', function (data) {
@@ -79,7 +79,7 @@
                     console.log('Error al obtener el footer');
                 }
             });
-        });
+       });
     </script>
     <style>
         /* Estilos generales */
@@ -93,7 +93,6 @@
             background-position: center;
         }
 
-        /* Estilos del header */
         /* Estilos del cuerpo y las noticias */
         #cuerpo {
             display: flex;
