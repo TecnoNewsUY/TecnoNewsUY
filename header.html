@@ -96,7 +96,6 @@
 
             /* Estilos para el símbolo del menú en dispositivos móviles */
             .menu-icon {
-                display: none; /* Ocultar el símbolo en dispositivos de pantalla grande */
                 font-size: 24px;
                 cursor: pointer;
             }
@@ -135,18 +134,12 @@
 
             /* Estilos para la tipografía del menú desplegado en dispositivos móviles */
             .mobile-menu-text {
-                display: none;
                 font-family: 'Work Sans', sans-serif;
                 font-weight: 700;
                 font-size: 18px;
                 color: #000;
                 text-transform: uppercase;
                 margin-top: 10px;
-            }
-
-            /* Estilos para la tipografía del menú desplegado en dispositivos móviles cuando está activo */
-            .menu-mobile.active .mobile-menu-text {
-                display: block;
             }
         }
     </style>
@@ -168,12 +161,10 @@
 
     <!-- Encabezado para dispositivos móviles -->
     <header class="header-mobile">
-        <div class="header-content">
-            <a href="https://tecnonewsuy.github.io/TecnoNewsUY/index.html">
-                <img class="logo-mobile" src="https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/corona.png" alt="Logo TecnoNewsUY">
-            </a>
-            <h1 class="title-mobile">YÄMÄRKÄ</h1>
-        </div>
+        <a href="https://tecnonewsuy.github.io/TecnoNewsUY/index.html">
+            <img class="logo-mobile" src="https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/corona.png" alt="Logo TecnoNewsUY">
+        </a>
+        <div class="title-mobile">YÄMÄRKÄ</div>
         <div class="menu-icon">&#9776;</div>
         <div class="menu-mobile">
             <!-- El menú desplegado en dispositivos móviles -->
