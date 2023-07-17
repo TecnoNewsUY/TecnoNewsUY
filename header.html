@@ -28,7 +28,8 @@
             margin: 0;
             font-family: 'Shantell Sans', sans-serif;
             font-size: 24px;
-            flex-grow: 1;
+            flex-grow: 0;
+            margin-right: 10px;
         }
 
         .logo {
@@ -74,11 +75,12 @@
         /* Estilos para el menú desplegado en dispositivos móviles */
         .menu.active {
             display: flex;
+            flex-direction: column;
+            margin-top: 0;
         }
 
         /* Estilos para la tipografía del menú desplegado en dispositivos móviles */
         .mobile-menu {
-            display: none;
             font-family: 'Work Sans', sans-serif;
             font-weight: 700;
             font-size: 18px;
@@ -87,15 +89,9 @@
             margin-top: 10px;
         }
 
-        /* Estilos para la tipografía del menú desplegado en dispositivos móviles cuando está activo */
-        .menu.active .mobile-menu {
-            display: block;
-        }
-
         @media screen and (max-width: 768px) {
-            h1 {
-                flex-grow: 0; /* Permitir que el título no ocupe todo el espacio en dispositivos móviles */
-                margin-right: 10px;
+            header {
+                flex-direction: column;
             }
 
             .menu {
@@ -104,6 +100,14 @@
 
             .menu-icon {
                 display: block; /* Mostrar el símbolo del menú en dispositivos móviles */
+            }
+
+            .logo {
+                margin-bottom: 10px; /* Separar el logo del título en dispositivos móviles */
+            }
+
+            h1 {
+                font-size: 20px; /* Ajustar el tamaño del título en dispositivos móviles */
             }
         }
     </style>
@@ -119,7 +123,7 @@
             </a>
             <h1 class="titulo-principal">YÄMÄRKÄ</h1>
         </div>
-        <!-- Menú de navegación para dispositivos de pantalla grande -->
+        <!-- Menú de navegación -->
         <nav class="menu">
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/index.html">INICIO</a>
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page1.html">NOTICIAS</a>
@@ -133,17 +137,17 @@
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page2.html">ÚLTIMA HORA</a>
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page3.html">OFERTAS</a>
         </div>
+
+        <script>
+            // Script para mostrar/ocultar el menú en dispositivos móviles
+            const menuIcon = document.querySelector('.menu-icon');
+            const mobileMenu = document.querySelector('.mobile-menu');
+
+            menuIcon.addEventListener('click', function() {
+                mobileMenu.classList.toggle('active');
+            });
+        </script>
     </header>
-
-    <script>
-        // Script para mostrar/ocultar el menú en dispositivos móviles
-        const menuIcon = document.querySelector('.menu-icon');
-        const mobileMenu = document.querySelector('.mobile-menu');
-
-        menuIcon.addEventListener('click', function() {
-            mobileMenu.classList.toggle('active');
-        });
-    </script>
 </body>
 </html>
 
