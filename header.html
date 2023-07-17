@@ -16,11 +16,11 @@
 
         header {
             background-color: #FFAC06;
-            padding: 5px 10px; /* Reducir el tamaño del header en dispositivos móviles */
+            padding: 5px 20px; /* Reducir el tamaño del header en dispositivos móviles */
             color: #fff;
             text-align: center;
             display: flex;
-            justify-content: space-between; /* Alinear el símbolo y el título en el header */
+            justify-content: space-between; /* Colocar el símbolo del menú a la izquierda y el logo y título al final */
             align-items: center;
         }
 
@@ -28,13 +28,12 @@
             margin: 0;
             font-family: 'Shantell Sans', sans-serif;
             font-size: 24px;
-            margin-left: 10px; /* Separación entre el símbolo del menú y el título */
         }
 
         .logo {
             max-height: 50px;
             max-width: 100%;
-            margin-right: 10px; /* Mover un poco a la derecha el logo y el título */
+            margin-right: 10px;
         }
 
         /* Estilos para el símbolo del menú en dispositivos móviles */
@@ -113,7 +112,6 @@
 
             h1 {
                 font-size: 20px; /* Ajustar el tamaño del título en dispositivos móviles */
-                margin: 0; /* Resetear el margen para centrar el título en el header */
             }
 
             /* Mostrar el menú desplegable al hacer clic en el símbolo del menú */
@@ -145,6 +143,16 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
+            }
+
+            /* Alinear el logo y título al final del header */
+            .header-content {
+                justify-content: flex-end;
+            }
+
+            /* Ajustar el logo a la izquierda del título */
+            .logo {
+                margin-right: 5px;
             }
         }
     </style>
@@ -188,4 +196,5 @@
     </header>
 </body>
 </html>
+
 
