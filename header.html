@@ -15,31 +15,11 @@
             line-height: 1.6;
         }
 
-        header {
-            background-color: #FFAC06;
-            padding: 10px 20px;
-            color: #fff;
-            text-align: center;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .pc-header {
+            display: block;
         }
 
-        h1 {
-            margin: 0;
-            font-family: 'Shantell Sans', sans-serif;
-            font-size: 24px;
-            flex-grow: 0;
-            margin-right: 10px;
-        }
-
-        .logo {
-            max-height: 50px;
-            max-width: 100%;
-            margin-right: 10px;
-        }
-
-        .menu {
+        .pc-menu {
             display: flex;
             justify-content: flex-start;
             margin-top: 0;
@@ -48,7 +28,7 @@
             margin-right: 20%;
         }
 
-        .menu a {
+        .pc-menu a {
             display: block;
             padding: 5px 10px;
             color: #000;
@@ -61,12 +41,12 @@
             transition: background-color 0.3s, color 0.3s;
         }
 
-        .menu a:hover {
+        .pc-menu a:hover {
             background-color: #6F273F;
             color: #fff;
         }
 
-        .menu a {
+        .pc-menu a {
             flex: 1;
         }
 
@@ -78,6 +58,10 @@
                 padding: 0;
                 font-size: 16px;
                 line-height: 1.6;
+            }
+
+            .pc-header {
+                display: none;
             }
 
             .movil-header {
@@ -129,6 +113,16 @@
     </style>
 </head>
 <body>
+    <!-- Header para PC -->
+    <header class="pc-header">
+        <nav class="pc-menu">
+            <a href="https://tecnonewsuy.github.io/TecnoNewsUY/index.html">INICIO</a>
+            <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page1.html">NOTICIAS</a>
+            <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page2.html">ÚLTIMA HORA</a>
+            <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page3.html">OFERTAS</a>
+        </nav>
+    </header>
+
     <!-- Header para dispositivos móviles -->
     <header class="movil-header">
         <!-- Símbolo "☰" para abrir el menú -->
@@ -138,20 +132,6 @@
         </a>
         <h1 class="movil-h1">YÄMÄRKÄ</h1>
         <nav class="movil-menu">
-            <a href="https://tecnonewsuy.github.io/TecnoNewsUY/index.html">INICIO</a>
-            <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page1.html">NOTICIAS</a>
-            <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page2.html">ÚLTIMA HORA</a>
-            <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page3.html">OFERTAS</a>
-        </nav>
-    </header>
-
-    <!-- Header para PC -->
-    <header class="pc-header">
-        <a href="https://tecnonewsuy.github.io/TecnoNewsUY/index.html">
-            <img class="logo" src="https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/corona.png" alt="Logo TecnoNewsUY">
-        </a>
-        <h1 class="titulo-principal">YÄMÄRKÄ</h1>
-        <nav class="menu">
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/index.html">INICIO</a>
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page1.html">NOTICIAS</a>
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page2.html">ÚLTIMA HORA</a>
@@ -170,4 +150,5 @@
     </script>
 </body>
 </html>
+
 
