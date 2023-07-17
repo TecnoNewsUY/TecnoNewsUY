@@ -6,31 +6,13 @@
     <title>TecnoNewsUY</title>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Shantell+Sans&family=Slackey&family=Work+Sans:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* Estilos para PC */
+        /* Estilos comunes para PC y dispositivos móviles */
         body {
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
             font-size: 16px;
             line-height: 1.6;
-        }
-
-        header {
-            background-color: #FFAC06;
-            padding: 10px 20px;
-            color: #fff;
-            text-align: center;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        h1 {
-            margin: 0;
-            font-family: 'Shantell Sans', sans-serif;
-            font-size: 24px;
-            flex-grow: 0;
-            margin-right: 10px;
         }
 
         .logo {
@@ -68,6 +50,35 @@
 
         .menu a {
             flex: 1;
+        }
+
+        /* Estilos para PC */
+        @media only screen and (min-width: 601px) {
+            header {
+                background-color: #FFAC06;
+                padding: 10px 20px;
+                color: #fff;
+                text-align: center;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            h1 {
+                margin: 0;
+                font-family: 'Shantell Sans', sans-serif;
+                font-size: 24px;
+                flex-grow: 0;
+                margin-right: 10px;
+            }
+
+            .menu {
+                display: flex;
+            }
+
+            .movil-header {
+                display: none;
+            }
         }
 
         /* Estilos para dispositivos móviles */
@@ -123,6 +134,27 @@
 
             .movil-menu.show-menu {
                 display: flex;
+            }
+
+            .movil-menu a {
+                display: block;
+                padding: 5px 10px;
+                color: #fff;
+                background-color: transparent;
+                text-align: center;
+                text-decoration: none;
+                font-size: 14px;
+                font-family: 'Slackey', cursive;
+                text-transform: uppercase;
+                transition: background-color 0.3s, color 0.3s;
+            }
+
+            .movil-menu a:hover {
+                background-color: #6F273F;
+            }
+
+            .movil-menu a {
+                flex: 1;
             }
         }
     </style>
