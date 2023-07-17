@@ -28,7 +28,7 @@
             margin: 0;
             font-family: 'Shantell Sans', sans-serif;
             font-size: 24px;
-            flex-grow: 1;
+            flex-grow: 0;
             margin-right: 10px;
         }
 
@@ -38,13 +38,20 @@
             margin-right: 10px;
         }
 
+        /* Estilos para el símbolo del menú en dispositivos móviles */
+        .menu-icon {
+            display: none; /* Ocultar el símbolo en dispositivos de pantalla grande */
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Estilos para el menú de navegación en dispositivos móviles */
         .menu {
             display: flex;
+            flex-direction: column;
             justify-content: flex-start;
-            margin-top: 0;
-            margin-bottom: 0;
-            flex-grow: 1;
-            margin-right: 20%;
+            align-items: center;
+            margin-top: 10px;
         }
 
         .menu a {
@@ -65,61 +72,77 @@
             color: #fff;
         }
 
-        .menu a {
-            flex: 1;
+        /* Estilos para el menú desplegado en dispositivos móviles */
+        .menu.active {
+            display: flex;
         }
 
-        /* Mobile Styles */
-        @media screen and (max-width: 767px) {
-            h1 {
-                display: none;
-            }
+        /* Estilos para la tipografía del menú desplegado en dispositivos móviles */
+        .mobile-menu {
+            display: none;
+            font-family: 'Work Sans', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            color: #000;
+            text-transform: uppercase;
+            margin-top: 10px;
+        }
 
-            .logo {
-                max-height: 30px;
-                order: 2;
+        /* Estilos para la tipografía del menú desplegado en dispositivos móviles cuando está activo */
+        .menu.active .mobile-menu {
+            display: block;
+        }
+
+        @media screen and (max-width: 768px) {
+            h1 {
+                display: none; /* Ocultar el título en dispositivos móviles */
             }
 
             .menu {
-                display: none;
-                flex-direction: column;
-                align-items: center;
-                background-color: #FFAC06;
-                width: 100%;
-                position: absolute;
-                top: 100%;
-                left: 0;
+                display: none; /* Ocultar el menú en dispositivos móviles */
             }
 
-            .menu.show {
-                display: flex;
-            }
-
-            .menu a {
-                padding: 10px;
+            .menu-icon {
+                display: block; /* Mostrar el símbolo del menú en dispositivos móviles */
             }
         }
     </style>
 </head>
 <body>
     <header>
-        <a href="https://tecnonewsuy.github.io/TecnoNewsUY/index.html">
-            <img class="logo" src="https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/corona.png" alt="Logo TecnoNewsUY">
-        </a>
-        <h1 class="titulo-principal">YÄMÄRKÄ</h1>
-        <nav class="menu" id="menu">
+        <!-- Símbolo para abrir el menú en dispositivos móviles -->
+        <div class="menu-icon">&#9776;</div>
+        <!-- Logo y título del sitio -->
+        <div>
+            <a href="https://tecnonewsuy.github.io/TecnoNewsUY/index.html">
+                <img class="logo" src="https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/corona.png" alt="Logo TecnoNewsUY">
+            </a>
+            <h1 class="titulo-principal">YÄMÄRKÄ</h1>
+        </div>
+        <!-- Menú de navegación para dispositivos de pantalla grande -->
+        <nav class="menu">
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/index.html">INICIO</a>
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page1.html">NOTICIAS</a>
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page2.html">ÚLTIMA HORA</a>
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page3.html">OFERTAS</a>
         </nav>
+        <!-- Menú de navegación para dispositivos móviles -->
+        <div class="mobile-menu"> <!-- El menú desplegado en dispositivos móviles -->
+            <a href="https://tecnonewsuy.github.io/TecnoNewsUY/index.html">INICIO</a>
+            <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page1.html">NOTICIAS</a>
+            <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page2.html">ÚLTIMA HORA</a>
+            <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page3.html">OFERTAS</a>
+        </div>
     </header>
-    
+
     <script>
-        function toggleMenu() {
-            const menu = document.getElementById("menu");
-            menu.classList.toggle("show");
-        }
+        // Script para mostrar/ocultar el menú en dispositivos móviles
+        const menuIcon = document.querySelector('.menu-icon');
+        const mobileMenu = document.querySelector('.mobile-menu');
+
+        menuIcon.addEventListener('click', function() {
+            mobileMenu.classList.toggle('active');
+        });
     </script>
 </body>
 </html>
