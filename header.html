@@ -14,7 +14,8 @@
             line-height: 1.6;
         }
 
-        header {
+        /* Estilos para dispositivos de pantalla grande (PC) */
+        .header-pc {
             background-color: #FFAC06;
             padding: 10px 20px;
             color: #fff;
@@ -24,7 +25,7 @@
             align-items: center;
         }
 
-        h1 {
+        .title-pc {
             margin: 0;
             font-family: 'Shantell Sans', sans-serif;
             font-size: 24px;
@@ -32,13 +33,13 @@
             margin-right: 10px;
         }
 
-        .logo {
+        .logo-pc {
             max-height: 50px;
             max-width: 100%;
             margin-right: 10px;
         }
 
-        .menu {
+        .menu-pc {
             display: flex;
             justify-content: flex-start;
             margin-top: 0;
@@ -47,7 +48,7 @@
             margin-right: 20%;
         }
 
-        .menu a {
+        .menu-pc a {
             display: block;
             padding: 5px 10px;
             color: #000;
@@ -60,94 +61,174 @@
             transition: background-color 0.3s, color 0.3s;
         }
 
-        .menu a:hover {
+        .menu-pc a:hover {
             background-color: #6F273F;
             color: #fff;
         }
 
-        .menu a {
+        .menu-pc a {
             flex: 1;
         }
 
         /* Estilos para dispositivos móviles */
         @media screen and (max-width: 768px) {
-            header {
-                flex-direction: column;
+            .header-mobile {
+                background-color: #FFAC06;
+                padding: 5px 20px; /* Reducir el tamaño del header en dispositivos móviles */
+                color: #fff;
+                text-align: center;
+                display: flex;
+                justify-content: space-between; /* Colocar el símbolo del menú a la izquierda y el logo y título al final */
+                align-items: center;
             }
 
-            .menu {
-                display: none;
-            }
-
-            .menu-icon {
-                display: block;
-            }
-
-            .logo {
-                margin-bottom: 10px;
-            }
-
-            h1 {
-                font-size: 20px;
+            .title-mobile {
                 margin: 0;
+                font-family: 'Shantell Sans', sans-serif;
+                font-size: 24px;
             }
 
+            .logo-mobile {
+                max-height: 50px;
+                max-width: 100%;
+                margin-right: 10px;
+            }
+
+            /* Estilos para el símbolo del menú en dispositivos móviles */
             .menu-icon {
+                display: none; /* Ocultar el símbolo en dispositivos de pantalla grande */
+                font-size: 24px;
                 cursor: pointer;
             }
 
-            .menu-icon.active ~ .menu {
-                display: flex;
-            }
-
-            .menu-horizontal {
+            /* Estilos para el menú de navegación en dispositivos móviles */
+            .menu-mobile {
                 display: none;
-            }
-
-            .menu a {
-                margin: 5px;
-            }
-
-            .logo {
-                margin-right: 5px;
-            }
-
-            .header-content {
-                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
                 align-items: center;
-                justify-content: center;
+                margin-top: 10px;
             }
 
-            .header-content {
-                justify-content: flex-end;
+            .menu-mobile a {
+                display: block;
+                padding: 5px 10px;
+                color: #000;
+                background-color: transparent;
+                text-align: center;
+                text-decoration: none;
+                font-size: 14px;
+                font-family: 'Slackey', cursive;
+                text-transform: uppercase;
+                transition: background-color 0.3s, color 0.3s;
             }
 
-            .logo {
-                margin-right: 5px;
+            .menu-mobile a:hover {
+                background-color: #6F273F;
+                color: #fff;
+            }
+
+            /* Estilos para el menú desplegado en dispositivos móviles */
+            .menu-mobile.active {
+                display: flex;
+            }
+
+            /* Estilos para la tipografía del menú desplegado en dispositivos móviles */
+            .mobile-menu-text {
+                display: none;
+                font-family: 'Work Sans', sans-serif;
+                font-weight: 700;
+                font-size: 18px;
+                color: #000;
+                text-transform: uppercase;
+                margin-top: 10px;
+            }
+
+            /* Estilos para la tipografía del menú desplegado en dispositivos móviles cuando está activo */
+            .menu-mobile.active .mobile-menu-text {
+                display: block;
+            }
+
+            @media screen and (max-width: 768px) {
+                .header-mobile .header-pc {
+                    display: none;
+                }
+
+                .menu-icon {
+                    display: block;
+                }
+
+                .logo-mobile {
+                    margin-bottom: 10px;
+                }
+
+                .title-mobile {
+                    font-size: 20px;
+                    margin: 0;
+                }
+
+                .menu-icon {
+                    cursor: pointer;
+                }
+
+                .menu-icon.active ~ .menu-mobile {
+                    display: flex;
+                }
+
+                .menu-pc {
+                    display: none;
+                }
+
+                .menu-mobile a {
+                    margin: 5px;
+                }
+
+                .logo-mobile {
+                    margin-right: 5px;
+                }
+
+                .header-content {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                .header-content {
+                    justify-content: flex-end;
+                }
+
+                .logo-mobile {
+                    margin-right: 5px;
+                }
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <!-- Símbolo para abrir el menú en dispositivos móviles -->
-        <div class="menu-icon">&#9776;</div>
-        <!-- Logo y título del sitio -->
-        <div class="header-content">
-            <a href="https://tecnonewsuy.github.io/TecnoNewsUY/index.html">
-                <img class="logo" src="https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/corona.png" alt="Logo TecnoNewsUY">
-            </a>
-            <h1 class="titulo-principal">YÄMÄRKÄ</h1>
-        </div>
-        <!-- Menú de navegación para dispositivos de pantalla grande -->
-        <nav class="menu menu-horizontal">
+    <!-- Encabezado para PC -->
+    <header class="header-pc">
+        <a href="https://tecnonewsuy.github.io/TecnoNewsUY/index.html">
+            <img class="logo-pc" src="https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/corona.png" alt="Logo TecnoNewsUY">
+        </a>
+        <h1 class="title-pc">YÄMÄRKÄ</h1>
+        <nav class="menu-pc">
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/index.html">INICIO</a>
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page1.html">NOTICIAS</a>
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page2.html">ÚLTIMA HORA</a>
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page3.html">OFERTAS</a>
         </nav>
-        <!-- Menú de navegación para dispositivos móviles -->
-        <div class="mobile-menu menu">
+    </header>
+
+    <!-- Encabezado para dispositivos móviles -->
+    <header class="header-mobile">
+        <div class="header-content">
+            <a href="https://tecnonewsuy.github.io/TecnoNewsUY/index.html">
+                <img class="logo-mobile" src="https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/corona.png" alt="Logo TecnoNewsUY">
+            </a>
+            <h1 class="title-mobile">YÄMÄRKÄ</h1>
+        </div>
+        <div class="menu-icon">&#9776;</div>
+        <div class="menu-mobile">
             <!-- El menú desplegado en dispositivos móviles -->
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/index.html">INICIO</a>
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page1.html">NOTICIAS</a>
@@ -155,10 +236,12 @@
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page3.html">OFERTAS</a>
         </div>
 
+        <div class="mobile-menu-text">Menú</div>
+
         <script>
             // Script para mostrar/ocultar el menú en dispositivos móviles
             const menuIcon = document.querySelector('.menu-icon');
-            const mobileMenu = document.querySelector('.mobile-menu');
+            const mobileMenu = document.querySelector('.menu-mobile');
 
             menuIcon.addEventListener('click', function() {
                 mobileMenu.classList.toggle('active');
@@ -167,6 +250,5 @@
     </header>
 </body>
 </html>
-
 
 
