@@ -16,11 +16,11 @@
 
         header {
             background-color: #FFAC06;
-            padding: 10px 20px;
+            padding: 5px 10px; /* Reducir el tamaño del header en dispositivos móviles */
             color: #fff;
             text-align: center;
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-start; /* Mover el símbolo del menú a la izquierda */
             align-items: center;
         }
 
@@ -28,8 +28,7 @@
             margin: 0;
             font-family: 'Shantell Sans', sans-serif;
             font-size: 24px;
-            flex-grow: 0;
-            margin-right: 10px;
+            margin-left: 10px; /* Separación entre el símbolo del menú y el título */
         }
 
         .logo {
@@ -43,7 +42,6 @@
             display: none; /* Ocultar el símbolo en dispositivos de pantalla grande */
             font-size: 24px;
             cursor: pointer;
-            margin-right: 10px; /* Separación entre el símbolo y el logo */
         }
 
         /* Estilos para el menú de navegación en dispositivos móviles */
@@ -98,20 +96,29 @@
 
         @media screen and (max-width: 768px) {
             header {
-                padding: 5px 10px; /* Reducir el tamaño del header */
+                flex-direction: column;
+            }
+
+            .menu {
+                display: none; /* Ocultar el menú en dispositivos móviles */
+            }
+
+            .menu-icon {
+                display: block; /* Mostrar el símbolo del menú en dispositivos móviles */
             }
 
             .logo {
-                margin-bottom: 0; /* Eliminar la separación entre el logo y el título */
+                margin-bottom: 10px; /* Separar el logo del título en dispositivos móviles */
             }
 
             h1 {
                 font-size: 20px; /* Ajustar el tamaño del título en dispositivos móviles */
+                margin: 0; /* Resetear el margen para centrar el título en el header */
             }
 
             /* Mostrar el menú desplegable al hacer clic en el símbolo del menú */
             .menu-icon {
-                display: block; /* Mostrar el símbolo del menú en dispositivos móviles */
+                cursor: pointer;
             }
 
             .menu-icon.active ~ .menu {
@@ -122,15 +129,22 @@
             .menu-horizontal {
                 display: none;
             }
-            
-            /* Alinear el símbolo del menú a la izquierda del header */
-            .menu-icon {
-                order: -1;
+
+            /* Alinear los elementos del menú en dispositivos móviles */
+            .menu a {
+                margin: 5px;
             }
 
-            /* Alinear el símbolo del menú con el logo y el título */
+            /* Ajustar el logo y el título en dispositivos móviles */
             .logo {
                 margin-right: 5px;
+            }
+
+            /* Alinear el título en el centro del header */
+            .header-content {
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
         }
     </style>
@@ -140,7 +154,7 @@
         <!-- Símbolo para abrir el menú en dispositivos móviles -->
         <div class="menu-icon">&#9776;</div>
         <!-- Logo y título del sitio -->
-        <div>
+        <div class="header-content">
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/index.html">
                 <img class="logo" src="https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/corona.png" alt="Logo TecnoNewsUY">
             </a>
@@ -174,5 +188,3 @@
     </header>
 </body>
 </html>
-
-
