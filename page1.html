@@ -1,193 +1,163 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page 1</title>
-    <!-- Obtener el header -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $.ajax({
-                url: 'https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/header.html',
-                dataType: 'html',
-                success: function (data) {
-                    $('#header').html(data);
-                },
-                error: function () {
-                    console.log('Error al obtener el header');
-                }
-            });
-
-            // Función para cargar noticias en el cuerpo
-            function cargarNoticias(categoriaSeleccionada, pagina) {
-                $.getJSON('https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/todaslasnoticias/todaslasnoticias.json', function (data) {
-                    var noticiasFiltradas = data.filter(noticia => noticia.categoria === categoriaSeleccionada);
-                    var noticiasPorPagina = 5;
-                    var inicio = (pagina - 1) * noticiasPorPagina;
-                    var fin = inicio + noticiasPorPagina;
-                    var noticiasPagina = noticiasFiltradas.slice(inicio, fin);
-                    var cuerpoHTML = '';
-                    for (var i = noticiasPagina.length - 1; i >= 0; i--) {
-                        var noticia = noticiasPagina[i];
-                        var previewContenido = noticia.contenido.length > 50 ? noticia.contenido.slice(0, 50) + '...' : noticia.contenido;
-                        cuerpoHTML += `
-                            <div class="noticia">
-                                <a href="${noticia.enlace_noticia}" target="_blank" class="enlace-noticia">
-                                    <div class="imagen-noticia" style="background-image: url(${noticia.imagen});"></div>
-                                    <h3>${noticia.titulo}</h3>
-                                    <p>${previewContenido}</p>
-                                    <span class="leer-mas">Leer más</span>
-                                </a>
-                            </div>
-                        `;
-                    }
-                    $('#cuerpo').html(cuerpoHTML);
-                    agregarBotonPaginacion(noticiasFiltradas.length);
-                });
-            }
-
-            // Obtener el JSON y cargar las noticias de la categoría especificada
-            var categoriaSeleccionada = "1"; // Aquí puedes cambiar la categoría que desees mostrar
-            cargarNoticias(categoriaSeleccionada, 1);
-
-            // Función para agregar el botón de paginación
-            function agregarBotonPaginacion(totalNoticias) {
-                var numPaginas = Math.ceil(totalNoticias / 5);
-                var paginacionHTML = '';
-                for (var i = 1; i <= numPaginas; i++) {
-                    paginacionHTML += `<button class="btn-pagina">${i}</button>`;
-                }
-                $('#paginacion').html(paginacionHTML);
-
-                $('.btn-pagina').on('click', function () {
-                    $('.btn-pagina').removeClass('activo');
-                    $(this).addClass('activo');
-                    var pagina = parseInt($(this).text());
-                    cargarNoticias(categoriaSeleccionada, pagina);
-                });
-            }
-
-            // Obtener el footer
-            $.ajax({
-                url: 'https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/footer.html',
-                dataType: 'html',
-                success: function (data) {
-                    $('#footer').html(data);
-                },
-                error: function () {
-                    console.log('Error al obtener el footer');
-                }
-            });
-        });
-    </script>
+    <title>TecnoNewsUY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Shantell+Sans&family=Slackey&family=Work+Sans:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* Estilos generales */
+        /* Estilos compartidos para ambos dispositivos */
         body {
-            font-family: "Helvetica Neue", sans-serif;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            font-size: 16px;
             line-height: 1.6;
-            color: #333;
-            margin: 0;
-            background-image: url("https://i.ibb.co/XZxn94m/white-abstract-background-backdrop-for-presentation-design-for-website-free-photo.jpg");
-            background-size: cover;
-            background-position: center;
         }
 
-        /* Estilos del header */
-        /* Estilos del cuerpo y las noticias */
-        #cuerpo {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .noticia {
-            width: 300px;
-            margin: 20px;
-            border: 1px solid #ddd;
-            padding: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .noticia:hover {
-            transform: translateY(-5px);
-        }
-
-        .imagen-noticia {
-            height: 200px;
-            background-size: cover;
-            background-position: center;
-            margin-bottom: 10px;
-        }
-
-        h3 {
-            margin: 0;
-            font-size: 1.6rem;
-            font-weight: bold;
-            color: #007BFF;
-        }
-
-        p {
-            margin: 0;
-            font-size: 1rem;
-            color: #777;
-        }
-
-        .leer-mas {
-            display: block;
-            margin-top: 10px;
-            color: #007BFF;
-            cursor: pointer;
-            font-weight: bold;
-            transition: color 0.3s ease;
-        }
-
-        .leer-mas:hover {
-            color: #0056b3;
-        }
-
-        /* Estilos de los enlaces */
-        .enlace-noticia {
-            text-decoration: none;
-        }
-
-        /* Botón de paginación */
-        #paginacion {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
-
-        .btn-pagina {
-            background-color: #b8860b;
-            color: #fff;
-            border: none;
+        /* Estilos específicos para PC */
+        .pc-header {
+            background-color: #FFAC06;
             padding: 10px 20px;
-            margin: 0 5px;
-            cursor: pointer;
-            font-size: 1rem;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
+            color: #fff;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .btn-pagina:hover {
-            background-color: #ffd700;
+        .pc-logo {
+            max-height: 50px;
+            max-width: 100%;
+            margin-right: 10px;
         }
 
-        .btn-pagina.activo {
-            background-color: #ffd700;
-            font-weight: bold;
+        .pc-menu {
+            display: flex;
+            justify-content: flex-start;
+            margin-top: 0;
+            margin-bottom: 0;
+            flex-grow: 1;
+            margin-right: 20%;
         }
 
-        /* Estilos del footer */
+        .pc-menu a {
+            display: block;
+            padding: 5px 10px;
+            color: #000;
+            background-color: transparent;
+            text-align: center;
+            text-decoration: none;
+            font-size: 14px;
+            font-family: 'Slackey', cursive;
+            text-transform: uppercase;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .pc-menu a:hover {
+            background-color: #6F273F;
+            color: #fff;
+        }
+
+        .pc-menu a {
+            flex: 1;
+        }
+
+        /* Estilos específicos para dispositivos móviles */
+        @media only screen and (max-width: 600px) {
+            .pc-header {
+                display: none;
+            }
+
+            .movil-header {
+                background-color: #FFAC06;
+                padding: 10px;
+                text-align: center;
+            }
+
+            .movil-logo {
+                max-height: 40px;
+                max-width: 100%;
+                margin-right: 10px;
+            }
+
+            .movil-menu-toggle {
+                font-size: 24px;
+                cursor: pointer;
+            }
+
+            .movil-menu {
+                display: none;
+                flex-direction: column;
+                align-items: center;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: #FFAC06;
+                z-index: 1;
+            }
+
+            .movil-menu a {
+                margin: 5px 0;
+            }
+
+            .movil-menu.show-menu {
+                display: flex;
+            }
+
+            /* Cambios específicos para dispositivos móviles */
+            .movil-h1 {
+                font-size: 18px;
+            }
+
+            /* Agregar estilos para ocultar elementos de PC en dispositivos móviles */
+            .pc-logo, .pc-menu {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>
-    <div id="header"></div>
-    <div id="cuerpo"></div>
-    <div id="paginacion"></div>
-    <div id="footer"></div>
+    <!-- Header para PC -->
+    <header class="pc-header">
+        <a href="https://tecnonewsuy.github.io/TecnoNewsUY/index.html">
+            <img class="pc-logo" src="https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/corona.png" alt="Logo TecnoNewsUY">
+        </a>
+        <h1 class="titulo-principal">YÄMÄRKÄ</h1>
+        <nav class="pc-menu">
+            <a href="https://tecnonewsuy.github.io/TecnoNewsUY/index.html">INICIO</a>
+            <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page1.html">NOTICIAS</a>
+            <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page2.html">ÚLTIMA HORA</a>
+            <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page3.html">OFERTAS</a>
+        </nav>
+    </header>
+
+    <!-- Header para dispositivos móviles -->
+    <div class="movil-header">
+        <!-- Símbolo "☰" para abrir el menú -->
+        <span class="movil-menu-toggle">&#9776;</span>
+        <a href="https://tecnonewsuy.github.io/TecnoNewsUY/index.html">
+            <img class="movil-logo" src="https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/corona.png" alt="Logo TecnoNewsUY">
+        </a>
+        <h1 class="movil-h1">YÄMÄRKÄ</h1>
+        <nav class="movil-menu">
+            <a href="https://tecnonewsuy.github.io/TecnoNewsUY/index.html">INICIO</a>
+            <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page1.html">NOTICIAS</a>
+            <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page2.html">ÚLTIMA HORA</a>
+            <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page3.html">OFERTAS</a>
+        </nav>
+    </div>
+
+    <script>
+        // Script to toggle the menu on mobile devices
+        const movilMenuToggle = document.querySelector('.movil-menu-toggle');
+        const movilMenu = document.querySelector('.movil-menu');
+
+        movilMenuToggle.addEventListener('click', () => {
+            movilMenu.classList.toggle('show-menu');
+        });
+    </script>
 </body>
 </html>
 
