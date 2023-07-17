@@ -29,6 +29,7 @@
             font-family: 'Shantell Sans', sans-serif;
             font-size: 24px;
             flex-grow: 1;
+            margin-right: 10px;
         }
 
         .logo {
@@ -37,7 +38,38 @@
             margin-right: 10px;
         }
 
-        /* Styles for mobile devices */
+        .menu {
+            display: flex;
+            justify-content: flex-start;
+            margin-top: 0;
+            margin-bottom: 0;
+            flex-grow: 1;
+            margin-right: 20%;
+        }
+
+        .menu a {
+            display: block;
+            padding: 5px 10px;
+            color: #000;
+            background-color: transparent;
+            text-align: center;
+            text-decoration: none;
+            font-size: 14px;
+            font-family: 'Slackey', cursive;
+            text-transform: uppercase;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .menu a:hover {
+            background-color: #6F273F;
+            color: #fff;
+        }
+
+        .menu a {
+            flex: 1;
+        }
+
+        /* Mobile Styles */
         @media screen and (max-width: 767px) {
             h1 {
                 display: none;
@@ -45,7 +77,6 @@
 
             .logo {
                 max-height: 30px;
-                order: 2;
             }
 
             .menu {
@@ -57,6 +88,7 @@
                 position: absolute;
                 top: 100%;
                 left: 0;
+                padding: 10px 0;
             }
 
             .menu.show {
@@ -65,11 +97,6 @@
 
             .menu a {
                 padding: 10px;
-            }
-
-            .menu a:hover {
-                background-color: #6F273F;
-                color: #fff;
             }
         }
     </style>
@@ -80,23 +107,16 @@
             <img class="logo" src="https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/corona.png" alt="Logo TecnoNewsUY">
         </a>
         <h1 class="titulo-principal">YÄMÄRKÄ</h1>
-        <div class="menu-symbol" onclick="toggleMenu()">☰</div>
-        <nav class="menu" id="menu">
+        <nav class="menu">
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/index.html">INICIO</a>
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page1.html">NOTICIAS</a>
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page2.html">ÚLTIMA HORA</a>
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page3.html">OFERTAS</a>
         </nav>
     </header>
-    
-    <script>
-        function toggleMenu() {
-            const menu = document.getElementById("menu");
-            menu.classList.toggle("show");
-        }
-    </script>
 </body>
 </html>
+
 
 
 
