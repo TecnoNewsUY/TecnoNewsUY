@@ -77,6 +77,7 @@
 
             .logo {
                 max-height: 30px;
+                order: 2;
             }
 
             .menu {
@@ -88,7 +89,6 @@
                 position: absolute;
                 top: 100%;
                 left: 0;
-                padding: 10px 0;
             }
 
             .menu.show {
@@ -107,13 +107,20 @@
             <img class="logo" src="https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/corona.png" alt="Logo TecnoNewsUY">
         </a>
         <h1 class="titulo-principal">YÄMÄRKÄ</h1>
-        <nav class="menu">
+        <nav class="menu" id="menu">
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/index.html">INICIO</a>
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page1.html">NOTICIAS</a>
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page2.html">ÚLTIMA HORA</a>
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page3.html">OFERTAS</a>
         </nav>
     </header>
+    
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById("menu");
+            menu.classList.toggle("show");
+        }
+    </script>
 </body>
 </html>
 
