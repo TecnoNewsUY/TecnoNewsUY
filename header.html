@@ -159,30 +159,14 @@
         </nav>
     </header>
 
-    <!-- Encabezado para dispositivos móviles -->
-    <header class="header-mobile">
-        <a href="https://tecnonewsuy.github.io/TecnoNewsUY/index.html">
-            <img class="logo-mobile" src="https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/corona.png" alt="Logo TecnoNewsUY">
-        </a>
-        <div class="title-mobile">YÄMÄRKÄ</div>
-        <div class="menu-icon">&#9776;</div>
-        <div class="menu-mobile">
-            <!-- El menú desplegado en dispositivos móviles -->
-            <a href="https://tecnonewsuy.github.io/TecnoNewsUY/index.html">INICIO</a>
-            <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page1.html">NOTICIAS</a>
-            <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page2.html">ÚLTIMA HORA</a>
-            <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page3.html">OFERTAS</a>
-        </div>
+    <!-- Script para mostrar/ocultar el menú en dispositivos móviles -->
+    <script>
+        const menuIcon = document.querySelector('.menu-icon');
+        const mobileMenu = document.querySelector('.menu-mobile');
 
-        <script>
-            // Script para mostrar/ocultar el menú en dispositivos móviles
-            const menuIcon = document.querySelector('.menu-icon');
-            const mobileMenu = document.querySelector('.menu-mobile');
-
-            menuIcon.addEventListener('click', function() {
-                mobileMenu.classList.toggle('active');
-            });
-        </script>
-    </header>
+        menuIcon.addEventListener('click', function() {
+            mobileMenu.classList.toggle('active');
+        });
+    </script>
 </body>
 </html>
