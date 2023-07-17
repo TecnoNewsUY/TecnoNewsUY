@@ -16,11 +16,11 @@
 
         header {
             background-color: #FFAC06;
-            padding: 5px 20px; /* Reducir el tamaño del header en dispositivos móviles */
+            padding: 10px 20px;
             color: #fff;
             text-align: center;
             display: flex;
-            justify-content: space-between; /* Colocar el símbolo del menú a la izquierda y el logo y título al final */
+            justify-content: space-between;
             align-items: center;
         }
 
@@ -28,6 +28,8 @@
             margin: 0;
             font-family: 'Shantell Sans', sans-serif;
             font-size: 24px;
+            flex-grow: 0;
+            margin-right: 10px;
         }
 
         .logo {
@@ -36,20 +38,13 @@
             margin-right: 10px;
         }
 
-        /* Estilos para el símbolo del menú en dispositivos móviles */
-        .menu-icon {
-            display: none; /* Ocultar el símbolo en dispositivos de pantalla grande */
-            font-size: 24px;
-            cursor: pointer;
-        }
-
-        /* Estilos para el menú de navegación en dispositivos móviles */
         .menu {
             display: flex;
-            flex-direction: column;
             justify-content: flex-start;
-            align-items: center;
-            margin-top: 10px;
+            margin-top: 0;
+            margin-bottom: 0;
+            flex-grow: 1;
+            margin-right: 20%;
         }
 
         .menu a {
@@ -70,51 +65,33 @@
             color: #fff;
         }
 
-        /* Estilos para el menú desplegado en dispositivos móviles */
-        .menu.active {
-            display: flex;
-            flex-direction: column;
-            margin-top: 0;
+        .menu a {
+            flex: 1;
         }
 
-        /* Estilos para la tipografía del menú desplegado en dispositivos móviles */
-        .mobile-menu {
-            display: none;
-            font-family: 'Work Sans', sans-serif;
-            font-weight: 700;
-            font-size: 18px;
-            color: #000;
-            text-transform: uppercase;
-            margin-top: 10px;
-        }
-
-        /* Estilos para la tipografía del menú desplegado en dispositivos móviles cuando está activo */
-        .menu.active .mobile-menu {
-            display: block;
-        }
-
+        /* Estilos para dispositivos móviles */
         @media screen and (max-width: 768px) {
             header {
                 flex-direction: column;
             }
 
             .menu {
-                display: none; /* Ocultar el menú en dispositivos móviles */
+                display: none;
             }
 
             .menu-icon {
-                display: block; /* Mostrar el símbolo del menú en dispositivos móviles */
+                display: block;
             }
 
             .logo {
-                margin-bottom: 10px; /* Separar el logo del título en dispositivos móviles */
+                margin-bottom: 10px;
             }
 
             h1 {
-                font-size: 20px; /* Ajustar el tamaño del título en dispositivos móviles */
+                font-size: 20px;
+                margin: 0;
             }
 
-            /* Mostrar el menú desplegable al hacer clic en el símbolo del menú */
             .menu-icon {
                 cursor: pointer;
             }
@@ -123,34 +100,28 @@
                 display: flex;
             }
 
-            /* Ocultar el menú horizontal en dispositivos móviles */
             .menu-horizontal {
                 display: none;
             }
 
-            /* Alinear los elementos del menú en dispositivos móviles */
             .menu a {
                 margin: 5px;
             }
 
-            /* Ajustar el logo y el título en dispositivos móviles */
             .logo {
                 margin-right: 5px;
             }
 
-            /* Alinear el título en el centro del header */
             .header-content {
                 display: flex;
                 align-items: center;
                 justify-content: center;
             }
 
-            /* Alinear el logo y título al final del header */
             .header-content {
                 justify-content: flex-end;
             }
 
-            /* Ajustar el logo a la izquierda del título */
             .logo {
                 margin-right: 5px;
             }
@@ -196,5 +167,6 @@
     </header>
 </body>
 </html>
+
 
 
