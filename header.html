@@ -43,6 +43,7 @@
             display: none; /* Ocultar el símbolo en dispositivos de pantalla grande */
             font-size: 24px;
             cursor: pointer;
+            margin-right: 10px; /* Separación entre el símbolo y el logo */
         }
 
         /* Estilos para el menú de navegación en dispositivos móviles */
@@ -97,19 +98,11 @@
 
         @media screen and (max-width: 768px) {
             header {
-                flex-direction: column;
-            }
-
-            .menu {
-                display: none; /* Ocultar el menú en dispositivos móviles */
-            }
-
-            .menu-icon {
-                display: block; /* Mostrar el símbolo del menú en dispositivos móviles */
+                padding: 5px 10px; /* Reducir el tamaño del header */
             }
 
             .logo {
-                margin-bottom: 10px; /* Separar el logo del título en dispositivos móviles */
+                margin-bottom: 0; /* Eliminar la separación entre el logo y el título */
             }
 
             h1 {
@@ -118,7 +111,7 @@
 
             /* Mostrar el menú desplegable al hacer clic en el símbolo del menú */
             .menu-icon {
-                cursor: pointer;
+                display: block; /* Mostrar el símbolo del menú en dispositivos móviles */
             }
 
             .menu-icon.active ~ .menu {
@@ -129,10 +122,15 @@
             .menu-horizontal {
                 display: none;
             }
+            
+            /* Alinear el símbolo del menú a la izquierda del header */
+            .menu-icon {
+                order: -1;
+            }
 
-            /* Alinear los elementos del menú en dispositivos móviles */
-            .menu a {
-                margin: 5px;
+            /* Alinear el símbolo del menú con el logo y el título */
+            .logo {
+                margin-right: 5px;
             }
         }
     </style>
@@ -176,6 +174,5 @@
     </header>
 </body>
 </html>
-
 
 
