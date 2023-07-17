@@ -60,7 +60,6 @@
                 color: #fff;
                 text-align: center;
                 display: flex;
-                justify-content: space-between;
                 align-items: center;
             }
 
@@ -68,13 +67,12 @@
                 margin: 0;
                 font-family: 'Shantell Sans', sans-serif;
                 font-size: 24px;
-                flex-grow: 1;
-                margin-right: 10px;
+                margin-left: 10px;
             }
 
             .menu {
                 flex-grow: 2;
-                margin-left: 20px; /* Agregamos un margen entre el título y el menú en PC */
+                margin-left: 20px;
             }
 
             .movil-header {
@@ -94,27 +92,27 @@
                 color: #fff;
                 text-align: center;
                 display: flex;
-                justify-content: space-between;
                 align-items: center;
+            }
+
+            .movil-menu-toggle {
+                font-size: 24px;
+                cursor: pointer;
+                flex-grow: 1; /* El símbolo del menú ocupará el espacio restante */
+            }
+
+            .movil-logo {
+                max-height: 40px;
+                max-width: 100%;
+                flex-grow: 2; /* El logo ocupará el espacio restante en el centro */
             }
 
             .movil-h1 {
                 margin: 0;
                 font-family: 'Shantell Sans', sans-serif;
                 font-size: 18px;
-                flex-grow: 1;
+                flex-grow: 1; /* El título ocupará el espacio restante a la derecha */
                 margin-right: 10px;
-            }
-
-            .movil-logo {
-                max-height: 40px;
-                max-width: 100%;
-                margin-right: 10px;
-            }
-
-            .movil-menu-toggle {
-                font-size: 24px;
-                cursor: pointer;
             }
 
             .movil-menu {
@@ -162,11 +160,6 @@
             .movil-header {
                 position: relative;
             }
-
-            .movil-logo {
-                flex-grow: 1; /* El logo ocupará el espacio restante en móviles */
-                margin-left: 20px; /* Agregamos un margen entre el logo y el título en móviles */
-            }
         }
     </style>
     <script>
@@ -212,3 +205,4 @@
     </header>
 </body>
 </html>
+
