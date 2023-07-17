@@ -6,7 +6,7 @@
     <title>TecnoNewsUY</title>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Shantell+Sans&family=Slackey&family=Work+Sans:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* Estilos para PC */
+        /* Estilos compartidos para ambos dispositivos */
         body {
             font-family: 'Roboto', sans-serif;
             margin: 0;
@@ -15,7 +15,8 @@
             line-height: 1.6;
         }
 
-        header {
+        /* Estilos específicos para PC */
+        header.pc-header {
             background-color: #FFAC06;
             padding: 10px 20px;
             color: #fff;
@@ -25,13 +26,13 @@
             align-items: center;
         }
 
-        .logo {
+        .pc-logo {
             max-height: 50px;
             max-width: 100%;
             margin-right: 10px;
         }
 
-        .menu {
+        .pc-menu {
             display: flex;
             justify-content: flex-start;
             margin-top: 0;
@@ -40,7 +41,7 @@
             margin-right: 20%;
         }
 
-        .menu a {
+        .pc-menu a {
             display: block;
             padding: 5px 10px;
             color: #000;
@@ -53,26 +54,22 @@
             transition: background-color 0.3s, color 0.3s;
         }
 
-        .menu a:hover {
+        .pc-menu a:hover {
             background-color: #6F273F;
             color: #fff;
         }
 
-        .menu a {
+        .pc-menu a {
             flex: 1;
         }
 
-        /* Estilos para dispositivos móviles */
-        @media (max-width: 600px) {
-            body {
-                font-family: 'Roboto', sans-serif;
-                margin: 0;
-                padding: 0;
-                font-size: 16px;
-                line-height: 1.6;
+        /* Estilos específicos para dispositivos móviles */
+        @media only screen and (max-width: 600px) {
+            header.pc-header {
+                display: none;
             }
 
-            .movil-header {
+            header.movil-header {
                 background-color: #FFAC06;
                 padding: 10px;
                 text-align: center;
@@ -113,22 +110,17 @@
             .movil-h1 {
                 font-size: 18px;
             }
-
-            /* Agregar estilos para ocultar elementos de PC en dispositivos móviles */
-            header .logo, header .menu {
-                display: none;
-            }
         }
     </style>
 </head>
 <body>
     <!-- Header para PC -->
-    <header>
+    <header class="pc-header">
         <a href="https://tecnonewsuy.github.io/TecnoNewsUY/index.html">
-            <img class="logo" src="https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/corona.png" alt="Logo TecnoNewsUY">
+            <img class="pc-logo" src="https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/corona.png" alt="Logo TecnoNewsUY">
         </a>
         <h1 class="titulo-principal">YÄMÄRKÄ</h1>
-        <nav class="menu">
+        <nav class="pc-menu">
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/index.html">INICIO</a>
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page1.html">NOTICIAS</a>
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page2.html">ÚLTIMA HORA</a>
@@ -137,7 +129,7 @@
     </header>
 
     <!-- Header para dispositivos móviles -->
-    <div class="movil-header">
+    <header class="movil-header">
         <!-- Símbolo "☰" para abrir el menú -->
         <span class="movil-menu-toggle">&#9776;</span>
         <a href="https://tecnonewsuy.github.io/TecnoNewsUY/index.html">
@@ -150,7 +142,7 @@
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page2.html">ÚLTIMA HORA</a>
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page3.html">OFERTAS</a>
         </nav>
-    </div>
+    </header>
 
     <script>
         // Script to toggle the menu on mobile devices
