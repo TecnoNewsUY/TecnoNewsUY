@@ -15,7 +15,7 @@
             line-height: 1.6;
         }
 
-        .pc-header {
+        header {
             background-color: #FFAC06;
             padding: 10px 20px;
             color: #fff;
@@ -25,7 +25,7 @@
             align-items: center;
         }
 
-        .pc-header h1 {
+        h1 {
             margin: 0;
             font-family: 'Shantell Sans', sans-serif;
             font-size: 24px;
@@ -33,13 +33,13 @@
             margin-right: 10px;
         }
 
-        .pc-header .logo {
+        .logo {
             max-height: 50px;
             max-width: 100%;
             margin-right: 10px;
         }
 
-        .pc-menu {
+        .menu {
             display: flex;
             justify-content: flex-start;
             margin-top: 0;
@@ -48,7 +48,7 @@
             margin-right: 20%;
         }
 
-        .pc-menu a {
+        .menu a {
             display: block;
             padding: 5px 10px;
             color: #000;
@@ -61,19 +61,18 @@
             transition: background-color 0.3s, color 0.3s;
         }
 
-        .pc-menu a:hover {
+        .menu a:hover {
             background-color: #6F273F;
             color: #fff;
         }
 
-        .pc-menu a {
+        .menu a {
             flex: 1;
         }
 
         /* Estilos para dispositivos móviles */
         @media only screen and (max-width: 600px) {
-            /* Ocultar el header de PC en dispositivos móviles */
-            .pc-header {
+            header {
                 display: none;
             }
 
@@ -130,12 +129,12 @@
 </head>
 <body>
     <!-- Header para PC -->
-    <header class="pc-header">
+    <header>
         <a href="https://tecnonewsuy.github.io/TecnoNewsUY/index.html">
             <img class="logo" src="https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/corona.png" alt="Logo TecnoNewsUY">
         </a>
         <h1 class="titulo-principal">YÄMÄRKÄ</h1>
-        <nav class="pc-menu">
+        <nav class="menu">
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/index.html">INICIO</a>
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page1.html">NOTICIAS</a>
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page2.html">ÚLTIMA HORA</a>
@@ -158,15 +157,5 @@
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page3.html">OFERTAS</a>
         </nav>
     </header>
-
-    <script>
-        // Script to toggle the menu on mobile devices
-        const movilMenuToggle = document.querySelector('.movil-menu-toggle');
-        const movilMenu = document.querySelector('.movil-menu');
-
-        movilMenuToggle.addEventListener('click', () => {
-            movilMenu.classList.toggle('show-menu');
-        });
-    </script>
 </body>
 </html>
