@@ -63,12 +63,20 @@
                 align-items: center;
             }
 
+            .logo-title-container {
+                display: flex;
+                align-items: center;
+            }
+
+            .logo {
+                margin-right: 10px;
+            }
+
             h1 {
                 margin: 0;
                 font-family: 'Shantell Sans', sans-serif;
                 font-size: 24px;
                 margin-right: 10px;
-                flex-grow: 1; /* El título ocupará el espacio restante */
             }
 
             .menu {
@@ -92,6 +100,7 @@
                 color: #fff;
                 text-align: center;
                 display: flex;
+                justify-content: space-between;
                 align-items: center;
             }
 
@@ -103,7 +112,6 @@
             .movil-logo {
                 max-height: 40px;
                 max-width: 100%;
-                flex-grow: 2; /* El logo ocupará el espacio restante en el centro */
             }
 
             .movil-h1 {
@@ -175,10 +183,12 @@
 <body>
     <!-- Header para PC -->
     <header>
-        <a href="https://tecnonewsuy.github.io/TecnoNewsUY/index.html">
-            <img class="logo" src="https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/corona.png" alt="Logo TecnoNewsUY">
-        </a>
-        <h1 class="titulo-principal">YÄMÄRKÄ</h1>
+        <div class="logo-title-container">
+            <a href="https://tecnonewsuy.github.io/TecnoNewsUY/index.html">
+                <img class="logo" src="https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/corona.png" alt="Logo TecnoNewsUY">
+            </a>
+            <h1 class="titulo-principal">YÄMÄRKÄ</h1>
+        </div>
         <nav class="menu">
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/index.html">INICIO</a>
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page1.html">NOTICIAS</a>
