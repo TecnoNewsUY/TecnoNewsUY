@@ -42,10 +42,7 @@
         .menu {
             display: flex;
             justify-content: flex-start;
-            margin-top: 0;
-            margin-bottom: 0;
-            flex-grow: 1;
-            margin-right: 20%;
+            align-items: center;
         }
 
         .menu a {
@@ -66,30 +63,41 @@
             color: #fff;
         }
 
-        .menu a {
-            flex: 1;
-        }
-
         /* Estilos para dispositivos móviles */
         @media (max-width: 600px) {
             header {
-                flex-direction: column;
-                align-items: center;
+                background-color: #FFAC06;
+                padding: 10px;
+                position: relative;
+            }
+
+            h1 {
+                font-size: 18px;
             }
 
             .logo {
-                margin: 10px 0;
+                position: absolute;
+                right: 10px;
+            }
+
+            .menu-toggle {
+                position: absolute;
+                left: 10px;
+                top: 50%;
+                transform: translateY(-50%);
+                font-size: 24px;
+                cursor: pointer;
             }
 
             .menu {
                 display: none;
                 flex-direction: column;
                 align-items: center;
-                width: 100%;
-                background-color: #FFAC06;
                 position: absolute;
                 top: 100%;
                 left: 0;
+                width: 100%;
+                background-color: #FFAC06;
                 z-index: 1;
             }
 
@@ -100,23 +108,16 @@
             .menu.show-menu {
                 display: flex;
             }
-
-            .menu-toggle {
-                position: absolute;
-                left: 5px;
-                top: 50%;
-                transform: translateY(-50%);
-                font-size: 24px;
-            }
         }
     </style>
 </head>
 <body>
     <header>
+        <span class="menu-toggle">&#9776;</span>
+        <h1 class="titulo-principal">YÄMÄRKÄ</h1>
         <a href="https://tecnonewsuy.github.io/TecnoNewsUY/index.html">
             <img class="logo" src="https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/corona.png" alt="Logo TecnoNewsUY">
         </a>
-        <h1 class="titulo-principal">YÄMÄRKÄ</h1>
         <nav class="menu">
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/index.html">INICIO</a>
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page1.html">NOTICIAS</a>
@@ -135,3 +136,4 @@
     </script>
 </body>
 </html>
+
