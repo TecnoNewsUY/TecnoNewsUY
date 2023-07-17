@@ -6,6 +6,7 @@
     <title>TecnoNewsUY</title>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Shantell+Sans&family=Slackey&family=Work+Sans:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        /* Estilos para PC */
         body {
             font-family: 'Roboto', sans-serif;
             margin: 0;
@@ -14,8 +15,7 @@
             line-height: 1.6;
         }
 
-        /* Estilos para dispositivos de pantalla grande (PC) */
-        .header-pc {
+        header {
             background-color: #FFAC06;
             padding: 10px 20px;
             color: #fff;
@@ -25,19 +25,21 @@
             align-items: center;
         }
 
-        .title-pc {
+        h1 {
             margin: 0;
             font-family: 'Shantell Sans', sans-serif;
             font-size: 24px;
+            flex-grow: 0;
+            margin-right: 10px;
         }
 
-        .logo-pc {
+        .logo {
             max-height: 50px;
             max-width: 100%;
             margin-right: 10px;
         }
 
-        .menu-pc {
+        .menu {
             display: flex;
             justify-content: flex-start;
             margin-top: 0;
@@ -46,7 +48,7 @@
             margin-right: 20%;
         }
 
-        .menu-pc a {
+        .menu a {
             display: block;
             padding: 5px 10px;
             color: #000;
@@ -59,137 +61,77 @@
             transition: background-color 0.3s, color 0.3s;
         }
 
-        .menu-pc a:hover {
+        .menu a:hover {
             background-color: #6F273F;
             color: #fff;
         }
 
-        .menu-pc a {
+        .menu a {
             flex: 1;
         }
 
         /* Estilos para dispositivos móviles */
-        @media screen and (max-width: 768px) {
-            .header-mobile {
-                background-color: #FFAC06;
-                padding: 5px 20px; /* Reducir el tamaño del header en dispositivos móviles */
-                color: #fff;
-                text-align: center;
-                display: flex;
-                justify-content: space-between; /* Colocar el símbolo del menú a la izquierda y el logo y título al final */
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
                 align-items: center;
             }
 
-            .title-mobile {
-                margin: 0;
-                font-family: 'Shantell Sans', sans-serif;
-                font-size: 24px;
+            .logo {
+                margin: 10px 0;
             }
 
-            .logo-mobile {
-                max-height: 50px;
-                max-width: 100%;
-                margin-right: 10px;
-            }
-
-            /* Estilos para el símbolo del menú en dispositivos móviles */
-            .menu-icon {
-                font-size: 24px;
-                cursor: pointer;
-            }
-
-            /* Estilos para el menú de navegación en dispositivos móviles */
-            .menu-mobile {
+            .menu {
                 display: none;
                 flex-direction: column;
-                justify-content: flex-start;
                 align-items: center;
-                margin-top: 10px;
+                width: 100%;
+                background-color: #FFAC06;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                z-index: 1;
             }
 
-            .menu-mobile a {
-                display: block;
-                padding: 5px 10px;
-                color: #000;
-                background-color: transparent;
-                text-align: center;
-                text-decoration: none;
-                font-size: 14px;
-                font-family: 'Slackey', cursive;
-                text-transform: uppercase;
-                transition: background-color 0.3s, color 0.3s;
+            .menu a {
+                margin: 5px 0;
             }
 
-            .menu-mobile a:hover {
-                background-color: #6F273F;
-                color: #fff;
-            }
-
-            /* Estilos para el menú desplegado en dispositivos móviles */
-            .menu-mobile.active {
+            .menu.show-menu {
                 display: flex;
             }
 
-            /* Estilos para la tipografía del menú desplegado en dispositivos móviles */
-            .mobile-menu-text {
-                font-family: 'Work Sans', sans-serif;
-                font-weight: 700;
-                font-size: 18px;
-                color: #000;
-                text-transform: uppercase;
-                margin-top: 10px;
-            }
-
-            /* Ocultar el menú de PC en dispositivos móviles */
-            .menu-pc {
-                display: none;
+            .menu-toggle {
+                position: absolute;
+                left: 5px;
+                top: 50%;
+                transform: translateY(-50%);
+                font-size: 24px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Encabezado para PC -->
-    <header class="header-pc">
+    <header>
         <a href="https://tecnonewsuy.github.io/TecnoNewsUY/index.html">
-            <img class="logo-pc" src="https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/corona.png" alt="Logo TecnoNewsUY">
+            <img class="logo" src="https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/corona.png" alt="Logo TecnoNewsUY">
         </a>
-        <h1 class="title-pc">YÄMÄRKÄ</h1>
-        <nav class="menu-pc">
+        <h1 class="titulo-principal">YÄMÄRKÄ</h1>
+        <nav class="menu">
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/index.html">INICIO</a>
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page1.html">NOTICIAS</a>
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page2.html">ÚLTIMA HORA</a>
             <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page3.html">OFERTAS</a>
         </nav>
     </header>
-
-    <!-- Encabezado para dispositivos móviles -->
-    <header class="header-mobile">
-        <div class="logo-mobile">
-            <a href="https://tecnonewsuy.github.io/TecnoNewsUY/index.html">
-                <img src="https://raw.githubusercontent.com/TecnoNewsUY/TecnoNewsUY/master/corona.png" alt="Logo TecnoNewsUY">
-            </a>
-        </div>
-        <div class="title-mobile">YÄMÄRKÄ</div>
-        <div class="menu-icon">&#9776;</div> <!-- Símbolo del menú para dispositivos móviles -->
-        <nav class="menu-mobile">
-            <a href="https://tecnonewsuy.github.io/TecnoNewsUY/index.html">INICIO</a>
-            <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page1.html">NOTICIAS</a>
-            <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page2.html">ÚLTIMA HORA</a>
-            <a href="https://tecnonewsuy.github.io/TecnoNewsUY/page3.html">OFERTAS</a>
-        </nav>
-    </header>
-
-    <!-- Script para mostrar/ocultar el menú en dispositivos móviles -->
     <script>
-        const menuIcon = document.querySelector('.menu-icon');
-        const mobileMenu = document.querySelector('.menu-mobile');
+        // Script to toggle the menu on mobile devices
+        const menuToggle = document.querySelector('.menu-toggle');
+        const menu = document.querySelector('.menu');
 
-        menuIcon.addEventListener('click', function() {
-            mobileMenu.classList.toggle('active');
+        menuToggle.addEventListener('click', () => {
+            menu.classList.toggle('show-menu');
         });
     </script>
 </body>
 </html>
-
-
-
