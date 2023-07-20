@@ -1,1 +1,32 @@
-[{"titulo": "Alerta de seguridad en línea", "categoria": "2", "contenido": "Se ha detectado un nuevo malware que afecta a millones de dispositivos en todo el mundo. Actualiza tus sistemas de seguridad de inmediato.", "imagen": "https://via.placeholder.com/400"},{"titulo": "Terremoto en la costa", "categoria": "2", "contenido": "Un terremoto de magnitud 7.5 sacudió la costa, generando alerta de tsunami. Se han reportado daños estructurales en edificios.", "imagen": "https://via.placeholder.com/400"}]
+[
+  {
+    "titulo": "Estrellita dónde estás",
+    "contenido": "Estrellita ¿dónde estás?\nMe pregunto qué serás.",
+    "categoria": "2",
+    "imagen": "https://example.com/imagen6.jpg"
+  },
+  {
+    "titulo": "Los pollitos dicen",
+    "contenido": "Los pollitos dicen\npio, pio, pio\ncuando tienen hambre\ncuando tienen frío.",
+    "categoria": "2",
+    "imagen": "https://example.com/imagen7.jpg"
+  },
+  {
+    "titulo": "A mi burro",
+    "contenido": "A mi burro, a mi burro\ncada mañana le doy su ración.",
+    "categoria": "2",
+    "imagen": "https://example.com/imagen8.jpg"
+  },
+  {
+    "titulo": "Tengo una muñeca",
+    "contenido": "Tengo una muñeca\ndespeinada y sin trenza,\nla saqué a paseo\ny se me constipó.",
+    "categoria": "2",
+    "imagen": "https://example.com/imagen9.jpg"
+  },
+  {
+    "titulo": "Que llueva, que llueva",
+    "contenido": "Que llueva, que llueva,\nla vieja está en la cueva,\nlos pajaritos cantan,\nla vieja se levanta.",
+    "categoria": "2",
+    "imagen": "https://example.com/imagen10.jpg"
+  }
+]
