@@ -1,32 +1,12 @@
-[
-  {
-    "titulo": "La granja de Pepito",
-    "contenido": "En la granja de Pepito\nhabía muchos animales,\nel gallo, la gallina,\nel pato y el cordero.",
+[{
+    "titulo": "El misterio del bosque encantado",
+    "contenido": "Había una vez un bosque encantado donde los árboles susurraban secretos y las flores bailaban al son del viento. Pero un día, la luz del sol desapareció y el bosque quedó sumido en la oscuridad. Los animales se reunieron para descubrir la causa y encontraron a la Luna triste y apagada. Decidieron ayudarla y juntos buscaron la estrella más brillante. Al encontrarla, la llevaron a la Luna y su luz volvió a iluminar el bosque. Desde entonces, cada noche, los animales miran al cielo y agradecen a la estrella su luz que los guía.",
     "categoria": "1",
-    "imagen": "https://example.com/imagen1.jpg"
-  },
-  {
-    "titulo": "El sapo Pepe",
-    "contenido": "Soy el sapo Pepe, Pepe, Pepe,\nme gusta saltar, brincar, brincar.",
+    "imagen": "https://cnf.nyc3.cdn.digitaloceanspaces.com/thumbs/normal/2y8d82SR2ltLe8qdwVUZgWtXCND9lHnMzITK9Cq9puIrJVRRQd2lLEPmOUTm0uIL.png"
+},
+{
+    "titulo": "El descubrimiento en la antigua pirámide",
+    "contenido": "Un grupo de arqueólogos descubrió una antigua pirámide escondida en la selva. Al entrar, se maravillaron con sus tesoros y jeroglíficos en las paredes. En el corazón de la pirámide encontraron un enigmático sarcófago. Con cuidado, lo abrieron y una luz brillante iluminó la sala. De repente, la figura de un faraón apareció frente a ellos. El faraón les contó la historia de su civilización y su búsqueda de la sabiduría. Agradecidos, los arqueólogos prometieron preservar el legado y llevar el conocimiento a todo el mundo. El secreto de la pirámide estaba a salvo, pero su historia viviría para siempre.",
     "categoria": "1",
-    "imagen": "https://example.com/imagen2.jpg"
-  },
-  {
-    "titulo": "Pin Pon",
-    "contenido": "Pin Pon es un muñeco\nde cartón\nde paja y de algodón.",
-    "categoria": "1",
-    "imagen": "https://example.com/imagen3.jpg"
-  },
-  {
-    "titulo": "Susanita tiene un ratón",
-    "contenido": "Susanita tiene un ratón,\nratón, ratón,\nSusanita tiene un ratón\nque come chocolate y turrón.",
-    "categoria": "1",
-    "imagen": "https://example.com/imagen4.jpg"
-  },
-  {
-    "titulo": "Arroz con leche",
-    "contenido": "Arroz con leche,\nme quiero casar\ncon una señorita\nde San Nicolás.",
-    "categoria": "1",
-    "imagen": "https://example.com/imagen5.jpg"
-  }
-]
+    "imagen": "https://cnf.nyc3.cdn.digitaloceanspaces.com/thumbs/normal/2y8d82SR2ltLe8qdwVUZgWtXCND9lHnMzITK9Cq9puIrJVRRQd2lLEPmOUTm0uIL.png"
+}]
