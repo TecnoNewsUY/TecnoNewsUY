@@ -1,12 +1,6 @@
-[{
-    "titulo": "Gran descuento en la tienda de juguetes",
-    "contenido": "¡Gran noticia para los más pequeños! La tienda de juguetes 'Jugolandia' ofrece un descuento del 50% en todos sus productos. Desde muñecas y carros hasta juegos de construcción y peluches, encontrarás todo lo que los niños desean. Aprovecha esta increíble oferta y haz sonreír a tus hijos. ¡No esperes más y corre a 'Jugolandia'! La promoción estará vigente solo por tiempo limitado, así que no dejes pasar esta oportunidad única de adquirir los mejores juguetes al mejor precio.",
-    "categoria": "3",
-    "imagen": "https://cnf.nyc3.cdn.digitaloceanspaces.com/thumbs/normal/2y8d82SR2ltLe8qdwVUZgWtXCND9lHnMzITK9Cq9puIrJVRRQd2lLEPmOUTm0uIL.png"
-},
 {
-    "titulo": "¡Oferta imperdible! Viaje todo incluido a las Bahamas",
-    "contenido": "¿Sueñas con unas vacaciones inolvidables en el paraíso? ¡Esta oferta es para ti! Agencia de viajes 'Experiencias Únicas' te ofrece un paquete todo incluido a las hermosas Bahamas. Relájate en las playas de arena blanca, nada en aguas cristalinas y disfruta de deliciosas comidas y bebidas sin preocupaciones. El paquete también incluye actividades acuáticas, excursiones y alojamiento en los mejores resorts. ¡No dejes pasar esta oportunidad y reserva tu viaje de ensueño ahora! Las plazas son limitadas y la oferta estará vigente solo por tiempo limitado.",
+    "titulo": "Título del artículo",
+    "contenido": "Contenido del artículo",
     "categoria": "3",
     "imagen": "https://cnf.nyc3.cdn.digitaloceanspaces.com/thumbs/normal/2y8d82SR2ltLe8qdwVUZgWtXCND9lHnMzITK9Cq9puIrJVRRQd2lLEPmOUTm0uIL.png"
-}]
+}
