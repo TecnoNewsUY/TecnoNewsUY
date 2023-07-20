@@ -1,32 +1,12 @@
-[
-  {
-    "titulo": "Estrellita dónde estás",
-    "contenido": "Estrellita ¿dónde estás?\nMe pregunto qué serás.",
+[{
+    "titulo": "Extra, extra: Increíble hallazgo en el océano",
+    "contenido": "¡Increíble hallazgo en el océano! Un equipo de científicos ha encontrado una nueva especie de criatura marina en las profundidades del mar. Con apariencia de dragón, esta criatura es asombrosa. Los científicos la han llamado 'Dragón Marino' y su descubrimiento podría revolucionar nuestra comprensión de la vida en el océano. Esta criatura misteriosa es capaz de emitir luz brillante y tiene un sistema de defensa único. El equipo continuará estudiando al 'Dragón Marino' para desvelar sus secretos. Estén atentos a más noticias sobre este sorprendente hallazgo.",
     "categoria": "2",
-    "imagen": "https://example.com/imagen6.jpg"
-  },
-  {
-    "titulo": "Los pollitos dicen",
-    "contenido": "Los pollitos dicen\npio, pio, pio\ncuando tienen hambre\ncuando tienen frío.",
+    "imagen": "https://cnf.nyc3.cdn.digitaloceanspaces.com/thumbs/normal/2y8d82SR2ltLe8qdwVUZgWtXCND9lHnMzITK9Cq9puIrJVRRQd2lLEPmOUTm0uIL.png"
+},
+{
+    "titulo": "¡Alerta! Tormenta solar se dirige hacia la Tierra",
+    "contenido": "¡Alerta! Se ha detectado una potente tormenta solar que se dirige hacia la Tierra. Los científicos advierten sobre posibles interrupciones en las comunicaciones y en los sistemas de navegación. La tormenta solar podría causar hermosas auroras boreales, pero también podría afectar las redes eléctricas y los satélites en órbita. Se recomienda a la población estar preparada para posibles cortes de energía y tomar precauciones en los vuelos espaciales. Los expertos están monitoreando la situación de cerca y brindarán actualizaciones periódicas. Manténganse informados y sigan las recomendaciones de las autoridades.",
     "categoria": "2",
-    "imagen": "https://example.com/imagen7.jpg"
-  },
-  {
-    "titulo": "A mi burro",
-    "contenido": "A mi burro, a mi burro\ncada mañana le doy su ración.",
-    "categoria": "2",
-    "imagen": "https://example.com/imagen8.jpg"
-  },
-  {
-    "titulo": "Tengo una muñeca",
-    "contenido": "Tengo una muñeca\ndespeinada y sin trenza,\nla saqué a paseo\ny se me constipó.",
-    "categoria": "2",
-    "imagen": "https://example.com/imagen9.jpg"
-  },
-  {
-    "titulo": "Que llueva, que llueva",
-    "contenido": "Que llueva, que llueva,\nla vieja está en la cueva,\nlos pajaritos cantan,\nla vieja se levanta.",
-    "categoria": "2",
-    "imagen": "https://example.com/imagen10.jpg"
-  }
-]
+    "imagen": "https://cnf.nyc3.cdn.digitaloceanspaces.com/thumbs/normal/2y8d82SR2ltLe8qdwVUZgWtXCND9lHnMzITK9Cq9puIrJVRRQd2lLEPmOUTm0uIL.png"
+}]
