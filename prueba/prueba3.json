@@ -1,32 +1,12 @@
-[
-  {
-    "titulo": "Cucú, cantaba la rana",
-    "contenido": "Cucú, cucú,\ncantaba la rana,\nCucú, cucú,\ndebajo del agua.",
+[{
+    "titulo": "Gran descuento en la tienda de juguetes",
+    "contenido": "¡Gran noticia para los más pequeños! La tienda de juguetes 'Jugolandia' ofrece un descuento del 50% en todos sus productos. Desde muñecas y carros hasta juegos de construcción y peluches, encontrarás todo lo que los niños desean. Aprovecha esta increíble oferta y haz sonreír a tus hijos. ¡No esperes más y corre a 'Jugolandia'! La promoción estará vigente solo por tiempo limitado, así que no dejes pasar esta oportunidad única de adquirir los mejores juguetes al mejor precio.",
     "categoria": "3",
-    "imagen": "https://example.com/imagen11.jpg"
-  },
-  {
-    "titulo": "Al corro de la patata",
-    "contenido": "Al corro de la patata,\ncomeremos ensalada,\nuna lechuga,\nque se yo qué sé.",
+    "imagen": "https://cnf.nyc3.cdn.digitaloceanspaces.com/thumbs/normal/2y8d82SR2ltLe8qdwVUZgWtXCND9lHnMzITK9Cq9puIrJVRRQd2lLEPmOUTm0uIL.png"
+},
+{
+    "titulo": "¡Oferta imperdible! Viaje todo incluido a las Bahamas",
+    "contenido": "¿Sueñas con unas vacaciones inolvidables en el paraíso? ¡Esta oferta es para ti! Agencia de viajes 'Experiencias Únicas' te ofrece un paquete todo incluido a las hermosas Bahamas. Relájate en las playas de arena blanca, nada en aguas cristalinas y disfruta de deliciosas comidas y bebidas sin preocupaciones. El paquete también incluye actividades acuáticas, excursiones y alojamiento en los mejores resorts. ¡No dejes pasar esta oportunidad y reserva tu viaje de ensueño ahora! Las plazas son limitadas y la oferta estará vigente solo por tiempo limitado.",
     "categoria": "3",
-    "imagen": "https://example.com/imagen12.jpg"
-  },
-  {
-    "titulo": "La vaca Lola",
-    "contenido": "La vaca Lola,\nLa vaca Lola,\ntiene cabeza\ny tiene cola.",
-    "categoria": "3",
-    "imagen": "https://example.com/imagen13.jpg"
-  },
-  {
-    "titulo": "El auto nuevo",
-    "contenido": "Mi auto nuevo es elegante,\nmuy bonito y reluciente.",
-    "categoria": "3",
-    "imagen": "https://example.com/imagen14.jpg"
-  },
-  {
-    "titulo": "Los deditos",
-    "contenido": "Los deditos se divierten,\nvamos a jugar y a aprender.",
-    "categoria": "3",
-    "imagen": "https://example.com/imagen15.jpg"
-  }
-]
+    "imagen": "https://cnf.nyc3.cdn.digitaloceanspaces.com/thumbs/normal/2y8d82SR2ltLe8qdwVUZgWtXCND9lHnMzITK9Cq9puIrJVRRQd2lLEPmOUTm0uIL.png"
+}]
