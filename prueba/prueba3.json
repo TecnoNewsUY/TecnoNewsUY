@@ -1,1 +1,32 @@
-[{"titulo": "Gran venta de verano", "categoria": "3", "contenido": "¡La gran venta de verano ha comenzado! Descuentos de hasta un 50% en ropa, electrónicos y más. No te lo pierdas.", "imagen": "https://via.placeholder.com/400"},{"titulo": "Oferta especial del día", "categoria": "3", "contenido": "Hoy tenemos una oferta especial del día. Ahorra un 40% en todos los productos de la tienda. ¡Compra ahora!", "imagen": "https://via.placeholder.com/400"}]
+[
+  {
+    "titulo": "Cucú, cantaba la rana",
+    "contenido": "Cucú, cucú,\ncantaba la rana,\nCucú, cucú,\ndebajo del agua.",
+    "categoria": "3",
+    "imagen": "https://example.com/imagen11.jpg"
+  },
+  {
+    "titulo": "Al corro de la patata",
+    "contenido": "Al corro de la patata,\ncomeremos ensalada,\nuna lechuga,\nque se yo qué sé.",
+    "categoria": "3",
+    "imagen": "https://example.com/imagen12.jpg"
+  },
+  {
+    "titulo": "La vaca Lola",
+    "contenido": "La vaca Lola,\nLa vaca Lola,\ntiene cabeza\ny tiene cola.",
+    "categoria": "3",
+    "imagen": "https://example.com/imagen13.jpg"
+  },
+  {
+    "titulo": "El auto nuevo",
+    "contenido": "Mi auto nuevo es elegante,\nmuy bonito y reluciente.",
+    "categoria": "3",
+    "imagen": "https://example.com/imagen14.jpg"
+  },
+  {
+    "titulo": "Los deditos",
+    "contenido": "Los deditos se divierten,\nvamos a jugar y a aprender.",
+    "categoria": "3",
+    "imagen": "https://example.com/imagen15.jpg"
+  }
+]
