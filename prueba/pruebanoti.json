@@ -1,1 +1,32 @@
-[{"titulo": "Descubrimiento en el espacio", "categoria": "1", "contenido": "Los científicos anunciaron el descubrimiento de un nuevo sistema estelar con planetas potencialmente habitables. ¡Podría haber vida extraterrestre!", "imagen": "https://via.placeholder.com/400"},{"titulo": "Nuevo tratamiento médico", "categoria": "1", "contenido": "Se ha desarrollado un tratamiento médico revolucionario que promete curar enfermedades crónicas sin efectos secundarios. ¡Es un avance médico sin precedentes!", "imagen": "https://via.placeholder.com/400"}]
+[
+  {
+    "titulo": "La granja de Pepito",
+    "contenido": "En la granja de Pepito\nhabía muchos animales,\nel gallo, la gallina,\nel pato y el cordero.",
+    "categoria": "1",
+    "imagen": "https://example.com/imagen1.jpg"
+  },
+  {
+    "titulo": "El sapo Pepe",
+    "contenido": "Soy el sapo Pepe, Pepe, Pepe,\nme gusta saltar, brincar, brincar.",
+    "categoria": "1",
+    "imagen": "https://example.com/imagen2.jpg"
+  },
+  {
+    "titulo": "Pin Pon",
+    "contenido": "Pin Pon es un muñeco\nde cartón\nde paja y de algodón.",
+    "categoria": "1",
+    "imagen": "https://example.com/imagen3.jpg"
+  },
+  {
+    "titulo": "Susanita tiene un ratón",
+    "contenido": "Susanita tiene un ratón,\nratón, ratón,\nSusanita tiene un ratón\nque come chocolate y turrón.",
+    "categoria": "1",
+    "imagen": "https://example.com/imagen4.jpg"
+  },
+  {
+    "titulo": "Arroz con leche",
+    "contenido": "Arroz con leche,\nme quiero casar\ncon una señorita\nde San Nicolás.",
+    "categoria": "1",
+    "imagen": "https://example.com/imagen5.jpg"
+  }
+]
