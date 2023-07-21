@@ -1,6 +1,14 @@
-{
-    "titulo": "La aventura de Barby en el mundo animado",
-    "contenido": "Un día, mientras Barby veía su programa de dibujos animados favorito, algo mágico ocurrió. La pantalla de su televisor se volvió portal, y sin pensarlo, Barby fue succionada al mundo animado.\n\nAllí, se encontró con sus personajes animados preferidos y se embarcó en una emocionante aventura junto a ellos. Juntos, resolvieron acertijos, lucharon contra villanos y exploraron mundos sorprendentes.\n\nAl final del día, Barby regresó a casa con el corazón lleno de alegría y una amistad inolvidable con sus héroes animados. Sabía que, en ese mundo de fantasía, siempre había un lugar para ella.",
+[
+  {
+    "titulo": "Las huellas de verano",
+    "contenido": "En un soleado día de verano, Barby y su familia llegaron a la playa con entusiasmo. El suave sonido de las olas y la brisa del mar los recibieron cálidamente.\n\nBarby disfrutó construyendo castillos de arena y corriendo por la orilla con su perro, Max. Juntos dejaron huellas en la arena, símbolo de su inolvidable día de playa.",
     "categoria": "1",
-    "imagen": "https://iaemontevideo.utu.edu.uy/wp-content/uploads/sites/28/2023/04/logo_utu_iae_montevideo.png"
-}
+    "imagen": "https://c.files.bbci.co.uk/15665/production/_107435678_perro1.jpg"
+  },
+  {
+    "titulo": "El tesoro bajo el sol",
+    "contenido": "Barby adoraba explorar la playa en busca de tesoros marinos. Un día, descubrió una concha brillante y misteriosa. Cuando la levantó, una luz mágica se desprendió de ella.\n\nGuiada por la luz, encontró un cofre enterrado en la arena. Era un tesoro perdido, lleno de tesoros maravillosos que guardarían su recuerdo eternamente.",
+    "categoria": "1",
+    "imagen": "https://c.files.bbci.co.uk/15665/production/_107435678_perro1.jpg"
+  }
+]
