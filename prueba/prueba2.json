@@ -1,7 +1,14 @@
-{
-    "titulo": "Barby y los misterios animados",
-    "contenido": "Barby era una detective aficionada a los dibujos animados. Un día, descubrió que algunos personajes animados habían desaparecido misteriosamente del mundo de la animación.\n\nDecidida a resolver el enigma, Barby siguió las pistas por mundos animados diferentes. Con ingenio y valentía, enfrentó obstáculos y desentrañó intrigas animadas.\n\nAl final de su búsqueda, descubrió que un malvado personaje quería gobernar el mundo de los dibujos. Con la ayuda de otros personajes, Barby frustró sus planes y restauró el equilibrio en el mundo animado. Desde entonces, todos celebraron a Barby como la heroína de los dibujos.",
+[
+  {
+    "titulo": "El rescate del callejero",
+    "contenido": "Un pequeño perro callejero, Max, estaba solo y asustado. Un grupo de niños lo encontró y decidió ayudarlo. Lo llevaron a un refugio, donde Max encontró una familia amorosa. Ahora, disfruta de su vida con juegos y cariño, agradecido por el rescate que cambió su destino.",
     "categoria": "2",
-    "imagen": "https://iaemontevideo.utu.edu.uy/wp-content/uploads/sites/28/2023/04/logo_utu_iae_montevideo.png"
-}
-
+    "imagen": "https://fotografias.lasexta.com/clipping/cmsimages01/2022/08/09/3FFA8546-05CE-4608-9B69-6602D02A4C58/cachorro-pomsky_103.jpg?crop=1183,887,x0,y0&width=1200&height=900&optimize=low&format=webply"
+  },
+  {
+    "titulo": "El lazo inquebrantable",
+    "contenido": "Luna y Lucas eran inseparables. Su amistad comenzó cuando eran cachorros en el parque. A lo largo de los años, enfrentaron desafíos juntos y compartieron momentos de alegría. Su lazo inquebrantable les recordó que los perros también son amigos fieles para siempre.",
+    "categoria": "2",
+    "imagen": "https://fotografias.lasexta.com/clipping/cmsimages01/2022/08/09/3FFA8546-05CE-4608-9B69-6602D02A4C58/cachorro-pomsky_103.jpg?crop=1183,887,x0,y0&width=1200&height=900&optimize=low&format=webply"
+  }
+]
