@@ -1,14 +1,21 @@
 [
   {
-    "titulo": "El sueño de la copa",
-    "contenido": "Desde niños, Lucas y Martina soñaban con ganar la copa del campeonato. Cada día, entrenaban incansablemente, superando obstáculos y desafíos. Llegó el día de la final y el estadio estaba lleno de expectativas. Con coraje y talento, el equipo de Lucas y Martina levantó la copa, cumpliendo su anhelado sueño.",
+    "titulo": "El desafío global",
+    "contenido": "En el torneo internacional, equipos de todo el mundo se enfrentaron. La pasión por el fútbol unió culturas y corazones. Aunque solo uno levantó la copa, todos sintieron la victoria de vivir el fútbol en su máxima expresión.",
     "categoria": "3",
-    "imagen": "https://c.files.bbci.co.uk/15665/production/_107435678_perro1.jpg"
+    "imagen": "https://www.fcbarcelona.com/fcbarcelona/photo/2022/08/02/ae5252d1-b79b-4950-9e34-6e67fac09bb0/LeoMessi20092010_pic_fcb-arsenal62.jpg"
   },
   {
-    "titulo": "El gol del siglo",
-    "contenido": "En el partido más importante de la historia, el balón llegó a los pies de Juan. Con maestría y destreza, eludió a todos los rivales y anotó el gol del siglo. El estadio estalló en un grito ensordecedor de emoción. Ese gol quedó grabado en la memoria de todos, eternizando su grandeza.",
+    "titulo": "El legado del capitán",
+    "contenido": "Tras años de liderazgo, el capitán anunció su retiro. El equipo lo homenajeó con lágrimas y aplausos. Su legado en el campo y fuera de él inspiró a las nuevas generaciones a seguir su ejemplo.",
     "categoria": "3",
-    "imagen": "https://c.files.bbci.co.uk/15665/production/_107435678_perro1.jpg"
+    "imagen": "https://www.fcbarcelona.com/fcbarcelona/photo/2022/08/02/ae5252d1-b79b-4950-9e34-6e67fac09bb0/LeoMessi20092010_pic_fcb-arsenal62.jpg"
+  },
+  {
+    "titulo": "El orgullo de la nación",
+    "contenido": "El mundial llegó y el país se vistió de colores. El estadio rugió con fervor. La selección luchó con valentía. Aunque no se llevaron la copa, la nación sintió orgullo por su equipo y el amor por el fútbol.",
+    "categoria": "3",
+    "imagen": "https://www.fcbarcelona.com/fcbarcelona/photo/2022/08/02/ae5252d1-b79b-4950-9e34-6e67fac09bb0/LeoMessi20092010_pic_fcb-arsenal62.jpg"
   }
 ]
+
