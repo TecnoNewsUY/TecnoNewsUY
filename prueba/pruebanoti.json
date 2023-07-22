@@ -1,59 +1,56 @@
 [
   {
-    "titulo": "El gol inesewperado",
-    "contenido": "Juan, el portero, subió a rematar un tirdo libre en el último minuto. Con sorpresa, anotó el gol del empate, salvando al equipo de la derrota.",
-    "categoria": "1"
-  },
-
-  {
-    "titulo": "El gol inewsperado",
-    "contenido": "Juan, el poertero, subió a rematar un tiro laaibre en el último minuto. Con sorpresa, anotó el gol del empate, salvando al equipo de la derrota.",
-    "categoria": "1"
-  },
-  
-  {
     "titulo": "El gol inesperado",
-    "contenido": "Juan, el portero, subió a rematar un tiro libre en el últidmo minuto. Con sorpresa, anotó el gol del empate, salvando al equipo de la derrota.",
-    "categoria": "1"
+    "contenido": "Juan, el portero, subió a rematar un tiro libre en el último minuto. Con sorpresa, anotó el gol del empate, salvando al equipo de la derrota.",
+    "categoria": "1",
+    "imagen": "https://www.pasiontricolor.com.uy/pasionweb2/wp-content/uploads/2021/03/PARQUE-CENTRAL.jpg"
   },
   {
     "titulo": "El regate maestro",
     "contenido": "Lucía deslumbró a todos con su regate imparable. Pasó entre rivales como si bailara, anotando el gol que los llevó a la victoria.",
-    "categoria": "1"
+    "categoria": "1",
+    "imagen": "https://www.pasiontricolor.com.uy/pasionweb2/wp-content/uploads/2021/03/PARQUE-CENTRAL.jpg"
   },
   {
     "titulo": "El penalti decisivo",
     "contenido": "En la final, Martín enfrentó el penalti definitivo. Con nervios de acero, disparó al ángulo y llevó al equipo a la gloria.",
-    "categoria": "1"
+    "categoria": "1",
+    "imagen": "https://www.pasiontricolor.com.uy/pasionweb2/wp-content/uploads/2021/03/PARQUE-CENTRAL.jpg"
   },
   {
     "titulo": "El balón perdido",
     "contenido": "Sofía encontró un balón abandonado en el parque. Con sus amigos, jugaron un emocionante partido hasta la puesta de sol.",
-    "categoria": "1"
+    "categoria": "1",
+    "imagen": "https://www.pasiontricolor.com.uy/pasionweb2/wp-content/uploads/2021/03/PARQUE-CENTRAL.jpg"
   },
   {
     "titulo": "El entrenamiento secreto",
     "contenido": "Carlos practicó tiros libres en secreto. En el partido clave, su gol de tiro libre fue el golpe de suerte que necesitaban.",
-    "categoria": "1"
+    "categoria": "1",
+    "imagen": "https://www.pasiontricolor.com.uy/pasionweb2/wp-content/uploads/2021/03/PARQUE-CENTRAL.jpg"
   },
   {
     "titulo": "El pase perfecto",
     "contenido": "Laura vio una oportunidad única y dio el pase perfecto. El delantero conectó con el balón y marcó el gol de la victoria.",
-    "categoria": "1"
+    "categoria": "1",
+    "imagen": "https://www.pasiontricolor.com.uy/pasionweb2/wp-content/uploads/2021/03/PARQUE-CENTRAL.jpg"
   },
   {
     "titulo": "El saque magistral",
     "contenido": "En el torneo, Diego sorprendió a todos con un saque desde su campo. El balón voló y entró directo a la portería rival.",
-    "categoria": "1"
+    "categoria": "1",
+    "imagen": "https://www.pasiontricolor.com.uy/pasionweb2/wp-content/uploads/2021/03/PARQUE-CENTRAL.jpg"
   },
   {
     "titulo": "El primer partido",
     "contenido": "Eduardo jugó su primer partido oficial. Con emoción y alegría, corrió tras el balón y vivió su primer gol.",
-    "categoria": "1"
+    "categoria": "1",
+    "imagen": "https://www.pasiontricolor.com.uy/pasionweb2/wp-content/uploads/2021/03/PARQUE-CENTRAL.jpg"
   },
   {
     "titulo": "El remate acrobático",
     "contenido": "En un centro perfecto, Andrés realizó un remate acrobático. El balón rozó el travesaño y entró, desatando la euforia en el estadio.",
-    "categoria": "1"
+    "categoria": "1",
+    "imagen": "https://www.pasiontricolor.com.uy/pasionweb2/wp-content/uploads/2021/03/PARQUE-CENTRAL.jpg"
   }
 ]
