@@ -1,14 +1,20 @@
 [
   {
-    "titulo": "El talento oculto",
-    "contenido": "Nico, un niño apasionado por el fútbol, soñaba con jugar en el equipo local. Sin embargo, era desafiado por su timidez. Un día, en un partido casual, demostró su habilidad sorprendente con el balón. Desde entonces, Nico se unió al equipo, mostrando su talento oculto y conquistando la cancha.",
+    "titulo": "El ascenso merecido",
+    "contenido": "Tras años de esfuerzo, el equipo amateur de Andrés logró el ansiado ascenso. Lágrimas de alegría brotaron en el campo. Era el resultado del trabajo en equipo y la pasión por el fútbol.",
     "categoria": "2",
-    "imagen": "https://c.files.bbci.co.uk/15665/production/_107435678_perro1.jpg"
+    "imagen": "https://www.fcbarcelona.com/fcbarcelona/photo/2022/08/02/ae5252d1-b79b-4950-9e34-6e67fac09bb0/LeoMessi20092010_pic_fcb-arsenal62.jpg"
   },
   {
-    "titulo": "La liga de amigos",
-    "contenido": "Un grupo de amigos creó su liga de fútbol amateur. Cada fin de semana, competían en partidos llenos de emoción y diversión. Las risas y el compañerismo eran el alma de su liga. No importaba el resultado; para ellos, ganar era disfrutar del deporte que amaban junto a sus amigos.",
+    "titulo": "El torneo de amigos",
+    "contenido": "En la playa, un grupo de amigos organizó un torneo improvisado. Diversión y risas llenaron la arena. Todos eran ganadores en ese juego amistoso, donde el fútbol unió corazones y amistades.",
     "categoria": "2",
-    "imagen": "https://c.files.bbci.co.uk/15665/production/_107435678_perro1.jpg"
+    "imagen": "https://www.fcbarcelona.com/fcbarcelona/photo/2022/08/02/ae5252d1-b79b-4950-9e34-6e67fac09bb0/LeoMessi20092010_pic_fcb-arsenal62.jpg"
+  },
+  {
+    "titulo": "La escuela de fútbol",
+    "contenido": "Niños y niñas llenaron la cancha con entusiasmo. La escuela de fútbol les enseñó habilidades y valores. Los aplausos de los padres celebraron el espíritu deportivo en el corazón de cada pequeño futbolista.",
+    "categoria": "2",
+    "imagen": "https://www.fcbarcelona.com/fcbarcelona/photo/2022/08/02/ae5252d1-b79b-4950-9e34-6e67fac09bb0/LeoMessi20092010_pic_fcb-arsenal62.jpg"
   }
 ]
