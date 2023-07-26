@@ -1,62 +1,7 @@
 [
-  {
-   "titulo": "Top 10 datos sorprendentes sobre Uruguay",
+  { "titulo": "Top 10 datos sorprendentes sobre Uruguay",
    "contenido": "<strong>1. Un paraíso de la biodiversidad:</strong> A pesar de ser uno de los países más pequeños de América del Sur, Uruguay alberga una sorprendente biodiversidad. Se han identificado más de 400 especies de aves, lo que convierte al país en un destino imperdible para los amantes del avistamiento de aves.\n\n<strong>2. Primera liga de fútbol en Sudamérica:</strong> En 1900, Uruguay fundó la primera liga de fútbol en Sudamérica, la Liga Uruguaya de Football, marcando el inicio de una larga tradición futbolística en la región.\n\n<strong>3. Energía eólica líder en la región:</strong> Uruguay ha hecho grandes avances en la producción de energía eólica. En 2017, el 33% de la electricidad del país fue generada por turbinas eólicas, superando a la mayoría de los países de América Latina en el uso de esta energía renovable.\n\n<strong>4. Legalización de la marihuana:</strong> Uruguay se convirtió en el primer país del mundo en legalizar la producción, venta y consumo de marihuana en 2013, buscando abordar el problema del narcotráfico y promover un enfoque de salud pública en el consumo de drogas.\n\n<strong>5. Sin ejército desde 1955:</strong> En 1955, Uruguay abolió su ejército y se convirtió en una nación completamente desmilitarizada. En su lugar, se enfocó en invertir en educación y bienestar social.\n\n<strong>6. Índice de desarrollo humano alto:</strong> Uruguay se destaca por su alto Índice de Desarrollo Humano (IDH), ubicándose entre los primeros países de América Latina en términos de educación, esperanza de vida y nivel de vida.\n\n<strong>7. Escuela gratuita para extranjeros:</strong> Uruguay ofrece educación pública gratuita incluso para estudiantes extranjeros, lo que ha atraído a estudiantes de todo el mundo a sus instituciones académicas.\n\n<strong>8. La casa más angosta de América:</strong> En Montevideo, la capital, se encuentra la "Casa más angosta de América", con solo 2.3 metros de ancho y 7 metros de profundidad. ¡Es un fascinante ejemplo de arquitectura ingeniosa!\n\n<strong>9. Carnaval patrimonio de la humanidad:</strong> El Carnaval de Uruguay es tan importante culturalmente que fue declarado Patrimonio de la Humanidad por la UNESCO en 2009. Es una celebración vibrante llena de música, baile y desfiles coloridos.\n\n<strong>10. Consumo récord de carne por persona:</strong> Los uruguayos son conocidos por ser grandes amantes de la carne. De hecho, el consumo promedio de carne por persona en Uruguay es uno de los más altos del mundo, superando incluso a países famosos por sus parrillas como Argentina y Australia.\n",
    "categoria": "2",
    "imagen": "https://i2.wp.com/www.visionmaritima.com.uy/wp-content/uploads/2019/09/BanderaDeUruguay.jpg?fit=669%2C418&ssl=1"
-},
-  {
-    "titulo": "El gol inesperado",
-    "contenido": "Juan, el portero, subió a rematar un tiro libre en el último minuto. Con sorpresa, anotó el gol del empate, salvando al equipo de la derrota.",
-    "categoria": "1",
-    "imagen": "https://www.pasiontricolor.com.uy/pasionweb2/wp-content/uploads/2021/03/PARQUE-CENTRAL.jpg"
-  },
-  {
-    "titulo": "El regate maestro",
-    "contenido": "Lucía deslumbró a todos con su regate imparable. Pasó entre rivales como si bailara, anotando el gol que los llevó a la victoria.",
-    "categoria": "1",
-    "imagen": "https://www.pasiontricolor.com.uy/pasionweb2/wp-content/uploads/2021/03/PARQUE-CENTRAL.jpg"
-  },
-  {
-    "titulo": "El penalti decisivo",
-    "contenido": "En la final, Martín enfrentó el penalti definitivo. Con nervios de acero, disparó al ángulo y llevó al equipo a la gloria.",
-    "categoria": "1",
-    "imagen": "https://www.pasiontricolor.com.uy/pasionweb2/wp-content/uploads/2021/03/PARQUE-CENTRAL.jpg"
-  },
-  {
-    "titulo": "El balón perdido",
-    "contenido": "Sofía encontró un balón abandonado en el parque. Con sus amigos, jugaron un emocionante partido hasta la puesta de sol.",
-    "categoria": "1",
-    "imagen": "https://www.pasiontricolor.com.uy/pasionweb2/wp-content/uploads/2021/03/PARQUE-CENTRAL.jpg"
-  },
-  {
-    "titulo": "El entrenamiento secreto",
-    "contenido": "Carlos practicó tiros libres en secreto. En el partido clave, su gol de tiro libre fue el golpe de suerte que necesitaban.",
-    "categoria": "1",
-    "imagen": "https://www.pasiontricolor.com.uy/pasionweb2/wp-content/uploads/2021/03/PARQUE-CENTRAL.jpg"
-  },
-  {
-    "titulo": "El pase perfecto",
-    "contenido": "Laura vio una oportunidad única y dio el pase perfecto. El delantero conectó con el balón y marcó el gol de la victoria.",
-    "categoria": "1",
-    "imagen": "https://www.pasiontricolor.com.uy/pasionweb2/wp-content/uploads/2021/03/PARQUE-CENTRAL.jpg"
-  },
-  {
-    "titulo": "El saque magistral",
-    "contenido": "En el torneo, Diego sorprendió a todos con un saque desde su campo. El balón voló y entró directo a la portería rival.",
-    "categoria": "1",
-    "imagen": "https://www.pasiontricolor.com.uy/pasionweb2/wp-content/uploads/2021/03/PARQUE-CENTRAL.jpg"
-  },
-  {
-    "titulo": "El primer partido",
-    "contenido": "Eduardo jugó su primer partido oficial. Con emoción y alegría, corrió tras el balón y vivió su primer gol.",
-    "categoria": "1",
-    "imagen": "https://www.pasiontricolor.com.uy/pasionweb2/wp-content/uploads/2021/03/PARQUE-CENTRAL.jpg"
-  },
-  {
-    "titulo": "El remate acrobático",
-    "contenido": "En un centro perfecto, Andrés realizó un remate acrobático. El balón rozó el travesaño y entró, desatando la euforia en el estadio.",
-    "categoria": "1",
-    "imagen": "https://www.pasiontricolor.com.uy/pasionweb2/wp-content/uploads/2021/03/PARQUE-CENTRAL.jpg"
-  }
+}
 ]
